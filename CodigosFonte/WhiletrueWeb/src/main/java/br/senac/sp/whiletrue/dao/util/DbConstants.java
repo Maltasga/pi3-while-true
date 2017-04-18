@@ -8,7 +8,7 @@ package br.senac.sp.whiletrue.dao.util;
 public class DbConstants {
     
     public static final String URL = "jdbc:derby://localhost:1527/baseLoja";
-    public static final String USER = "tiadmin";
-    public static final String PASSWORD = "tiadmin";
+    public static final String USER = "ti_loja";
+    public static final String PASSWORD = "loja";
     
 }
