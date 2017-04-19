@@ -14,9 +14,9 @@ import java.util.ArrayList;
  * @author While True
  */
 public class PerfilDao implements RepositorioBase {
-    
+
     Connection conexao = null;
-    
+
     @Override
     public void inserir(Entidade obj) throws SQLException, Exception {
         String query = "INSERT INTO Perfil (NomePerfil) VALUES (?)";
@@ -31,13 +31,13 @@ public class PerfilDao implements RepositorioBase {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
             }
-            
+
             if (conexao != null || !conexao.isClosed()) {
                 conexao.close();
             }
         }
     }
-    
+
     @Override
     public void editar(Entidade obj) throws SQLException, Exception {
         String query = "UPDATE Perfil SET NomePerfil = ? WHERE IdPerfil = ?";
@@ -48,19 +48,19 @@ public class PerfilDao implements RepositorioBase {
             statement = conexao.prepareStatement(query);
             statement.setString(1, p.getNome());
             statement.setInt(2, p.getId());
-            
+
             statement.execute();
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
             }
-            
+
             if (conexao != null || !conexao.isClosed()) {
                 conexao.close();
             }
         }
     }
-    
+
     @Override
     public void excluir(int id) throws SQLException, Exception {
         String query = "DELETE FROM Perfil WHERE IdPerfil = ?";
@@ -69,23 +69,24 @@ public class PerfilDao implements RepositorioBase {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             statement.setInt(1, id);
-            
+
             statement.execute();
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
             }
-            
+
             if (conexao != null || !conexao.isClosed()) {
                 conexao.close();
             }
         }
     }
-    
+
     @Override
     public ArrayList<Entidade> listar(Entidade obj) throws SQLException, Exception {
         ArrayList<Entidade> perfis = new ArrayList<>();
-        String query = "SELECT * FROM Perfil WHERE NomePerfil LIKE UPER(?)";
+        String query = "SELECT * FROM Perfil WHERE NomePerfil = '' OR NomePerfil LIKE ?";
+
         Perfil p = (Perfil) obj;
         PreparedStatement statement = null;
         ResultSet result = null;
@@ -93,25 +94,29 @@ public class PerfilDao implements RepositorioBase {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             statement.setString(1, "%" + p.getNome() + "%");
-            
+
             result = statement.executeQuery();
-            
+
             while (result.next()) {
-                perfis.add(new Perfil(result.getInt("IdPerfil"), result.getString("NomePerfil")));
+                perfis.add(new Perfil(
+                        result.getInt("IdPerfil"),
+                        result.getString("NomePerfil")
+                ));
             }
         } finally {
             if (result != null && !result.isClosed()) {
                 result.close();
             }
+
             if (statement != null && !statement.isClosed()) {
                 statement.close();
             }
-            
+
             if (conexao != null || !conexao.isClosed()) {
                 conexao.close();
             }
         }
         return perfis;
     }
-    
+
 }

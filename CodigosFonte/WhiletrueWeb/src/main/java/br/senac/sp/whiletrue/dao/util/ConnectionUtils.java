@@ -22,7 +22,7 @@ public class ConnectionUtils {
             connection = DriverManager.getConnection(URL, prop);
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("ERRO - " + ex.getMessage());
         }
         return connection;
     }

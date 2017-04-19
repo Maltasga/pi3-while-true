@@ -1,6 +1,9 @@
 package br.senac.sp.whiletrue.dao;
 
 import br.senac.sp.whiletrue.dao.util.ConnectionUtils;
+import br.senac.sp.whiletrue.model.Entidade;
+import br.senac.sp.whiletrue.model.Perfil;
+import java.util.ArrayList;
 
 /**
  *
@@ -9,11 +12,22 @@ import br.senac.sp.whiletrue.dao.util.ConnectionUtils;
 public class TestarConexao {
 
     public static void main(String[] args) {
-        testConexao();
+        testGetPerfil();
     }
 
     public static void testConexao() {
         ConnectionUtils.getConnection();
-        System.out.println("Conexão realizada!");
+    }
+
+    static void testGetPerfil() {
+        RepositorioBase dao = new PerfilDao();
+        try {
+            ArrayList<Entidade> perfis = dao.listar(new Perfil(0, ""));
+            for (Entidade p : perfis) {
+                System.out.println(((Perfil) p).getNome());
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
