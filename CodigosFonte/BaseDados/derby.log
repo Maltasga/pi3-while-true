@@ -1,7 +1,20 @@
-Tue Apr 18 19:25:17 BRT 2017 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+Sat Apr 22 10:22:43 BRT 2017 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
 ----------------------------------------------------------------
-Tue Apr 18 19:25:17 BRT 2017:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-015b-832b-55e7-00002a12aa79
+Sat Apr 22 10:22:45 BRT 2017:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-015b-95d4-330e-00002a12aa79
+no diretório de banco de dados E:\git-projects\pi3-while-true\CodigosFonte\BaseDados\sample 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_121-b13
+user.dir=C:\Program Files\glassfish-4.1.1\javadb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=E:\git-projects\pi3-while-true\CodigosFonte\BaseDados
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Apr 22 10:23:03 BRT 2017:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância 8ca44062-015b-95d4-330e-00002a12aa79
 no diretório de banco de dados E:\git-projects\pi3-while-true\CodigosFonte\BaseDados\baseLoja 
 
 java.vendor=Oracle Corporation
@@ -13,4 +26,4 @@ os.version=10.0
 derby.system.home=E:\git-projects\pi3-while-true\CodigosFonte\BaseDados
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
 ----------------------------------------------------------------
-Tue Apr 18 21:31:30 BRT 2017: Shutting down Derby engine
+Sat Apr 22 10:35:47 BRT 2017: Shutting down Derby engine
