@@ -55,7 +55,7 @@ public class UsuarioServlet extends HttpServlet {
             Usuario usuario = new Usuario(id, nome, idPerfil, login, senha, true, GregorianCalendar.getInstance().getTime());
             dao.inserir(usuario);
 
-            ArrayList<Usuario> listaUsuarios = dao.listarTodos();
+            ArrayList<Usuario> listaUsuarios = dao.listar();
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("listarUsuario.jsp");
             request.setAttribute("listaUsuarios", listaUsuarios);

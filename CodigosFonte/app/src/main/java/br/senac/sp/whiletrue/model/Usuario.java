@@ -1,14 +1,13 @@
-
 package br.senac.sp.whiletrue.model;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  *
  * @author While True
  */
 public class Usuario {
+
     private int id;
     private String nome;
     private int idPerfil;
@@ -18,7 +17,7 @@ public class Usuario {
     private java.util.Date dataCadastro;
     private Perfil perfil;
 
-    public Usuario(int id, String nome, int idPerfil, String login, String senha, boolean ativo,java.util.Date dataCadastro) {
+    public Usuario(int id, String nome, int idPerfil, String login, String senha, boolean ativo, java.util.Date dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.idPerfil = idPerfil;
@@ -82,5 +81,10 @@ public class Usuario {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return ((Usuario) o).getId() == this.id;
     }
 }

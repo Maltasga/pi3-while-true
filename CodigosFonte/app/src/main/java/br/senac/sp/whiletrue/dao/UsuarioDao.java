@@ -43,7 +43,51 @@ public class UsuarioDao {
         }
     }
 
-    public ArrayList<Usuario> listarTodos() throws SQLException {
+    public void atualizar(Usuario u) throws SQLException, Exception {
+        String query = "UPDATE Usuario SET Nome = ?, IdPerfil = ?, Login = ?, Senha = ?, IsActive = ?"
+                + " WHERE IdUser = ?";
+        PreparedStatement statement = null;
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setString(1, u.getNome());
+            statement.setInt(2, u.getIdPerfil());
+            statement.setString(3, u.getLogin());
+            statement.setString(4, u.getSenha());
+            statement.setBoolean(5, u.isAtivo());
+            statement.setInt(6, u.getId());
+            statement.execute();
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+    }
+
+    public void excluir(int id) throws SQLException, Exception {
+        String query = "DELETE FROM Usuario WHERE IdUser = ?";
+        PreparedStatement statement = null;
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.execute();
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+    }
+
+    public ArrayList<Usuario> listar() throws SQLException {
         ArrayList<Usuario> usuarios = new ArrayList<>();
 
         String query = "select u.IDUSER, u.NOME, u.LOGIN, u.ISACTIVE, u.DATECREATED, p.IDPERFIL, p.NOMEPERFIL \n"
