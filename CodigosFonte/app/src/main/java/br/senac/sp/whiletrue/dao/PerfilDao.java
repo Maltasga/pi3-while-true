@@ -77,16 +77,15 @@ public class PerfilDao {
         }
     }
 
-    public ArrayList<Perfil> listar(Perfil p) throws SQLException, Exception {
+    public ArrayList<Perfil> listar() throws SQLException, Exception {
         ArrayList<Perfil> perfis = new ArrayList<>();
-        String query = "SELECT * FROM Perfil WHERE NomePerfil = '' OR NomePerfil LIKE ?";
+        String query = "SELECT IdPerfil, NomePerfil FROM Perfil";
 
         PreparedStatement statement = null;
         ResultSet result = null;
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
-            statement.setString(1, "%" + p.getNome() + "%");
 
             result = statement.executeQuery();
 

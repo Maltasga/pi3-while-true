@@ -69,7 +69,7 @@ public class UsuarioDao {
     }
 
     public void excluir(int id) throws SQLException, Exception {
-        String query = "DELETE FROM Usuario WHERE IdUser = ?";
+        String query = "UPDATE Usuario SET IsActive = false WHERE IdUser = ?";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();
