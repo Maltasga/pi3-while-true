@@ -1,0 +1,28 @@
+body{
+    background: #ccc;
+}
+.form-ativo{
+    position: absolute;
+    left: 51%;
+    bottom: 74%;
+}
+.form-colecao{
+    width: 50%;
+}
+
+.form-periodo{
+    width: 20%;
+}
+.form-ano{
+    width: 10%;
+}
+.form-group{
+    box-sizing: border-box;
+}
+.page-headers {
+    background-color: #b9def0;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+/*    color: #ffffff;*/
+    font-size: 36pt;
+}
