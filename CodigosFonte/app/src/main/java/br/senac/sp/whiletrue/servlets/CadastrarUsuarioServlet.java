@@ -51,9 +51,11 @@ public class CadastrarUsuarioServlet extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             String nome = request.getParameter("nome");
             int idPerfil = Integer.parseInt(request.getParameter("perfil"));
+            int idFilial = Integer.parseInt(request.getParameter("filial"));
             String login = request.getParameter("login");
             String senha = request.getParameter("senha");
-            Usuario usuario = new Usuario(id, nome, idPerfil, login, senha, true, GregorianCalendar.getInstance().getTime());
+            Usuario usuario = new Usuario(id, nome, idPerfil, idFilial, login, senha, true, GregorianCalendar.getInstance().getTime()
+            );
             userService.salvar(usuario);
 
             response.sendRedirect(request.getContextPath() + "/usuario");

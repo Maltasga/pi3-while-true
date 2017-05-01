@@ -9,30 +9,32 @@ import java.util.Date;
 public class Usuario {
 
     private int id;
-    private String nome;
     private int idPerfil;
+    private int idFilial;
+    private String nome;
+    private String email;
     private String login;
     private String senha;
     private boolean ativo;
-    private java.util.Date dataCadastro;
-    private Perfil perfil;
+    private Date dataCadastro;
 
-    public Usuario(int id, String nome, int idPerfil, String login, String senha, boolean ativo, java.util.Date dataCadastro) {
+    public Usuario(int id, int idPerfil, int idFilial, String nome, String email, String login, boolean ativo, Date dataCadastro) {
         this.id = id;
-        this.nome = nome;
         this.idPerfil = idPerfil;
+        this.idFilial = idFilial;
+        this.nome = nome;
+        this.email = email;
         this.login = login;
-        this.senha = senha;
         this.ativo = ativo;
         this.dataCadastro = dataCadastro;
     }
 
-    public Perfil getPerfil() {
-        return perfil;
+    public int getId() {
+        return id;
     }
 
-    public void setPerfil(Perfil perfil) {
-        this.perfil = perfil;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdPerfil() {
@@ -43,48 +45,55 @@ public class Usuario {
         this.idPerfil = idPerfil;
     }
 
-    public int getId() {
-        return id;
+    public int getIdFilial() {
+        return idFilial;
+    }
+
+    public void setIdFilial(int idFilial) {
+        this.idFilial = idFilial;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
-    }
-
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
-
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getLogin() {
+        return login;
     }
 
     public void setLogin(String login) {
         this.login = login;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
     }
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return ((Usuario) o).getId() == this.id;
+    public Date getDataCadastro() {
+        return dataCadastro;
     }
 }

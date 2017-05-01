@@ -17,12 +17,13 @@ public class PerfilDao {
     Connection conexao = null;
 
     public void inserir(Perfil p) throws SQLException, Exception {
-        String query = "INSERT INTO Perfil (NomePerfil) VALUES (?)";
+        String query = "INSERT INTO Perfil (Id, Nome) VALUES (?, ?)";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
-            statement.setString(1, p.getNome());
+            statement.setInt(1, p.getId());
+            statement.setString(2, p.getNome());
             statement.execute();
         } finally {
             if (statement != null && !statement.isClosed()) {
@@ -36,14 +37,13 @@ public class PerfilDao {
     }
 
     public void editar(Perfil p) throws SQLException, Exception {
-        String query = "UPDATE Perfil SET NomePerfil = ?, Ativo = ? WHERE IdPerfil = ?";
+        String query = "UPDATE Perfil SET Nome = ? WHERE Id = ?";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             statement.setString(1, p.getNome());
-            statement.setBoolean(2, p.isAtivo());
-            statement.setInt(3, p.getId());
+            statement.setInt(2, p.getId());
 
             statement.execute();
         } finally {
@@ -58,7 +58,7 @@ public class PerfilDao {
     }
 
     public void excluir(int id) throws SQLException, Exception {
-        String query = "DELETE FROM Perfil WHERE IdPerfil = ?";
+        String query = "DELETE FROM Perfil WHERE Id = ?";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();
@@ -79,7 +79,7 @@ public class PerfilDao {
 
     public ArrayList<Perfil> listar() throws SQLException, Exception {
         ArrayList<Perfil> perfis = new ArrayList<>();
-        String query = "SELECT IdPerfil, NomePerfil FROM Perfil";
+        String query = "SELECT Id, Nome  FROM Perfil";
 
         PreparedStatement statement = null;
         ResultSet result = null;
@@ -91,8 +91,8 @@ public class PerfilDao {
 
             while (result.next()) {
                 perfis.add(new Perfil(
-                        result.getInt("IdPerfil"),
-                        result.getString("NomePerfil")
+                        result.getInt("Id"),
+                        result.getString("Nome")
                 ));
             }
         } finally {

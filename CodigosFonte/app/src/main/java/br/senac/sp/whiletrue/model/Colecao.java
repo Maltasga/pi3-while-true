@@ -8,19 +8,19 @@ import java.util.Date;
  * @author While True
  */
 public class Colecao {
-    private int idColecao;
+    private int id;
     private String nome;
     private String periodo;
     private int ano;
     private boolean ativo;
     private java.util.Date dataCriacao;
 
-    public int getIdColecao() {
-        return idColecao;
+    public int getId() {
+        return id;
     }
 
-    public void setIdColecao(int idColecao) {
-        this.idColecao = idColecao;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -64,7 +64,7 @@ public class Colecao {
     }
 
     public Colecao(int idColecao, String nome, String periodo, int ano, boolean ativo, Date dataCriacao) {
-        this.idColecao = idColecao;
+        this.id = idColecao;
         this.nome = nome;
         this.periodo = periodo;
         this.ano = ano;

@@ -2,7 +2,6 @@ package br.senac.sp.whiletrue.dao;
 
 import br.senac.sp.whiletrue.dao.util.ConnectionUtils;
 import br.senac.sp.whiletrue.model.Colecao;
-import br.senac.sp.whiletrue.model.Perfil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +17,7 @@ public class ColecaoDao {
     Connection conexao = null;
 
     public void inserir(Colecao c) throws SQLException, Exception {
-        String query = "INSERT INTO Colecao (Nome, Periodo, Ano, IsActive, DateCreated)"
+        String query = "INSERT INTO Colecao (Nome, Periodo, Ano, Ativo, DataCadastro)"
                 + " VALUES (?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
         try {
@@ -43,7 +42,7 @@ public class ColecaoDao {
     }
 
     public void editar(Colecao c) throws SQLException, Exception {
-        String query = "UPDATE Colecao SET Nome = ?, Periodo = ?, Ano = ?, IsActive = ? WHERE IdColecao = ?";
+        String query = "UPDATE Colecao SET Nome = ?, Periodo = ?, Ano = ? WHERE Id = ?";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();
@@ -51,8 +50,7 @@ public class ColecaoDao {
             statement.setString(1, c.getNome());
             statement.setString(2, c.getPeriodo());
             statement.setInt(3, c.getAno());
-            statement.setBoolean(4, c.isAtivo());
-            statement.setInt(5, c.getIdColecao());
+            statement.setInt(4, c.getId());
 
             statement.execute();
         } finally {
@@ -67,7 +65,7 @@ public class ColecaoDao {
     }
 
     public void excluir(int id) throws SQLException, Exception {
-        String query = "UPDATE Colecao SET IsActive = false WHERE IdColecao = ?";
+        String query = "UPDATE Colecao SET Ativo = false WHERE Id = ?";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();
@@ -100,12 +98,12 @@ public class ColecaoDao {
 
             while (result.next()) {
                 colecoes.add(new Colecao(
-                        result.getInt("IdColecao"),
+                        result.getInt("Id"),
                         result.getString("Nome"),
                         result.getString("Periodo"), 
                         result.getInt("Ano"), 
-                        result.getBoolean("IsActive"), 
-                        new java.util.Date(result.getDate("DateCreated").getTime()))
+                        result.getBoolean("Ativo"), 
+                        new java.util.Date(result.getDate("DataCadastro").getTime()))
                 );
             }
         } finally {

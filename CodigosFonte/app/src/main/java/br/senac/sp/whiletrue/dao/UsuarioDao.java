@@ -18,7 +18,7 @@ public class UsuarioDao {
     Connection conexao = null;
 
     public void inserir(Usuario u) throws SQLException, Exception {
-        String query = "INSERT INTO Usuario (Nome, IdPerfil, Login, Senha, IsActive, DateCreated)"
+        String query = "INSERT INTO Usuario (IdPerfil, IdFilial, Nome, Email, Login, Senha, Ativo, DataCadastro)"
                 + "VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
         try {
@@ -104,6 +104,7 @@ public class UsuarioDao {
                         result.getInt("IdUser"),
                         result.getString("Nome"),
                         result.getInt("IdPerfil"),
+                        result.getInt("IdFilial"),
                         result.getString("Login"),
                         null,
                         result.getBoolean("IsActive"),
