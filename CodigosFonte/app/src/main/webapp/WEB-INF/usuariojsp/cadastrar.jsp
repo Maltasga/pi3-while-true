@@ -3,11 +3,8 @@
 <!DOCTYPE html>
 <html lang="pt">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Cadastro de Usuário</title>
-        <link href="Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <jsp:include page="../partilals/htmlHead.jsp"></jsp:include>
     </head>
     <body>
         <div class="container">

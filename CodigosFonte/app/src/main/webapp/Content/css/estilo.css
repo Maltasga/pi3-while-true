@@ -1,20 +1,45 @@
 body{
-    background: #ccc;
+    /*    background: #ccc;*/
+    background-image: url("../img/fundo(2).jpg") ;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+.form-cadastro{
+    width: 870px;
+    border: 1px #777 solid;
+    background: #F8F8FF;
+    box-sizing: border-box;
+    padding-left: 35px;
+    padding-bottom: 10px;
+    position: absolute;
+    left: 95px;
+    top: 85px;
+    border-radius: 30px;
+    opacity: 0.9;
+}
+.form-cadastro:hover{
+    opacity: 1;
+}
+.form-dados{
+    padding-top: 20px;
 }
 .form-ativo{
     position: absolute;
-    left: 51%;
-    bottom: 73%;
+    left: 78%;
+    top: 26%;
+}
+.form-botoes{
+    padding-left: 15px; 
 }
 .form-colecao{
-    width: 50%;
+    width: 70%;
 }
 
 .form-periodo{
     width: 20%;
 }
 .form-ano{
-    width: 10%;
+    width: 12%;
 }
 .form-group{
     box-sizing: border-box;
@@ -22,8 +47,6 @@ body{
 .titulo {
     padding-bottom: 9px;
     border-bottom: 1px solid #eeeeee;
-    margin: 40px -21px 20px;
-/*        color: #ffffff;*/
     font-size: 36pt;
 }
 footer{
@@ -33,7 +56,7 @@ footer{
     margin: auto; 
     position: fixed;
     text-align: center;
-    background: #777;
+    background: -webkit-linear-gradient(top, #f0ede6, #778899);
 }
 
 .menu{
