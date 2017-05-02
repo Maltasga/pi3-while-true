@@ -1,0 +1,22 @@
+.container-login {
+    width: 350px;
+    top: 30%;
+    right: 25%;
+    bottom: 30%;
+    left: 25%;
+    margin: auto;
+    position: fixed;
+    border: 1px solid #1b6d85;
+    border-radius: 20px;
+    background-color: hsla(280, 80%, 70%, .3);
+    padding: 30px;
+}
+
+.titulo {
+    border-bottom: 1px dotted #1b6d85;
+    margin-bottom: 5px;
+}
+
+.titulo>label {
+    font-size: 1.5em;
+}

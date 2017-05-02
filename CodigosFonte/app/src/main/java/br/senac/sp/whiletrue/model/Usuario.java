@@ -1,5 +1,7 @@
 package br.senac.sp.whiletrue.model;
 
+import br.senac.sp.whiletrue.servico.FilialService;
+import br.senac.sp.whiletrue.servico.PerfilService;
 import java.util.Date;
 
 /**
@@ -17,6 +19,7 @@ public class Usuario {
     private String senha;
     private boolean ativo;
     private Date dataCadastro;
+    private Perfil perfil;
 
     public Usuario(int id, int idPerfil, int idFilial, String nome, String email, String login, boolean ativo, Date dataCadastro) {
         this.id = id;
@@ -95,5 +98,28 @@ public class Usuario {
 
     public Date getDataCadastro() {
         return dataCadastro;
+    }
+
+    public Filial getFilial() {
+        Filial filial = null;
+        try {
+            FilialService service = new FilialService();
+            filial = service.get(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return filial;
+    }
+
+    public Perfil getPerfil() {
+        if (perfil == null) {
+            try {
+                PerfilService service = new PerfilService();
+                perfil = service.get(id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return perfil;
     }
 }

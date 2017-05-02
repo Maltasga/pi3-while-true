@@ -1,12 +1,10 @@
 package br.senac.sp.whiletrue.servlets;
 
 import br.senac.sp.whiletrue.model.Perfil;
-import br.senac.sp.whiletrue.model.Usuario;
 import br.senac.sp.whiletrue.servico.PerfilService;
 import br.senac.sp.whiletrue.servico.UsuarioService;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -54,9 +52,8 @@ public class CadastrarUsuarioServlet extends HttpServlet {
             int idFilial = Integer.parseInt(request.getParameter("filial"));
             String login = request.getParameter("login");
             String senha = request.getParameter("senha");
-            Usuario usuario = new Usuario(id, nome, idPerfil, idFilial, login, senha, true, GregorianCalendar.getInstance().getTime()
-            );
-            userService.salvar(usuario);
+            
+            userService.salvar(null);
 
             response.sendRedirect(request.getContextPath() + "/usuario");
         } catch (Exception ex) {

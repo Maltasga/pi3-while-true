@@ -1,7 +1,6 @@
 package br.senac.sp.whiletrue.dao;
 
 import br.senac.sp.whiletrue.dao.util.ConnectionUtils;
-import br.senac.sp.whiletrue.model.Perfil;
 import br.senac.sp.whiletrue.model.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -90,8 +89,16 @@ public class UsuarioDao {
     public ArrayList<Usuario> listar() throws SQLException {
         ArrayList<Usuario> usuarios = new ArrayList<>();
 
-        String query = "select u.IDUSER, u.NOME, u.LOGIN, u.ISACTIVE, u.DATECREATED, p.IDPERFIL, p.NOMEPERFIL \n"
-                + "from usuario u join perfil p on u.IDPERFIL = p.IDPERFIL";
+        String query = "select "
+                + "u.Id, "
+                + "u.Nome, "
+                + "u.Email, "
+                + "u.Login, "
+                + "u.Ativo, "
+                + "u.DataCadastro, "
+                + "u.IdPerfil, "
+                + "u.IdFilial "
+                + "from Usuario u";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();
@@ -99,17 +106,15 @@ public class UsuarioDao {
             ResultSet result = statement.executeQuery();
             Usuario u;
             while (result.next()) {
-                java.util.Date dataCriacao = new java.util.Date(result.getDate("DateCreated").getTime());
-                u = new Usuario(
-                        result.getInt("IdUser"),
-                        result.getString("Nome"),
+                u = new Usuario(result.getInt("Id"),
                         result.getInt("IdPerfil"),
-                        result.getInt("IdFilial"),
+                        result.getInt(("IdFilial")),
+                        result.getString("Nome"),
+                        result.getString("Email"),
                         result.getString("Login"),
-                        null,
-                        result.getBoolean("IsActive"),
-                        dataCriacao);
-                u.setPerfil(new Perfil(result.getInt("IdPerfil"), result.getString("NomePerfil")));
+                        result.getBoolean("Ativo"),
+                        new java.util.Date(result.getDate("DataCadastro").getTime()));
+
                 usuarios.add(u);
             }
         } finally {

@@ -79,7 +79,7 @@ public class PerfilDao {
 
     public ArrayList<Perfil> listar() throws SQLException, Exception {
         ArrayList<Perfil> perfis = new ArrayList<>();
-        String query = "SELECT Id, Nome  FROM Perfil";
+        String query = "SELECT Id, Nome FROM Perfil";
 
         PreparedStatement statement = null;
         ResultSet result = null;

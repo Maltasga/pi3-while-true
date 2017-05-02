@@ -1,6 +1,6 @@
-
 package br.senac.sp.whiletrue.model;
 
+import br.senac.sp.whiletrue.dao.EnderecoDao;
 import java.util.Date;
 
 /**
@@ -8,116 +8,80 @@ import java.util.Date;
  * @author While True
  */
 public class Filial {
-    private int idFilial;
-    private String NomeLoja;
+
+    private int id;
+    private String nome;
     private String cnpj;
-    private String logradouro;
-    private String cep;
-    private String complemento;
-    private String bairro;
-    private String cidade;
-    private String uf;
+    private boolean matriz;
     private boolean ativo;
-    private java.util.Date dataCadastro;
+    private Date dataCadastro;
+    private Endereco endereco;
 
-    public int getIdFilial() {
-        return idFilial;
+    public Endereco getEndereco() {
+        if (this.endereco == null) {
+            EnderecoDao dao = new EnderecoDao();
+            try {
+                this.endereco = dao.obter(this.id, Endereco.ORIGEM_FILIAL);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return this.endereco;
     }
 
-    public void setIdFilial(int idFilial) {
-        this.idFilial = idFilial;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 
-    public String getNomeLoja() {
-        return NomeLoja;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setNomeLoja(String NomeLoja) {
-        this.NomeLoja = NomeLoja;
-    }
-
-    public String getCnpj() {
-        return cnpj;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
-    public String getLogradouro() {
-        return logradouro;
-    }
-
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
-    public boolean isAtivo() {
-        return ativo;
+    public void setMatriz(boolean matriz) {
+        this.matriz = matriz;
     }
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public boolean isMatriz() {
+        return matriz;
+    }
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
     public Date getDataCadastro() {
         return dataCadastro;
     }
 
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public Filial(int idFilial, String NomeLoja, String cnpj, String logradouro, String cep, String complemento, String bairro, String cidade, String uf, boolean ativo, Date dataCadastro) {
-        this.idFilial = idFilial;
-        this.NomeLoja = NomeLoja;
+    public Filial(int id, String nome, String cnpj, boolean matriz, boolean ativo, Date dataCadastro) {
+        this.id = id;
+        this.nome = nome;
         this.cnpj = cnpj;
-        this.logradouro = logradouro;
-        this.cep = cep;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.uf = uf;
+        this.matriz = matriz;
         this.ativo = ativo;
         this.dataCadastro = dataCadastro;
     }
