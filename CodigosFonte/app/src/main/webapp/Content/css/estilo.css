@@ -41,6 +41,12 @@ body{
 .form-ano{
     width: 12%;
 }
+.form-codigo{
+    width: 12%;
+}
+.form-produto{
+    width: 50%;
+}
 .form-group{
     box-sizing: border-box;
 }

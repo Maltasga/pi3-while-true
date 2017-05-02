@@ -14,9 +14,13 @@
 
                 <form>
                         <div class="form-dados">
-                            <div  class="form-group form-colecao">
+                            <div  class="form-group form-codigo">
+                                <label>Cód.Produto</label>
+                                <input type="text" required name="codigo" class="form-control">
+                            </div>
+                            <div  class="form-group form-produto">
                                 <label>Nome do Produto</label>
-                                <input pattern="[a-zA-Z]+" type="text" required name="colecao" class="form-control" placeholder="Nome do Produto" >
+                                <input pattern="[a-zA-Z]+" type="text" required name="produto" class="form-control" placeholder="Insira o nome do Produto aqui" >
                             </div>
                             <div id="actions" class="row form-group">
                                 <div class="form-botoes">
