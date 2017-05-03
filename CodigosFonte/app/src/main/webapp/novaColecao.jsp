@@ -11,7 +11,6 @@
                 <div class="titulo">
                     <h2>Cadastro de Coleção</h2>   
                 </div>
-
                 <form>
                     <div class="form-dados">
                         <div  class="form-group form-colecao">
