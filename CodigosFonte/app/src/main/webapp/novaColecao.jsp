@@ -11,10 +11,9 @@
                 <div class="titulo">
                     <h2>Cadastro de Coleção</h2>   
                 </div>
-
                 <form>
                         <div class="form-dados">
-                            <div  class="form-group form-colecao">
+                            <div  class="form-group form-nmCcolecao">
                                 <label>Nome da Coleção</label>
                                 <input pattern="[a-zA-Z]+" type="text" required name="colecao" class="form-control" placeholder="Nome da Coleção" >
                                 <div class="form-ativo">

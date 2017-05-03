@@ -31,10 +31,12 @@ body{
 .form-botoes{
     padding-left: 15px; 
 }
-.form-colecao{
+.form-nmCcolecao{
     width: 70%;
 }
-
+.form-colecao{
+    width: 20%;
+}
 .form-periodo{
     width: 20%;
 }
@@ -47,6 +49,15 @@ body{
 .form-produto{
     width: 50%;
 }
+.form-valor{
+    width: 17%;
+}
+.form-tipo{
+    width: 17%;
+}
+.form-cor{
+    width: 17%;
+}
 .form-group{
     box-sizing: border-box;
 }
@@ -55,6 +66,7 @@ body{
     border-bottom: 1px solid #eeeeee;
     font-size: 36pt;
 }
+
 footer{
     height: 60px;
     width: 100%;
