@@ -56,14 +56,13 @@ body{
     font-size: 36pt;
 }
 footer{
-    height: 60px;
+    height: 30px;
     width: 100%;
     bottom: 0;
     margin: auto; 
     position: fixed;
     text-align: center;
-    /*    background: -webkit-linear-gradient(top, #000000, #a5c6c4);*/
-    background: -webkit-linear-gradient(top, #000000, rgba(165, 198, 196, 0.26));
+    background: -webkit-linear-gradient(bottom, #000000, rgba(165, 198, 196, 0.26));
     color: #FFF;
     padding: 1em;
     font-size: 18px;

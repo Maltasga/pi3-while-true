@@ -20,6 +20,7 @@ public class Usuario {
     private boolean ativo;
     private Date dataCadastro;
     private Perfil perfil;
+    private Filial filial;
 
     public Usuario(int id, int idPerfil, int idFilial, String nome, String email, String login, boolean ativo, Date dataCadastro) {
         this.id = id;
@@ -100,22 +101,32 @@ public class Usuario {
         return dataCadastro;
     }
 
+    public void setFilial(Filial filial) {
+        this.filial = filial;
+    }
+
+    
     public Filial getFilial() {
-        Filial filial = null;
-        try {
-            FilialService service = new FilialService();
-            filial = service.get(id);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (filial == null) {
+            try {
+                FilialService service = new FilialService();
+                filial = service.get(id);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return filial;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 
     public Perfil getPerfil() {
         if (perfil == null) {
             try {
                 PerfilService service = new PerfilService();
-                perfil = service.get(id);
+                perfil = service.get(idPerfil);
             } catch (Exception e) {
                 e.printStackTrace();
             }

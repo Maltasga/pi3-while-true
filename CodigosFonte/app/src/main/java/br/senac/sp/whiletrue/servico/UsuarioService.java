@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author While True
  */
-public class UsuarioService {
+public class UsuarioService implements Servico {
 
     private UsuarioDao dao;
 
@@ -40,7 +40,7 @@ public class UsuarioService {
             return null;
         }
     }
-    
+
     public ArrayList<Usuario> listar(Usuario userFiltro) {
         try {
             ArrayList<Usuario> listResultado = dao.listar();
@@ -55,7 +55,7 @@ public class UsuarioService {
     public void salvar(Usuario u) throws Exception {
         try {
             dao = new UsuarioDao();
-            if (get(u.getId()) == null) {
+            if (u.getId() == 0) {
                 dao.inserir(u);
             } else {
                 dao.atualizar(u);

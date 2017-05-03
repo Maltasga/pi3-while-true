@@ -1,43 +1,61 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cadastro de Usuário</title>
-        <link href="Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-        <div class="container">
-            <div class="panel panel-title">
-                <h2>
-                    Lista de Usuário
-                </h2>
-            </div>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Perfil</th>
-                        <th>Status</th>
-                        <th>Data de Cadastro</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <jsp:include page="../../WEB-INF/partilals/htmlHead.jsp"></jsp:include>
+            <title>Lista de Usuários</title>
+        </head>
+        <body>
+        <jsp:include page="../../WEB-INF/partilals/menu.jsp"></jsp:include>
+            <div class="container form-cadastro">
+                <div class="titulo">
+                    <h2>
+                        Usuários cadastrados
+                    </h2>
+                </div>
+
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Perfil</th>
+                            <th>Status</th>
+                            <th>Data de Cadastro</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     <c:forEach items="${listaUsuarios}" var="u">
                         <tr>
                             <td><c:out value="${u.nome}"></c:out></td>
                             <td><c:out value="${u.perfil.nome}"></c:out></td>
-                            <td><c:out value="${u.ativo}"></c:out></td>
-                            <td><c:out value="${u.dataCadastro}"></c:out></td>
-                        </tr>
+                                <td>
+                                <c:if test="${u.ativo}">
+                                    Ativo
+                                </c:if>
+                            </td>
+                            <td>
+                                <fmt:formatDate value="${u.dataCadastro}" pattern="dd/MM/yyyy"></fmt:formatDate>
+                                </td>
+                                <td>
+                                    <span class="btn-editar glyphicon glyphicon-pencil" data-id="<c:out value="${u.id}"></c:out>" title="editar"></span>
+                                    &nbsp;
+                                    <span class="btn-excluir glyphicon glyphicon-remove" data-id="<c:out value="${u.id}"></c:out>" title="excluir"></span>
+                                </td>
+                            </tr>
                     </c:forEach>
                 </tbody>
             </table>
+            <div class="text-right">
+                <input type="button" id="btnNovoUsuario" value="novo usuário" class="btn btn-primary" />
+            </div>
         </div>    
-        <script src="Content/jquery.min.js" type="text/javascript"></script>
-        <script src="Content/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <footer>
+            <jsp:include page="../../WEB-INF/partilals/rodape.jsp"></jsp:include>
+            <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
+            <script src="Content/lojaJs/listagem-usuario.js" type="text/javascript"></script>
+        </footer>
     </body>
 </html>

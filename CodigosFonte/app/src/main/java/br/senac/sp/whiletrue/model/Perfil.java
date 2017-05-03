@@ -30,7 +30,7 @@ public class Perfil {
     }
 
     public ArrayList<Menu> getMenus() {
-        if(menus==null){
+        if (menus == null) {
             // obter menus MenuService
         }
         return menus;

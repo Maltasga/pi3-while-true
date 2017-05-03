@@ -2,6 +2,7 @@ package br.senac.sp.whiletrue.dao;
 
 import br.senac.sp.whiletrue.dao.util.ConnectionUtils;
 import br.senac.sp.whiletrue.model.Usuario;
+import br.senac.sp.whiletrue.model.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,17 +19,19 @@ public class UsuarioDao {
 
     public void inserir(Usuario u) throws SQLException, Exception {
         String query = "INSERT INTO Usuario (IdPerfil, IdFilial, Nome, Email, Login, Senha, Ativo, DataCadastro)"
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
-            statement.setString(1, u.getNome());
-            statement.setInt(2, u.getIdPerfil());
-            statement.setString(3, u.getLogin());
-            statement.setString(4, u.getSenha());
-            statement.setBoolean(5, u.isAtivo());
-            statement.setDate(6, new java.sql.Date(u.getDataCadastro().getTime()));
+            statement.setInt(1, u.getIdPerfil());
+            statement.setInt(2, u.getIdFilial());
+            statement.setString(3, u.getNome());
+            statement.setString(4, u.getEmail());
+            statement.setString(5, u.getLogin());
+            statement.setString(6, u.getSenha());
+            statement.setBoolean(7, u.isAtivo());
+            statement.setDate(8, Util.toSQLDate(u.getDataCadastro()));
             statement.execute();
 
         } finally {
