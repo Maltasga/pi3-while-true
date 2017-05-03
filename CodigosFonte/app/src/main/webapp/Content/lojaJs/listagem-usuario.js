@@ -19,9 +19,8 @@ window.addEventListener("load", function () {
         var btn = botoesExclusao[i];
         btn.style.cursor = "pointer";
         btn.addEventListener("click", function () {
-            if(confirm("Deseja excluir este usuário?")){
-                
-             this.parent.parent.remove();   
+            if (confirm("Deseja excluir este usuário?")) {
+                this.parentElement.parentElement.remove();
             }
         });
     }

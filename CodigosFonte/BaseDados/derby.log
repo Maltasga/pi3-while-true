@@ -1,7 +1,7 @@
-Tue May 02 18:24:06 BRT 2017 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+Tue May 02 22:27:26 BRT 2017 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
 ----------------------------------------------------------------
-Tue May 02 18:24:08 BRT 2017:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-015b-cb0c-7f2a-00002a12aa79
+Tue May 02 22:28:01 BRT 2017:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-015b-cbeb-498b-00002a12aa79
 no diretório de banco de dados E:\git-projects\pi3-while-true\CodigosFonte\BaseDados\lojadb 
 
 java.vendor=Oracle Corporation
@@ -12,5 +12,3 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=E:\git-projects\pi3-while-true\CodigosFonte\BaseDados
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
-----------------------------------------------------------------
-Tue May 02 21:28:03 BRT 2017: Shutting down Derby engine
