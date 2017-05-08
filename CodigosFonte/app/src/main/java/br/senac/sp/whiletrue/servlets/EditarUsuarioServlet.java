@@ -5,8 +5,6 @@ import br.senac.sp.whiletrue.servico.FilialService;
 import br.senac.sp.whiletrue.servico.PerfilService;
 import br.senac.sp.whiletrue.servico.UsuarioService;
 import java.io.IOException;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,27 +14,32 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author While True
+ * @author gabri
  */
-@WebServlet("/novousuario")
-public class CadastrarUsuarioServlet extends HttpServlet {
-    
-    UsuarioService userService;
+@WebServlet("/editarusuario")
+public class EditarUsuarioServlet extends HttpServlet {
+
+    UsuarioService service;
     PerfilService perfilService;
     FilialService filialService;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            int id = Integer.parseInt(request.getParameter("q"));
+            service = new UsuarioService();
             perfilService = new PerfilService();
             filialService = new FilialService();
+            
             request.setAttribute("listaPerfil", perfilService.listar());
             request.setAttribute("listaFilial", filialService.listar());
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuariojsp/cadastrar.jsp");
+            request.setAttribute("usuario", service.get(id));
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuariojsp/editar.jsp");
             dispatcher.forward(request, response);
-        } catch (IOException | ServletException ex) {
+
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -45,18 +48,14 @@ public class CadastrarUsuarioServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            userService = new UsuarioService();
+            service = new UsuarioService();
+            int id = Integer.parseInt(request.getParameter("id"));
             String nome = request.getParameter("nome");
             String email = request.getParameter("email");
-            int idPerfil = Integer.parseInt(request.getParameter("perfil"));
-            int idFilial = Integer.parseInt(request.getParameter("filial"));
-            String login = request.getParameter("login");
             String senha = request.getParameter("senha");
-            boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
-            Date dataCadastro = GregorianCalendar.getInstance().getTime();
-            Usuario novoUser = new Usuario(0, idPerfil, idFilial, nome, email, login, ativo, dataCadastro);
-            novoUser.setSenha(senha);
-            userService.salvar(novoUser);
+            Usuario usuario = new Usuario(id, 0, 0, nome, email, null, false, null);
+            usuario.setSenha(senha);
+            service.salvar(usuario);
             
             response.sendRedirect(request.getContextPath() + "/usuarios");
         } catch (Exception ex) {

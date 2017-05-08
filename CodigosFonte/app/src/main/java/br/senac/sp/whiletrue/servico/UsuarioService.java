@@ -34,7 +34,13 @@ public class UsuarioService implements Servico {
 
     public ArrayList<Usuario> listar() {
         try {
-            return dao.listar();
+            ArrayList<Usuario> usuarios = new ArrayList<>();
+            for (Usuario u : dao.listar()) {
+                if (u.isAtivo()) {
+                    usuarios.add(u);
+                }
+            }
+            return usuarios;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -66,10 +72,10 @@ public class UsuarioService implements Servico {
         }
     }
 
-    public void excluir(Usuario u) throws Exception {
+    public void excluir(int id) throws Exception {
         try {
             dao = new UsuarioDao();
-            dao.excluir(u.getId());
+            dao.excluir(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("Falha ao tentar excluir o cadastro de usuário");

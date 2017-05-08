@@ -3,6 +3,7 @@ package br.senac.sp.whiletrue.model;
 import br.senac.sp.whiletrue.servico.FilialService;
 import br.senac.sp.whiletrue.servico.PerfilService;
 import java.util.Date;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -86,7 +87,7 @@ public class Usuario {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = BCrypt.hashpw(senha, BCrypt.gensalt());
     }
 
     public boolean isAtivo() {
@@ -110,7 +111,7 @@ public class Usuario {
         if (filial == null) {
             try {
                 FilialService service = new FilialService();
-                filial = service.get(id);
+                filial = service.get(idFilial);
             } catch (Exception e) {
                 e.printStackTrace();
             }

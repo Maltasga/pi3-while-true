@@ -46,18 +46,16 @@ public class UsuarioDao {
     }
 
     public void atualizar(Usuario u) throws SQLException, Exception {
-        String query = "UPDATE Usuario SET Nome = ?, IdPerfil = ?, Login = ?, Senha = ?, IsActive = ?"
-                + " WHERE IdUser = ?";
+        String query = "UPDATE Usuario SET Nome = ?, Email = ?, Senha = ?"
+                + " WHERE Id = ?";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             statement.setString(1, u.getNome());
-            statement.setInt(2, u.getIdPerfil());
-            statement.setString(3, u.getLogin());
-            statement.setString(4, u.getSenha());
-            statement.setBoolean(5, u.isAtivo());
-            statement.setInt(6, u.getId());
+            statement.setString(2, u.getEmail());
+            statement.setString(3, u.getSenha());
+            statement.setInt(4, u.getId());
             statement.execute();
         } finally {
             if (statement != null && !statement.isClosed()) {
@@ -71,7 +69,7 @@ public class UsuarioDao {
     }
 
     public void excluir(int id) throws SQLException, Exception {
-        String query = "UPDATE Usuario SET IsActive = false WHERE IdUser = ?";
+        String query = "UPDATE Usuario SET Ativo = false WHERE Id = ?";
         PreparedStatement statement = null;
         try {
             conexao = ConnectionUtils.getConnection();

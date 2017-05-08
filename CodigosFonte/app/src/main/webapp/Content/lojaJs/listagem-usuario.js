@@ -10,7 +10,7 @@ window.addEventListener("load", function () {
         btn.style.cursor = "pointer";
         btn.addEventListener("click", function () {
             var id = this.getAttribute("data-id");
-            alert("usuarioID: " + id);
+            window.location = "editarusuario?q=" + id;            
         });
     }
 
@@ -20,7 +20,16 @@ window.addEventListener("load", function () {
         btn.style.cursor = "pointer";
         btn.addEventListener("click", function () {
             if (confirm("Deseja excluir este usuário?")) {
-                this.parentElement.parentElement.remove();
+                var id = this.getAttribute("data-id");
+                var xhr = new XMLHttpRequest();
+                xhr.open("post", "excluirusuario", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                        this.parentElement.parentElement.remove();
+                    }
+                }
+                xhr.send("q=" + id);
             }
         });
     }

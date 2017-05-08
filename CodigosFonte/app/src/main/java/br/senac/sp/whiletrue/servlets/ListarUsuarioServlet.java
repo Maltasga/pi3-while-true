@@ -27,19 +27,9 @@ public class ListarUsuarioServlet extends HttpServlet {
         servico = new UsuarioService();
         ArrayList<Usuario> usuarios = servico.listar();
 
-        for (Usuario u : servico.listar()) {
-            u.getPerfil();
-        }
-
         request.setAttribute("listaUsuarios", usuarios);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/usuariojsp/listagem.jsp");
 
         dispatcher.forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
     }
 }

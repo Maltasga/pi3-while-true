@@ -35,6 +35,9 @@
                                 <c:if test="${u.ativo}">
                                     Ativo
                                 </c:if>
+                                <c:if test="${!u.ativo}">
+                                    Inativo
+                                </c:if>
                             </td>
                             <td>
                                 <fmt:formatDate value="${u.dataCadastro}" pattern="dd/MM/yyyy"></fmt:formatDate>
