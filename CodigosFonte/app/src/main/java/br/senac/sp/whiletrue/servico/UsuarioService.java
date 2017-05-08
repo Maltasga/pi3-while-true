@@ -32,6 +32,21 @@ public class UsuarioService implements Servico {
         return usuario;
     }
 
+    public Usuario get(String login) {
+        Usuario usuario = null;
+        try {
+            for (Usuario u : dao.listar()) {
+                if (login.equals(u.getLogin())) {
+                    usuario = u;
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return usuario;
+    }
+
     public ArrayList<Usuario> listar() {
         try {
             ArrayList<Usuario> usuarios = new ArrayList<>();

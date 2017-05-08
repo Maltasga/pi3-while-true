@@ -58,5 +58,6 @@
                 </form>
             </div>
         </div>
+        <script src="Content/lojaJs/form-usuario.js" type="text/javascript"></script>
     </body>
 </html>

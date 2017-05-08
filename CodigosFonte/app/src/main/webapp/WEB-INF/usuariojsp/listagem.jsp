@@ -54,11 +54,8 @@
             <div class="text-right">
                 <input type="button" id="btnNovoUsuario" value="novo usuário" class="btn btn-primary" />
             </div>
-        </div>    
-        <footer>
-            <jsp:include page="../../WEB-INF/partilals/rodape.jsp"></jsp:include>
-            <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
-            <script src="Content/lojaJs/listagem-usuario.js" type="text/javascript"></script>
-        </footer>
+        </div>  
+        <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
+        <script src="Content/lojaJs/listagem-usuario.js" type="text/javascript"></script>
     </body>
 </html>
