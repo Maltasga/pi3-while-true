@@ -17,10 +17,10 @@
                         <div  class="form-group form-colecao">
                             <label>Nome da Coleção</label>
                             <input pattern="[a-zA-Z]+" type="text" required name="colecao" class="form-control" placeholder="Nome da Coleção" >
-                            <div class="form-ativo">
+<!--                            <div class="form-ativo">
                                 <label>Ativo</label>
                                 <input type="checkbox"  name="ativo" value="ativo"> 
-                            </div>
+                            </div>-->
                         </div>
 
                         <div class="form-flex">

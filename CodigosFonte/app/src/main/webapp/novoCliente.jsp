@@ -3,7 +3,7 @@
 <html>
     <head>
         <jsp:include page="WEB-INF/partilals/htmlHead.jsp"></jsp:include>
-            <link href="Content/css/estoque.css" rel="stylesheet" type="text/css"/>
+            <link href="Content/css/cliente.css" rel="stylesheet" type="text/css"/>
             <title>Cliente</title>
         </head>
         <body>
@@ -15,20 +15,19 @@
             <form method="POST">
                 <div class="form-dados">
                     <div class="form-flex">
-                        <div class="form-group form-nome">
+                        <div class="form-group form-cliente">
                             <label>Nome</label>
-                            <input type="text" name="nome" required class="form-control" />
+                            <input type="text" name="cliente" required class="form-control" />
                         </div>
 
                         <div class="form-group form-cpf">
                             <label>CPF</label>
                             <input type="text" name="cpf" required class="form-control" />
                         </div>
-
-                        <div class="form-ativo">
+<!--                        <div class="form-ativo">
                             <label>Ativo</label>
-                            <input type="checkbox"  name="ativo" value="ativo"> 
-                        </div>
+                            <input type="checkbox" name="ativo" value="ativo"> 
+                        </div>-->
                     </div>
 
                     <div class="form-flex">
