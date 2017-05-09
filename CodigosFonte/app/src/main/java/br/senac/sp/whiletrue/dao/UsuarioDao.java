@@ -95,6 +95,7 @@ public class UsuarioDao {
                 + "u.Nome, "
                 + "u.Email, "
                 + "u.Login, "
+                + "u.Senha, "
                 + "u.Ativo, "
                 + "u.DataCadastro, "
                 + "u.IdPerfil, "
@@ -115,7 +116,7 @@ public class UsuarioDao {
                         result.getString("Login"),
                         result.getBoolean("Ativo"),
                         new java.util.Date(result.getDate("DataCadastro").getTime()));
-
+                u.setSenha(result.getString("Senha"));
                 usuarios.add(u);
             }
         } finally {
