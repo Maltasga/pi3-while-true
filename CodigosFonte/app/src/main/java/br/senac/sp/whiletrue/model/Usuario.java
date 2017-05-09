@@ -23,6 +23,12 @@ public class Usuario {
     private Perfil perfil;
     private Filial filial;
 
+    public Usuario(String login) {
+        this.login = login;
+    }
+    
+    
+
     public Usuario(int id, int idPerfil, int idFilial, String nome, String email, String login, boolean ativo, Date dataCadastro) {
         this.id = id;
         this.idPerfil = idPerfil;
@@ -88,6 +94,10 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = BCrypt.hashpw(senha, BCrypt.gensalt());
+    }
+    
+    public String getHash(String s){
+        return BCrypt.hashpw(s, BCrypt.gensalt());
     }
 
     public boolean isAtivo() {
