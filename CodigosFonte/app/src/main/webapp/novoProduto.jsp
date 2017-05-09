@@ -33,7 +33,7 @@
                         <div class="form-combos">
                             <div class="form-group form-colecao">
                                 <label>Coleção</label>
-                                <select name="colecao" required class="form-control" required >
+                                <select name="colecao" required class="form-control" >
                                     <option value="">   </option>
                                     <option value="">Outono</option>
                                     <option value="">Primavera</option>
@@ -44,7 +44,7 @@
 
                             <div class="form-group form-tipo">
                                 <label>Tipo</label>
-                                <select name="tipo" required class="form-control" required >
+                                <select name="tipo" required class="form-control" >
                                     <option value="">   </option>
                                     <option value="">Outono</option>
                                     <option value="">Primavera</option>

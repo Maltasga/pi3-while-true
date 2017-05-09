@@ -54,7 +54,7 @@ body{
     font-size: 36pt;
 }
 
-footer{
+/*footer{
     height: 30px;
     width: 100%;
     bottom: 0;
@@ -66,17 +66,25 @@ footer{
     padding: 1em;
     font-size: 18px;
     font-family: 'Kaushan Script', cursive;
-}
-.menu{
-    padding: 11px 0px 0px 96px;
-    padding-bottom: 6px;
-    font-family: 'Indie Flower', cursive;
+}*/
+.menu-itens{
+    padding: 10px 30px 9px 96px;
+    font-family: 'Lora', serif;
+    width: 100%;
     font-size: 20px;
-    background: #f4f4fa;
-    /*    border-bottom: 1px #777 solid;*/
-    box-shadow: 8px 15px 35px #888888;
+    display: flex;
+    justify-content: flex-end;
 }
-.menu>li>a {
+.menu-itens>li>a {
     color: black;
     font-weight: bold;
+}
+.menu{
+    display: flex;
+    width: 100%;
+    background: #f4f4fa;
+    box-shadow: 8px 15px 35px #888888;
+}
+.logo{
+    padding: 10px 30px 9px 96px;
 }

@@ -3,6 +3,7 @@
 <html>
     <head>
         <jsp:include page="WEB-INF/partilals/htmlHead.jsp"></jsp:include>
+            <link href="Content/css/estoque.css" rel="stylesheet" type="text/css"/>
             <title>Estoque</title>
         </head>
         <body>
@@ -14,19 +15,35 @@
             <form method="POST">
                 <div class="form-dados">
                     <div class="form-flex">
-                        <div  class="form-group form-codigo">
-                            <label>Cód.Produto</label>
-                            <input type="text" required name="codigo" required class="form-control">
+                        <div class="form-group form-produto">
+                            <label>Produto</label>
+                            <input type="text" name="produto" required class="form-control" />
                         </div>
-
-                        <div  class="form-group form-produto">
-                            <label>Nome do Produto</label>
-                            <input pattern="[a-zA-Z]+" type="text" required name="produto" class="form-control" placeholder="Insira o nome do Produto aqui" >
+                    </div>
+                    <div class="form-flex">
+                        <div class="form-group form-filial">
+                            <label>Filial</label>
+                            <select name="filial" required class="form-control" >
+                                <option value="">   </option>
+                                <option value="">Matriz</option>
+                                <option value="">Florianopolis</option>
+                                <option value="">São Paulo</option>                     
+                            </select>     
                         </div>
-
-                        <div class="form-group form-descricao">
-                            <label>Descrição</label>
-                            <input type="text"  name="descricao" class="form-control">
+                        <div class="form-group form-quantidade">
+                            <label>Quantidade</label>
+                            <input type="text" name="quantidade" required class="form-control" />
+                        </div>
+                        <div class="form-group form-tamanho">
+                            <label>Tamanho</label>
+                            <select name="tamanho" required class="form-control" >
+                                <option value=""> </option>
+                                <option value="">P</option>
+                                <option value="">M</option>
+                                <option value="">G</option>    
+                                <option value="">GG</option> 
+                                <option value="">EGG</option> 
+                            </select>     
                         </div>
                     </div>
                 </div>
