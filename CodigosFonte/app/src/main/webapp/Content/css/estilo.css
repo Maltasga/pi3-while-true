@@ -23,44 +23,31 @@ body{
 .form-dados{
     padding-top: 20px;
 }
-.form-ativo{
-    position: absolute;
-    left: 78%;
-    top: 26%;
+.form-flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+.form-valor{
+    display: flex;
+    align-items: center;
+}
+.form-combos{
+    display: flex;
+    align-items: center;
 }
 .form-botoes{
     padding-left: 15px; 
+    display: flex;
+    justify-content: flex-end;
 }
-.form-nmCcolecao{
-    width: 70%;
-}
-.form-colecao{
-    width: 20%;
-}
-.form-periodo{
-    width: 20%;
-}
-.form-ano{
-    width: 12%;
-}
-.form-codigo{
-    width: 12%;
-}
-.form-produto{
-    width: 50%;
-}
-.form-valor{
-    width: 17%;
-}
-.form-tipo{
-    width: 17%;
-}
-.form-cor{
-    width: 17%;
+.btn{
+    margin: 3px;
 }
 .form-group{
     box-sizing: border-box;
+    margin: 10px;   
 }
+
 .titulo {
     padding-bottom: 9px;
     border-bottom: 1px solid #eeeeee;
