@@ -17,7 +17,8 @@
                     <div class="form-flex">
                         <div class="form-group form-produto">
                             <label>Produto</label>
-                            <input type="text" name="produto" required class="form-control" />
+                            <br>    
+                            <label>nome do produto aqui</label>
                         </div>
                     </div>
                     <div class="form-flex">
