@@ -45,7 +45,7 @@ public class MenuDao {
 
     public ArrayList<Menu> listar(int idPerfil) throws SQLException {
         ArrayList<Menu> menus = new ArrayList<>();
-        String query = "SELECT m.Id, m.Nome, m.Caminho FROM Menu "
+        String query = "SELECT m.Id, m.Nome, m.Caminho FROM Menu m "
                 + "JOIN MenuPerfil mp on mp.IdMenu = m.Id "
                 + "WHERE mp.IdPerfil = ?";
         PreparedStatement statement = null;

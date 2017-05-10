@@ -55,7 +55,7 @@ public class CadastrarUsuarioServlet extends HttpServlet {
             boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
             Date dataCadastro = GregorianCalendar.getInstance().getTime();
             Usuario novoUser = new Usuario(0, idPerfil, idFilial, nome, email, login, ativo, dataCadastro);
-            novoUser.setSenha(senha);
+            novoUser.setHashSenha(senha);
             userService.salvar(novoUser);
             
             response.sendRedirect(request.getContextPath() + "/usuarios");

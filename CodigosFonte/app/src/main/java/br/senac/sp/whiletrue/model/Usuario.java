@@ -26,8 +26,6 @@ public class Usuario {
     public Usuario(String login) {
         this.login = login;
     }
-    
-    
 
     public Usuario(int id, int idPerfil, int idFilial, String nome, String email, String login, boolean ativo, Date dataCadastro) {
         this.id = id;
@@ -93,13 +91,9 @@ public class Usuario {
     }
 
     public void setSenha(String senha) {
-        this.senha = BCrypt.hashpw(senha, BCrypt.gensalt());
+        this.senha = senha;
     }
     
-    public String getHash(String s){
-        return BCrypt.hashpw(s, BCrypt.gensalt());
-    }
-
     public boolean isAtivo() {
         return ativo;
     }
@@ -116,7 +110,6 @@ public class Usuario {
         this.filial = filial;
     }
 
-    
     public Filial getFilial() {
         if (filial == null) {
             try {
@@ -143,5 +136,13 @@ public class Usuario {
             }
         }
         return perfil;
+    }
+    
+    public void setHashSenha(String senha){
+        this.senha = BCrypt.hashpw(senha, BCrypt.gensalt());
+    }
+
+    public static boolean validarSenha(String senhaInformada, String senhaHash) {
+        return BCrypt.checkpw(senhaInformada, senhaHash);
     }
 }

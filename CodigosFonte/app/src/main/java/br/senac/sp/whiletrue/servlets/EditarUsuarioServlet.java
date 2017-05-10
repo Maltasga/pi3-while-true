@@ -54,7 +54,7 @@ public class EditarUsuarioServlet extends HttpServlet {
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
             Usuario usuario = new Usuario(id, 0, 0, nome, email, null, false, null);
-            usuario.setSenha(senha);
+            usuario.setHashSenha(senha);
             service.salvar(usuario);
             
             response.sendRedirect(request.getContextPath() + "/usuarios");
