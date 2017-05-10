@@ -1,3 +1,0 @@
-# para logar no banco
-usuario: loja
-senha: loja
