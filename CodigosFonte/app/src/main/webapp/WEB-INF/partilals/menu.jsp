@@ -12,6 +12,13 @@
                 </a>
             </li>
         </c:forEach>
+        <li role="presentation">
+            <c:out value="${usuario.nome}"></c:out>
+             | 
+            <c:out value="${usuario.perfil.nome}"></c:out>
+             | 
+            <a href="logout">sair</a>
+        </li>
     </ul>
 </div>
 

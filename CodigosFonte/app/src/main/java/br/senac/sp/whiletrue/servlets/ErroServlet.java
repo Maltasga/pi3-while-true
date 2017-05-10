@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author While True
  */
-@WebServlet("/home")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/erro")
+public class ErroServlet extends HttpServlet {
 
     UsuarioService usuarioService;
     MenuService menuService = null;
@@ -24,7 +24,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/home.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/erroLogin.jsp");
             dispatcher.forward(request, response);
         } catch (IOException | ServletException ex) {
             ex.printStackTrace();
