@@ -87,6 +87,26 @@ body{
 }
 .logo{
     padding: 10px 30px 9px 96px;
-/*    width: 100px;
-    height: 103px;*/
+    /*    width: 100px;
+        height: 103px;*/
+}
+
+/*Tamanho de campos*/
+.form-cliente, .form-produto, .form-colecao{
+    width: 70%;
+}
+.form-cpf, .form-nascimento, .form-sexo {
+    width: 17%;
+}
+.form-periodo, .form-ano, .form-codigo, .form-valor-item, .form-tipo, .form-comboColecao{
+    width: 20%;
+}
+.form-cor{
+    width: 17%;
+}
+.form-descricao{
+    width: 93%;
+}
+.form-tamanho, .form-quantidade{
+    width: 10%
 }

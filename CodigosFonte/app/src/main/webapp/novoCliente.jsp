@@ -3,7 +3,6 @@
 <html>
     <head>
         <jsp:include page="WEB-INF/partilals/htmlHead.jsp"></jsp:include>
-            <link href="Content/css/cliente.css" rel="stylesheet" type="text/css"/>
             <title>Cliente</title>
         </head>
         <body>
@@ -24,10 +23,6 @@
                             <label>CPF</label>
                             <input type="text" name="cpf" required class="form-control" />
                         </div>
-<!--                        <div class="form-ativo">
-                            <label>Ativo</label>
-                            <input type="checkbox" name="ativo" value="ativo"> 
-                        </div>-->
                     </div>
 
                     <div class="form-flex">
@@ -53,5 +48,6 @@
                     </div>
                 </div>
             </form>
+        </div>
     </body>
 </html>

@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="form-combos">
-                            <div class="form-group form-colecao">
+                            <div class="form-group form-comboColecao">
                                 <label>Coleção</label>
                                 <select name="colecao" required class="form-control" >
                                     <option value="">   </option>

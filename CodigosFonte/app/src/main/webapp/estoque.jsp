@@ -15,10 +15,13 @@
             <form method="POST">
                 <div class="form-dados">
                     <div class="form-flex">
+                        <div  class="form-group form-codigo">
+                            <label>Cód.Produto</label>
+                            <input type="text" required name="codigo" required class="form-control">
+                        </div>
                         <div class="form-group form-produto">
-                            <label>Produto</label>
-                            <br>    
-                            <label>nome do produto aqui</label>
+                            <label>Nome do Produto</label>
+                            <input pattern="[a-zA-Z]+" type="text" required name="produto" class="form-control" placeholder="Insira o nome do Produto aqui" >
                         </div>
                     </div>
                     <div class="form-flex">
