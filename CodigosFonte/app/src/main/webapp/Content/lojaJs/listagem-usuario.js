@@ -1,7 +1,7 @@
 window.addEventListener("load", function () {
     var btnNovo = document.querySelector("#btnNovoUsuario");
     btnNovo.addEventListener("click", function () {
-        window.location = "novousuario";
+        window.location = "cadastrar-usuario";
     });
 
     var botoesEdicao = document.querySelectorAll(".btn-editar");
@@ -10,7 +10,7 @@ window.addEventListener("load", function () {
         btn.style.cursor = "pointer";
         btn.addEventListener("click", function () {
             var id = this.getAttribute("data-id");
-            window.location = "editarusuario?q=" + id;            
+            window.location = "editar-usuario?q=" + id;            
         });
     }
 
@@ -25,7 +25,8 @@ window.addEventListener("load", function () {
                 xhr.open("post", "excluirusuario", true);
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhr.onreadystatechange = function () {
-                    if (xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200) {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        debugger;
                         this.parentElement.parentElement.remove();
                     }
                 }

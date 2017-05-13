@@ -20,6 +20,7 @@ public class Produto {
     private double valorVenda;
     private boolean ativo;
     private Date dataCadastro;
+    private Colecao colecao;
     private ArrayList<Estoque> estoque;
 
     public Produto(int id, String nome, String descricao, int idColecao, String tipo, String cor, double valorProducao, double valorVenda, boolean ativo, Date dataCadastro) {
@@ -128,5 +129,13 @@ public class Produto {
 
         }
         return estoque;
+    }
+
+    public void setColecao(Colecao colecao) {
+        this.colecao = colecao;
+    }
+
+    public Colecao getColecao() {
+        return colecao;
     }
 }

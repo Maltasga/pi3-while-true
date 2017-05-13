@@ -2,11 +2,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <jsp:include page="partilals/htmlHead.jsp"></jsp:include>
-        <title>Cool Wear</title>
-    </head>
-    <body>
-        <jsp:include page="partilals/menu.jsp"></jsp:include>
+            <title>Cool Wear</title>
+        </head>
+        <body>
+        <jsp:include page="partilals//menu.jsp"></jsp:include>
     </body>
 </html>

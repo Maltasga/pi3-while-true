@@ -1,11 +1,12 @@
 .container-login {
     width: 350px;
+    min-height: 180px;
     top: 30%;
     right: 25%;
     bottom: 30%;
     left: 25%;
     margin: auto;
-    position: fixed;
+    position: absolute;
     border: 1px solid #1b6d85;
     border-radius: 20px;
     background-color: hsla(280, 80%, 70%, .3);

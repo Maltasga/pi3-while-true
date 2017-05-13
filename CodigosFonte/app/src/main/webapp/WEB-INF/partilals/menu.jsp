@@ -14,13 +14,25 @@
         </c:forEach>
         <li role="presentation">
             <c:out value="${usuario.nome}"></c:out>
-             | 
+                | 
             <c:out value="${usuario.perfil.nome}"></c:out>
-             | 
-            <a href="logout">sair</a>
+            | 
+            <label id="logout">sair</label>
         </li>
     </ul>
 </div>
+<script type="text/javascript">
+    window.addEventListener("load", function () {
+        var logout = document.querySelector("#logout");
+        logout.style.cursor = "pointer";
 
+        logout.addEventListener("click", function () {
+            var form = document.createElement("form");
+            form.method = "post";
+            form.action = "logout";
+            this.appendChild(form);
+            form.submit();
 
-
+        });
+    });
+</script>

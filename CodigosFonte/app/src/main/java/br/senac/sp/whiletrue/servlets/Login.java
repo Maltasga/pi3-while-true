@@ -6,7 +6,6 @@ import br.senac.sp.whiletrue.servico.MenuService;
 import br.senac.sp.whiletrue.servico.UsuarioService;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +15,12 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Karol
+ * @author While True
  */
 @WebServlet(urlPatterns = {"/index.html", "/login"})
-public class LoginServlet extends HttpServlet {
+public class Login extends HttpServlet {
+
+    private final String sessionMSG = "msgFalhaLogin";
 
     @Override
     public void doGet(HttpServletRequest request,
@@ -33,17 +34,19 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        RequestDispatcher dispatcher
-                = request.getRequestDispatcher("/WEB-INF/loginjsp/login.jsp");
-        dispatcher.forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/login/login.jsp")
+                .forward(request, response);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        UsuarioService usuarioService = new UsuarioService();
+        if (request.getSession().getAttribute(sessionMSG) != null) {
+            request.getSession().setAttribute(sessionMSG, null);
+        }
 
+        UsuarioService usuarioService = new UsuarioService();
         String login = request.getParameter("usuario");
         String senhaDigitada = request.getParameter("senha");
 
@@ -64,9 +67,12 @@ public class LoginServlet extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/home");
 
             } else {
-                response.sendRedirect(request.getContextPath() + "/erro");
+                request.getSession().setAttribute(sessionMSG, "Usuário e/ou senha inválidos.");
+                response.sendRedirect(request.getContextPath() + "/login");
             }
+        } else {
+            request.getSession().setAttribute(sessionMSG, "Usuário não encontrado.");
+            response.sendRedirect(request.getContextPath() + "/login");
         }
-
     }
 }

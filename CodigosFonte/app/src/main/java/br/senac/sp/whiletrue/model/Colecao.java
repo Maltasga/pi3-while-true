@@ -71,4 +71,9 @@ public class Colecao {
         this.ativo = ativo;
         this.dataCriacao = dataCriacao;
     }
+    
+    public Colecao(int idColecao, String nome) {
+        this.id = idColecao;
+        this.nome = nome;
+    }
 }

@@ -1,6 +1,7 @@
 package br.senac.sp.whiletrue.dao;
 
 import br.senac.sp.whiletrue.dao.util.ConnectionUtils;
+import br.senac.sp.whiletrue.model.Colecao;
 import br.senac.sp.whiletrue.model.Produto;
 import br.senac.sp.whiletrue.model.Util;
 import java.sql.Connection;
@@ -14,15 +15,15 @@ import java.util.ArrayList;
  * @author While True
  */
 public class ProdutoDao {
-    
+
     Connection conexao = null;
-    
+
     public void inserir(Produto p) throws SQLException, Exception {
         String query = "INSERT INTO Produto "
                 + "(Codigo, Nome, Descricao, IdColecao, Tipo, Cor, ValorProducao, ValorVenda, Ativo, DataCadatro) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
-        
+
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
@@ -36,24 +37,24 @@ public class ProdutoDao {
             statement.setDouble(8, p.getValorVenda());
             statement.setBoolean(9, p.isAtivo());
             statement.setDate(10, Util.toSQLDate(p.getDataCadastro()));
-            
+
             statement.execute();
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
             }
-            
+
             if (conexao != null || !conexao.isClosed()) {
                 conexao.close();
             }
         }
     }
-    
+
     public void atualizar(Produto p) throws SQLException, Exception {
         String query = "UPDATE Produto SET Nome = ?, Descricao = ?, ValorProducao = ?, ValorVenda = ? "
                 + "WHERE Id = ?";
         PreparedStatement statement = null;
-        
+
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
@@ -67,17 +68,17 @@ public class ProdutoDao {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
             }
-            
+
             if (conexao != null || !conexao.isClosed()) {
                 conexao.close();
             }
         }
     }
-    
+
     public void excluir(int id) throws SQLException, Exception {
         String query = "UPDATE Produto SET Ativo = FALSE WHERE Id = ?";
         PreparedStatement statement = null;
-        
+
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
@@ -87,25 +88,38 @@ public class ProdutoDao {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
             }
-            
+
             if (conexao != null || !conexao.isClosed()) {
                 conexao.close();
             }
         }
     }
-    
+
     public ArrayList<Produto> listar() throws SQLException {
         ArrayList<Produto> produtos = new ArrayList<>();
-        
-        String query = "SELECT * FROM Produto";
+
+        String query = "SELECT "
+                + "p.Id, "
+                + "p.Codigo, "
+                + "p.Nome, "
+                + "p.Descricao, "
+                + "p.IdColecao, "
+                + "c.Nome AS NomeColecao, "
+                + "p.Tipo, p.Cor, "
+                + "p.ValorProducao, "
+                + "p.ValorVenda, p.Ativo, "
+                + "p.DataCadastro "
+                + "FROM Produto p "
+                + "JOIN Colecao c ON p.IdColecao = c.ID";
         PreparedStatement statement = null;
-        
+
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             ResultSet result = statement.executeQuery();
+            Produto p = null;
             while (result.next()) {
-                produtos.add(new Produto(
+                p = new Produto(
                         result.getInt("Id"),
                         result.getString("Nome"),
                         result.getString("Descricao"),
@@ -115,13 +129,16 @@ public class ProdutoDao {
                         result.getDouble("ValorProducao"),
                         result.getDouble("ValorVenda"),
                         result.getBoolean("Ativo"),
-                        Util.toUtilDate(result.getDate("DataCadastro"))));
+                        Util.toUtilDate(result.getDate("DataCadastro")));
+                p.setColecao(new Colecao(result.getInt("IdColecao"), result.getString("NomeColecao")));
+                produtos.add(p);
+
             }
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
             }
-            
+
             if (conexao != null || !conexao.isClosed()) {
                 conexao.close();
             }

@@ -32,6 +32,11 @@
             <version>0.4</version>
         </dependency>
         <dependency>
+            <groupId>au.com.gridstone</groupId>
+            <artifactId>grex-gson-converter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>

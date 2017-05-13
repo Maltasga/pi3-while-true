@@ -3,34 +3,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>PDV - CoolWear</title>
         <jsp:include page="../partilals/htmlHead.jsp"></jsp:include>
-            <title>Venda</title>
-            <style>
-                .container-pdv {
-                    width: 920px;
-                    border: 1px #777 solid;
-                    background: #F8F8FF;
-                    box-sizing: border-box;
-                    margin: auto;
-                    position: fixed;
-                    left: 35px;
-                    top: 25px;
-                    border-radius: 30px;
-                    opacity: 0.9;
-                }
-                .container-pdv .header {
-                    padding: 20px;
-                    font-size: 25px;
-                }
-                .header p:nth-of-type(2) {
-                    font-size: 20px;
-                    margin: auto 30px;
-                }
-
-                .container-pdv .corpo {
-                    padding: 20px;
-                }
-            </style>
+            <link href="Content/css/pdv.css" rel="stylesheet" type="text/css" />
         </head>
         <body>
             <div class="container">
@@ -60,12 +35,53 @@
                                 <span class="glyphicon glyphicon-search"></span>
                             </div>
                         </div>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label>
+                                    Descrição
+                                </label>
+                                <br />
+                                <span>
+                                    Camiseta fantasia
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    Valor
+                                </label>
+                                <br />
+                                <span>
+                                    <fmt:formatNumber type="currency" value="15.0"></fmt:formatNumber>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    Cor
+                                </label>
+                                <br />
+                                <select class="form-control">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    Tamanho
+                                </label>
+                                <br />
+                                <select class="form-control">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label id="lblNomeProduto" style="display: inline-block"></label>
+                            <label>&nbsp;</label>
+                            <br />
+                            <input type="button" value="Adicionar" class="btn btn-sm btn-default" />
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script src="Content/lojaJs/pdv-emandamento.js"></script>
     </body>
 </html>
