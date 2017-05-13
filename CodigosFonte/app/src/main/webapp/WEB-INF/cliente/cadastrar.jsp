@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="WEB-INF/partilals/htmlHead.jsp"></jsp:include>
+        <jsp:include page="../partilals/htmlHead.jsp"></jsp:include>
             <title>Cliente</title>
         </head>
         <body>
-        <jsp:include page="WEB-INF/partilals/menu.jsp"></jsp:include>
+        <jsp:include page="../partilals/menu.jsp"></jsp:include>
         <div class="container form-cadastro">
             <div class="titulo">
                 <h2>Cliente</h2>   
@@ -30,8 +30,8 @@
                             <label>Sexo</label>
                             <select name="sexo" required class="form-control" >
                                 <option value=""> </option>
-                                <option value="">Feminino</option>
-                                <option value="">Masculino</option>
+                                <option value="F">Feminino</option>
+                                <option value="M">Masculino</option>
                             </select>     
                         </div>
                         <div class="form-group form-nascimento">

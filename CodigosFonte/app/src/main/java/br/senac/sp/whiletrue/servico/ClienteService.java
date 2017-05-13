@@ -62,4 +62,17 @@ public class ClienteService {
             return null;
         }
     }
+    
+        public void salvar(Cliente c) throws Exception {
+        try {
+            if (c.getId() == 0) {
+                dao.inserir(c);
+            } else {
+                dao.atualizar(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Falha ao atualizar cliente.");
+        }
+    }
 }
