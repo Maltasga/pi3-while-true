@@ -62,20 +62,8 @@ public class UsuarioService implements Servico {
         }
     }
 
-    public ArrayList<Usuario> listar(Usuario userFiltro) {
-        try {
-            ArrayList<Usuario> listResultado = dao.listar();
-
-            return listResultado;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public void salvar(Usuario u) throws Exception {
         try {
-            dao = new UsuarioDao();
             if (u.getId() == 0) {
                 dao.inserir(u);
             } else {
@@ -89,7 +77,6 @@ public class UsuarioService implements Servico {
 
     public void excluir(int id) throws Exception {
         try {
-            dao = new UsuarioDao();
             dao.excluir(id);
         } catch (Exception e) {
             e.printStackTrace();
