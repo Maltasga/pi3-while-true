@@ -8,31 +8,48 @@
             <link href="Content/css/pdv.css" rel="stylesheet" type="text/css" />
             <link href="Content/autocomplete/autocomplete.min.css" rel="stylesheet" type="text/css" />
             <style type="text/css">
-                .container div:first-of-type {
-                    width: auto;
+                .container-pdv {
+                    width: 1000px;
+                }
+                #boxResumo{
+                    top: 15px;
+                    margin: auto;
+                    position: absolute;
+                    left: 730px;
+                }
+                #txtQtde {
+                    width: 100px;
                 }
             </style>
         </head>
         <body>
-            <div class="container">
-                <div class="container-pdv">
-                    <div class="header">
-                        <p>
-                            Venda em andamento - <fmt:formatDate pattern="dd/MM/yyyy" value="${hoje}"></fmt:formatDate>
+            <input type="hidden" id="hdnClienteId" value="${cliente.id}" />
+        <div class="container">
+            <div class="container-pdv">
+                <div class="header">
+                    <p>
+                        Venda em andamento - <fmt:formatDate pattern="dd/MM/yyyy" value="${hoje}"></fmt:formatDate>
                         </p>
                         <p>
                             <b>Cliente:</b> ${cliente.nome} <b>CPF:</b> ${cliente.cpf}
                     </p>
+                    <div id="boxResumo">
+                        <div id="totalCompra">
+                            Total R$ 0,00
+                        </div>
+                        <input id="btnFinalizarVenda" type="button" class="btn btn-success" value="Finalizar venda" />
+                        <input id="btnCancelarVenda" type="button" class="btn btn-default" value="Cancelar" />
+                    </div>
                 </div>
                 <hr />
                 <div class="corpo">                    
                     <div class="form-inline">
                         <div class="form-group">
-                            <label for="codProduto">
-                                Pesquise o nome
+                            <label>
+                                Nome
                             </label>
                             <br />
-                            <input type="text" id="txtIdentProduto" class="form-control" />
+                            <input type="text" id="txtIdentProduto" class="form-control" placeholder="Pesquise o nome" />
                         </div>
                         <div class="form-group">
                             <label>
@@ -89,7 +106,7 @@
                         </div>
                     </div>
                     <hr/>
-                    <table id="listaItens" class="table table-striped">
+                    <table id="listaItens" class="table table-hover">
                         <thead>
                             <tr>
                                 <th colspan="6" class="text-capitalize text-center">
@@ -110,22 +127,22 @@
                                     Quantidade
                                 </th>
                                 <th>
-                                    Valor Total
+                                    Sub-Total
                                 </th>
                                 <th>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
         <script src="Content/jquery.min.js" type="text/javascript"></script>
         <script src="Content/autocomplete/autocomplete.min.js" type="text/javascript"></script>
+        <script src="Content/accounting/accounting.min.js" type="text/javascript"></script>
         <script src="Content/lojaJs/pdv-emandamento.js"></script>
     </body>
 </html>

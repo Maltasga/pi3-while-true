@@ -5,3 +5,4 @@
 <link href="Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <link href="Content/css/estilo.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+<script src="Content/lojaJs/utilitarios.js" type="text/javascript"></script>
