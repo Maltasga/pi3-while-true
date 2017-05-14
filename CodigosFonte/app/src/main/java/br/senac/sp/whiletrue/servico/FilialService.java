@@ -52,13 +52,14 @@ public class FilialService {
         }
     }
 
-    public void salvar(Filial f) throws Exception {
+    public int salvar(Filial f) throws Exception {
         try {
-            dao = new FilialDao();
-            if (get(f.getId()) == null) {
+            if (f.getId() == 0) {
                 dao.inserir(f);
+                return dao.getLastID();
             } else {
                 dao.atualizar(f);
+                return f.getId();
             }
         } catch (Exception e) {
             e.printStackTrace();

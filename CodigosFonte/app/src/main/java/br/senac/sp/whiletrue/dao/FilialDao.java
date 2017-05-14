@@ -113,4 +113,28 @@ public class FilialDao {
         }
         return filiais;
     }
+
+    public int getLastID() throws SQLException {
+        int id = 0;
+        String query = "SELECT MAX(Id) AS Id FROM Filial";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                id = result.getInt("Id");
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return id;
+    }
 }

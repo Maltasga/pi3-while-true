@@ -24,6 +24,8 @@
                         <input type="text" name="cnpj" class="form-control" required="required" />
                         <label>Ativo</label>
                         <input type="checkbox" name="ativo" value="true"/>
+                        <label>Matriz</label>
+                        <input type="checkbox" name="ativo-matriz" value="true"/>
                     </div>
                     <div class="form-group">
                         <label>Logradouro</label>
@@ -33,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         <label>Complemento</label>
-                        <input type="text" name="complemento" class="form-control" required="required"/>
+                        <input type="text" name="complemento" class="form-control"/>
                     </div>
                     <div class="form-group">
                         <label>Bairro</label>
