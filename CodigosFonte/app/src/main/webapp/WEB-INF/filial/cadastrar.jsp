@@ -11,7 +11,7 @@
         <div class="container form-cadastro">
             <div class="titulo">
                 <h2>
-                    Cadastro de Filial
+                    Nova Filial
                 </h2>
             </div>
             <div class="width: 70%;">
@@ -81,5 +81,6 @@
                 </form>
             </div>
         </div>
+        <script src="Content/lojaJs/form-filial.js" type="text/javascript"></script>
     </body>
 </html>

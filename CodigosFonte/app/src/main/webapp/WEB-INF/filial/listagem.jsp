@@ -47,5 +47,6 @@
             </div>
         </div>    
         <jsp:include page="/WEB-INF/partilals/scripts.jsp"></jsp:include>
+        <script src="Content/lojaJs/listagem-filial.js" type="text/javascript"></script>
     </body>
 </html>
