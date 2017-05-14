@@ -16,8 +16,7 @@ public class ClienteService {
     public ClienteService() {
         dao = new ClienteDao();
     }
-    
-    
+
     public Cliente get(int id) {
         Cliente cliente = null;
         try {
@@ -62,13 +61,15 @@ public class ClienteService {
             return null;
         }
     }
-    
-        public void salvar(Cliente c) throws Exception {
+
+    public int salvar(Cliente c) throws Exception {
         try {
             if (c.getId() == 0) {
                 dao.inserir(c);
+                return dao.getLastID();
             } else {
                 dao.atualizar(c);
+                return c.getId();
             }
         } catch (Exception e) {
             e.printStackTrace();

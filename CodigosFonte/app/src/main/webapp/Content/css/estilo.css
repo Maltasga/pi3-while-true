@@ -98,6 +98,7 @@ body{
 .form-cliente, .form-produto, .form-colecao{
     width: 70%;
 }
+
 .form-cpf, .form-nascimento, .form-sexo {
     width: 17%;
 }
