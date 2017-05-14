@@ -1,31 +1,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt">
     <head>
+        <title>Cadastro de Filial</title>
         <jsp:include page="../partilals/htmlHead.jsp"></jsp:include>
-            <title>Cadastro de Filial</title>
         </head>
         <body>
         <jsp:include page="../partilals/menu.jsp"></jsp:include>
-        <div class="container">
-            <div class="panel panel-title">
+        <div class="container form-cadastro">
+            <div class="titulo">
                 <h2>
                     Cadastro de Filial
                 </h2>
             </div>
-            <div class="col-md-12">
-                <form action="filial" method="POST" class="form-group">
+            <div class="width: 70%;">
+                <form action="cadastrar-filial" method="POST" class="form-dados">
                     <input type="hidden" name="id" value="0" />
-                    <div class="form-group">
+                    <div class="form-group text-justify">
                         <label>Razão Social</label>
                         <input type="text" name="razaosocial" class="form-control" required="required" />
                         <label>CNPJ</label>
                         <input type="text" name="cnpj" class="form-control" required="required" />
                         <label>Ativo</label>
-                        <input type="checkbox" name="ativo" value="true"/>
+                        <input type="checkbox" name="ativo" value="true" checked="checked"/>
                         <label>Matriz</label>
-                        <input type="checkbox" name="ativo-matriz" value="true"/>
+                        <input type="checkbox" name="ativo-matriz" value="false"/>
                     </div>
                     <div class="form-group">
                         <label>Logradouro</label>
@@ -74,13 +74,11 @@
                             <option value="to">Tocantins</option>
                         </select>
                     </div>
-                    <div class="text-right">
+                    <div class="form-group text-right">
                         <input type="submit" class="btn btn-primary" value="Salvar" />
                         <input type="reset" class="btn btn-warning" value="Cancelar" />
                     </div>
                 </form>
-            </div>
-            <div class="col-md-12">
             </div>
         </div>
     </body>

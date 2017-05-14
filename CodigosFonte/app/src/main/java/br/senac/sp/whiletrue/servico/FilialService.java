@@ -34,7 +34,13 @@ public class FilialService {
 
     public ArrayList<Filial> listar() {
         try {
-            return dao.listar();
+            ArrayList<Filial> filiais = new ArrayList<>();
+            for (Filial f : dao.listar()) {
+                if(f.isAtivo()){
+                    filiais.add(f);
+                }
+            }
+            return filiais;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

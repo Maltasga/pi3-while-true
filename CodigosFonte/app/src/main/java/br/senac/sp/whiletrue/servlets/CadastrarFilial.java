@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Karol
  */
-@WebServlet("/filiais")
+@WebServlet("/cadastrar-filial")
 public class CadastrarFilial extends HttpServlet {
     
     FilialService filialService;
@@ -62,8 +62,7 @@ public class CadastrarFilial extends HttpServlet {
             Endereco endereco = new Endereco(filialId, "FILIAL", logradouro, cep, complemento, bairro, cidade, uf);
             enderecoService.salvar(endereco);
             
-            response.sendRedirect(request.getContextPath() + "/filiais");
-            
+            response.sendRedirect(request.getContextPath() + "/filiais");           
         } catch (Exception ex) {
             ex.printStackTrace();
         }

@@ -5,14 +5,14 @@
 <html lang="pt">
     <head>
         <jsp:include page="../../WEB-INF/partilals/htmlHead.jsp"></jsp:include>
-            <title>Cadastro de Filial</title>
+            <title>Lista de Filiais</title>
         </head>
         <body>
         <jsp:include page="../../WEB-INF/partilals/menu.jsp"></jsp:include>
-            <div class="container">
-                <div class="panel panel-title">
+            <div class="container form-cadastro">
+                <div class="titulo">
                     <h2>
-                        Lista de Filiais
+                        Filiais Cadastradas
                     </h2>
                 </div>
                 <table class="table table-hover">
@@ -20,24 +20,32 @@
                         <tr>
                             <th>Razão Social</th>
                             <th>CNPJ</th>
-                            <th>UF</th>
-                            <th>Cidade</th>
+<!--                            <th>UF</th>
+                            <th>Cidade</th>-->
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${listaFiliais}" var="f">
                         <tr>
-                            <td><c:out value="${f.razaosocial}"></c:out></td>
+                            <td><c:out value="${f.nome}"></c:out></td>
                             <td><c:out value="${f.cnpj}"></c:out></td>
-                            <td><c:out value="${f.uf}"></c:out></td>
-                            <td><c:out value="${f.cidade}"></c:out></td>
-                            <td><c:out value="${f.status}"></c:out></td>
+                            <%--<td><c:out value="${f.uf}"></c:out></td>--%>
+                            <%--<td><c:out value="${f.cidade}"></c:out></td>--%>
+                            <td><c:out value="${f.ativo}"></c:out></td>
+                                <td>
+                                    <span class="btn-editar glyphicon glyphicon-pencil" data-id="<c:out value="${f.id}"></c:out>" title="editar"></span>
+                                    &nbsp;
+                                    <span class="btn-excluir glyphicon glyphicon-remove" data-id="<c:out value="${f.id}"></c:out>" title="excluir"></span>
+                                </td>
                             </tr>
                     </c:forEach>
                 </tbody>
             </table>
+            <div class="text-right">
+                <input type="button" id="btnNovaFilial" value="Nova Filial" class="btn btn-primary" />
+            </div>
         </div>    
-        <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
+        <jsp:include page="/WEB-INF/partilals/scripts.jsp"></jsp:include>
     </body>
 </html>
