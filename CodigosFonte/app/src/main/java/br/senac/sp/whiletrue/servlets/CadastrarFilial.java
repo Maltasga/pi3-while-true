@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Karol
  */
-@WebServlet("/filial")
+@WebServlet("/filiais")
 public class CadastrarFilial extends HttpServlet {
     
     FilialService filialService;
@@ -24,12 +24,19 @@ public class CadastrarFilial extends HttpServlet {
         try {
             filialService = new FilialService();
             
-            request.setAttribute("listaFiliais", filialService.listar());
+            //request.setAttribute("listaFiliais", filialService.listar());
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/filialjsp/cadastrar.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/filial/cadastrar.jsp");
             dispatcher.forward(request, response);
-        } catch (Exception ex) {
+        } catch (IOException | ServletException ex) {
             ex.printStackTrace();
         }
-    }    
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        super.doPost(request, response); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }

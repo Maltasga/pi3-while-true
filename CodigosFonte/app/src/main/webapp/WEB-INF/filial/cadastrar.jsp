@@ -1,20 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%-- 
-    Document   : cadastrar
-    Created on : 29/04/2017, 23:29:46
-    Author     : Karol
---%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cadastro de Filial</title>
-        <link href="Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
+        <jsp:include page="../partilals/htmlHead.jsp"></jsp:include>
+            <title>Cadastro de Filial</title>
+        </head>
+        <body>
+        <jsp:include page="../partilals/menu.jsp"></jsp:include>
         <div class="container">
             <div class="panel panel-title">
                 <h2>
@@ -86,10 +79,7 @@
                 </form>
             </div>
             <div class="col-md-12">
-                <jsp:include page="listagem.jsp"></jsp:include>
             </div>
-        </div>    
-        <script src="Content/jquery.min.js" type="text/javascript"></script>
-        <script src="Content/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        </div>
     </body>
 </html>
