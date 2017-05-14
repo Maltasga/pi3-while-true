@@ -6,6 +6,12 @@
         <title>PDV - CoolWear</title>
         <jsp:include page="../partilals/htmlHead.jsp"></jsp:include>
             <link href="Content/css/pdv.css" rel="stylesheet" type="text/css" />
+            <link href="Content/autocomplete/autocomplete.min.css" rel="stylesheet" type="text/css" />
+            <style type="text/css">
+                .container div:first-of-type {
+                    width: auto;
+                }
+            </style>
         </head>
         <body>
             <div class="container">
@@ -19,69 +25,107 @@
                     </p>
                 </div>
                 <hr />
-                <div class="corpo">
-                    <div class="col-md-10">
+                <div class="corpo">                    
+                    <div class="form-inline">
                         <div class="form-group">
                             <label for="codProduto">
-                                <input  type="radio" id="codProduto" name="busca" value="c" checked="checked" />
-                                Cód. Produto
+                                Pesquise o nome
                             </label>
-                            <label for="nmProduto">
-                                <input  type="radio" id="nmProduto" name="busca" value="n" />
-                                Nome
-                            </label>
-                            <div class="form-inline">
-                                <input type="text" id="txtCodProduto" class="form-control" />
-                                <span class="glyphicon glyphicon-search"></span>
-                            </div>
+                            <br />
+                            <input type="text" id="txtIdentProduto" class="form-control" />
                         </div>
-                        <div class="form-inline">
-                            <div class="form-group">
-                                <label>
-                                    Descrição
-                                </label>
-                                <br />
-                                <span>
-                                    Camiseta fantasia
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    Valor
-                                </label>
-                                <br />
-                                <span>
-                                    <fmt:formatNumber type="currency" value="15.0"></fmt:formatNumber>
-                                </span>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    Cor
-                                </label>
-                                <br />
-                                <select class="form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    Tamanho
-                                </label>
-                                <br />
-                                <select class="form-control">
-                                    <option value=""></option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label>
+                                Descrição
+                            </label>
+                            <br />
+                            <span id="lblDescricao">
+                                &nbsp;
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Valor unit.
+                            </label>
+                            <br />
+                            <span id="lblValor">
+                                &nbsp;
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Cor
+                            </label>
+                            <br />
+                            <span id="lblCor">
+                                &nbsp;
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Quantidade
+                            </label>
+                            <br />
+                            <input id="txtQtde" type="number" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Tamanho
+                            </label>
+                            <br />
+                            <select id="ddlTamanho" class="form-control">
+                                <option value=""></option>
+                                <option value="PP">PP</option>
+                                <option value="P">P</option>
+                                <option value="M">M</option>
+                                <option value="G">G</option>
+                                <option value="GG">GG</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>&nbsp;</label>
                             <br />
-                            <input type="button" value="Adicionar" class="btn btn-sm btn-default" />
+                            <input id="btnAddItem" type="button" value="Adicionar" class="btn btn-sm btn-default" />
                         </div>
                     </div>
+                    <hr/>
+                    <table id="listaItens" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th colspan="6" class="text-capitalize text-center">
+                                    Itens
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    Tamanho
+                                </th>
+                                <th>
+                                    Valor Unit.
+                                </th>
+                                <th>
+                                    Quantidade
+                                </th>
+                                <th>
+                                    Valor Total
+                                </th>
+                                <th>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
+        <script src="Content/jquery.min.js" type="text/javascript"></script>
+        <script src="Content/autocomplete/autocomplete.min.js" type="text/javascript"></script>
         <script src="Content/lojaJs/pdv-emandamento.js"></script>
     </body>
 </html>
