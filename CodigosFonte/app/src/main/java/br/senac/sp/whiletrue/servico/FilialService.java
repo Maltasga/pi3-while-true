@@ -73,10 +73,9 @@ public class FilialService {
         }
     }
 
-    public void excluir(Filial f) throws Exception {
+    public void excluir(int id) throws Exception {
         try {
-            dao = new FilialDao();
-            dao.excluir(f.getId());
+            dao.excluir(id);
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("Falha ao tentar excluir o cadastro de filial");
