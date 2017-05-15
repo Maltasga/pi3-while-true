@@ -98,8 +98,13 @@ body{
 .form-cliente, .form-produto, .form-colecao{
     width: 70%;
 }
-
-.form-cpf, .form-nascimento, .form-sexo {
+.form-razaoSocial{
+    width:65%
+}
+.form-cnpj{
+    width: 20%;
+}
+.form-cpf, .form-nascimento, .form-sexo, .form-complemento {
     width: 17%;
 }
 .form-periodo, .form-ano, .form-codigo, .form-valor-item, .form-tipo, .form-comboColecao{
@@ -113,4 +118,10 @@ body{
 }
 .form-tamanho, .form-quantidade{
     width: 10%
+}
+.form-cep{
+ width: 12%;   
+}
+.form-logradouro{
+    width: 60%;
 }
