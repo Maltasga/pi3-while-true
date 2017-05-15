@@ -21,10 +21,10 @@ public class EnderecoService {
         dao = new EnderecoDao();
     }
 
-    public Endereco get(int id) throws Exception {
+    public Endereco get(int id, String origem) throws Exception {
         Endereco endereco = null;
         try {      
-            endereco =  dao.obter(id,"CLIENTE");
+            endereco = dao.obter(id,origem);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class EnderecoService {
 
     public void salvar(Endereco e) throws Exception {
         try {
-            if (get(e.getId())== null) {
+            if (get(e.getId(), e.getOrigem())== null) {
                 dao.inserir(e);
             } else {
                 dao.atualizar(e);
