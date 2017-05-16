@@ -134,9 +134,9 @@
                             </tr>
                         </thead>
                         <tbody>
-
                         </tbody>
                     </table>
+                    <div id="formulario" class="hide"></div>
                 </div>
             </div>
         </div>

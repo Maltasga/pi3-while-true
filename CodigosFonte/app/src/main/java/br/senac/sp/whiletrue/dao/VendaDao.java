@@ -43,7 +43,7 @@ public class VendaDao {
             statement.setInt(1, v.getIdCliente());
             statement.setInt(2, v.getIdUsuario());
             statement.setDouble(3, v.getValor());
-            statement.setDate(5, Util.toSQLDate(v.getDataVenda()));
+            statement.setDate(4, Util.toSQLDate(v.getDataVenda()));
             statement.execute();
             statement.close();
 

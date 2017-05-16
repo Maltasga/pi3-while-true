@@ -7,11 +7,6 @@ window.addEventListener("load", function () {
         totalCompra: $("#totalCompra")
     };
 
-    var venda = {
-        idCliente: campos.hdnClienteId.val(),
-        itens: []
-    };
-
     function limparCampos() {
         document.querySelector("#btnAddItem").setAttribute("ixproduto", null);
         document.querySelector("#txtIdentProduto").value = "";
@@ -107,10 +102,11 @@ window.addEventListener("load", function () {
     }
 
     escreveValorTotal();
-    xhrRequest("getProdutos", "post", null, function (response) {
+    xhrRequest("getProdutos", "post", "application/x-www-form-urlencoded", null, function (response) {
         produtos = (JSON.parse(response));
         carregaAutoComplete();
     });
+
     document.querySelector("#btnAddItem")
             .addEventListener("click", function () {
                 var id = parseInt(this.getAttribute("ixproduto"));
@@ -139,5 +135,35 @@ window.addEventListener("load", function () {
             .addEventListener("click", function () {
                 if (confirm("Ao cancelar estar venda todos os dados serão perdidos. Confirma?"))
                     window.location = "venda";
+            });
+
+    document.querySelector("#btnFinalizarVenda")
+            .addEventListener("click", function () {
+                if (carrinho.length) {
+                    var form = document.createElement("form");
+                    form.method = "post";
+                    form.action = "finalizar-venda";
+                    form.appendChild(_criarHidden("idCliente", campos.hdnClienteId.val()));
+                    form.appendChild(_criarHidden("valorTotal", total));
+                    for (var i = 0; i < carrinho.length; i++) {
+                        var c = carrinho[i];
+                        form.appendChild(_criarHidden("itens[" + i + "].idVenda", 0));
+                        form.appendChild(_criarHidden("itens[" + i + "].idProduto", c.idProduto));
+                        form.appendChild(_criarHidden("itens[" + i + "].tamanho", c.tamanho));
+                        form.appendChild(_criarHidden("itens[" + i + "].quantidade", c.quantidade));
+                    }
+                    document.querySelector("#formulario").appendChild(form);
+                    form.submit();
+                } else {
+                    alert("Lista de compras está vazia!");
+                }
+
+                function _criarHidden(name, valor) {
+                    var h = document.createElement("input");
+                    h.type = "hidden";
+                    h.name = name;
+                    h.value = valor;
+                    return h;
+                }
             });
 });

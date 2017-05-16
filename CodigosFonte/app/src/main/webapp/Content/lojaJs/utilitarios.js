@@ -1,7 +1,7 @@
-function xhrRequest(url, tipo, data, callback) {
+function xhrRequest(url, method, contentType, data, callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open(tipo, url, true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.open(method, url, true);
+    //xhr.setRequestHeader("Content-type", contentType);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             if (typeof callback === "function")
@@ -9,12 +9,7 @@ function xhrRequest(url, tipo, data, callback) {
         }
     }
     if (data) {
-        var queryString = "";
-        for (var i in data) {
-            if (data.hasOwnProperty(i))
-                queryString += i + "=" + data[i] + "&";
-        }
-        xhr.send(queryString);
+        xhr.send(data);
     } else {
         xhr.send();
     }
