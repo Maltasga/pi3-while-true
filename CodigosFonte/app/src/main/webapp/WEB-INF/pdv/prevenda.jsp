@@ -19,7 +19,7 @@
                         <div class="form-inline">
                             <input type="text" name="cpf" class="form-control" required="required"/>
                             <input type="submit" value="Buscar" class="btn btn-primary" />
-                            <input type="button" class="btn btn-default" value="Cadastrar novo cliente" />
+                            <input type="button" id="btnNovoCliente" class="btn btn-default" value="Cadastrar novo cliente" />
                         </div>
                     </div>
                 </form>
@@ -30,5 +30,12 @@
                 </c:if>
             </div>
         </div>
+        <script type="text/javascript">
+            window.addEventListener("load",function(){
+                document.querySelector("#btnNovoCliente").addEventListener("click", function(){
+                    window.location = "cadastrar-cliente";
+                })
+            })
+        </script>
     </body>
 </html>

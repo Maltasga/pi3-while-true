@@ -19,6 +19,7 @@ window.addEventListener("load", function () {
         var btn = botoesExclusao[i];
         btn.style.cursor = "pointer";
         btn.addEventListener("click", function () {
+            var self = this;
             if (confirm("Deseja excluir este usuário?")) {
                 var id = this.getAttribute("data-id");
                 var xhr = new XMLHttpRequest();
@@ -26,8 +27,7 @@ window.addEventListener("load", function () {
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        debugger;
-                        this.parentElement.parentElement.remove();
+                        self.parentElement.parentElement.remove();
                     }
                 }
                 xhr.send("q=" + id);

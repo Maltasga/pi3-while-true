@@ -67,38 +67,31 @@ body{
     font-size: 18px;
     font-family: 'Kaushan Script', cursive;
 }*/
-.menu-itens{
-    padding: 10px 30px 9px 96px;
-    font-family: 'Lora', serif;
-    width: 100%;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-/*    justify-content: space-between; */
-}
+
 .menu-itens>li>a {
     color: black;
     font-weight: bold;
 }
 .menu{
-    display: flex;
+/*    display: flex;*/
+    font-family: 'Lora', serif;
+    font-size: 20px;
     width: 100%;
     background: #f4f4fa;
     box-shadow: 8px 15px 35px #888888;
-    justify-content: space-between;
+    /*    align-items: center;*/
+    /*    justify-content: space-between;*/
 }
 .menu-usuario{
-    display: flex;
-    justify-content: flex-end;
+    right: 10px;
+    top: 11px;
 }
 .logo{
-    padding: 10px 30px 9px 96px;
-    /*    width: 100px;
-        height: 103px;*/
+    width: 200px;
 }
 .form-borda{
-   border: 1px solid #888888;
-   border-radius:20px 20px 20px 20px;
+    border: 1px solid #888888;
+    border-radius:20px 20px 20px 20px;
 }
 /*Tamanho de campos*/
 
@@ -120,6 +113,18 @@ body{
 .form-periodo, .form-ano, .form-codigo, .form-valor-item, .form-tipo, .form-comboColecao{
     width: 20%;
 }
+.form-email{
+    width: 35%;
+}
+.form-login{
+ width: 46%;   
+}
+.form-senha{
+    width: 27%;
+}
+.form-nome{
+    width: 70%;
+}
 .form-cor{
     width: 17%;
 }
@@ -130,7 +135,7 @@ body{
     width: 10%
 }
 .form-cep{
- width: 12%;   
+    width: 12%;   
 }
 .form-logradouro{
     width: 60%;

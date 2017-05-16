@@ -26,7 +26,7 @@ public class FilialDao {
             statement.setString(1, f.getNome());
             statement.setString(2, f.getCnpj());
             statement.setBoolean(3, f.isMatriz());
-            statement.setBoolean(4, f.isAtivo());
+            statement.setBoolean(4, true);
             statement.setDate(5, new java.sql.Date(f.getDataCadastro().getTime()));
             statement.execute();
         } finally {

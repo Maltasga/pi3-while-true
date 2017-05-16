@@ -6,3 +6,4 @@
 <link href="Content/css/estilo.css" rel="stylesheet" type="text/css"/>
 <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
 <script src="Content/lojaJs/utilitarios.js" type="text/javascript"></script>
+<script src="Content/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
