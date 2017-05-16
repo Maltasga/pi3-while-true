@@ -60,5 +60,7 @@
         </div>  
         <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
         <!--        <script src="Content/lojaJs/listagem-usuario.js" type="text/javascript"></script>-->
+         <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
+        <script src="Content/lojaJs/listagem-cliente.js" type="text/javascript"></script>
     </body>
 </html>

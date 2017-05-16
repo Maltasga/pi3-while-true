@@ -6,13 +6,13 @@
             <a href="home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
         </li>
         <c:forEach items="${menus}" var="m">
-            <li role="presentention">
+            <li role="presentation">
                 <a href="${m.caminho}" role="tab" data-toggle="tab">
                     ${m.nome}
                 </a>
             </li>
         </c:forEach>
-        <li role="presentation">
+        <li role="presentation" class="menu-usuario">
             <c:out value="${usuario.nome}"></c:out>
                 | 
             <c:out value="${usuario.perfil.nome}"></c:out>

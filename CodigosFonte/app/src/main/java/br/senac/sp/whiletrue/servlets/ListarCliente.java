@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author While True
  */
-@WebServlet("/cliente")
+@WebServlet("/clientes")
 public class ListarCliente extends HttpServlet {
 
     ClienteService servico = null;

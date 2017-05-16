@@ -63,7 +63,7 @@ public class CadastrarCliente extends HttpServlet {
             Endereco endereco = new Endereco(clienteID,"CLIENTE", logradouro, cep, complemento, bairro, cidade, uf);
             enderecoService.salvar(endereco);
 
-            response.sendRedirect(request.getContextPath() + "/cliente");
+            response.sendRedirect(request.getContextPath() + "/clientes");
 
         } catch (Exception ex) {
             ex.printStackTrace();

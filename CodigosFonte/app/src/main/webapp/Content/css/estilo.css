@@ -73,7 +73,8 @@ body{
     width: 100%;
     font-size: 20px;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+/*    justify-content: space-between; */
 }
 .menu-itens>li>a {
     color: black;
@@ -84,6 +85,11 @@ body{
     width: 100%;
     background: #f4f4fa;
     box-shadow: 8px 15px 35px #888888;
+    justify-content: space-between;
+}
+.menu-usuario{
+    display: flex;
+    justify-content: flex-end;
 }
 .logo{
     padding: 10px 30px 9px 96px;
@@ -95,11 +101,15 @@ body{
    border-radius:20px 20px 20px 20px;
 }
 /*Tamanho de campos*/
+
 .form-cliente, .form-produto, .form-colecao{
     width: 70%;
 }
 .form-razaoSocial{
     width:65%
+}
+.form-endereco{
+    width: 56%;
 }
 .form-cnpj{
     width: 20%;
