@@ -30,7 +30,7 @@ public class UsuarioDao {
             statement.setString(4, u.getEmail());
             statement.setString(5, u.getLogin());
             statement.setString(6, u.getSenha());
-            statement.setBoolean(7, u.isAtivo());
+            statement.setBoolean(7, true);
             statement.setDate(8, Util.toSQLDate(u.getDataCadastro()));
             statement.execute();
 
