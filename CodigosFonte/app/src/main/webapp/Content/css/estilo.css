@@ -90,6 +90,8 @@ body{
 .menu-usuario{
     display: flex;
     justify-content: flex-end;
+    right: 10px;
+    top: 15px;
 }
 .logo{
     padding: 10px 30px 9px 96px;
