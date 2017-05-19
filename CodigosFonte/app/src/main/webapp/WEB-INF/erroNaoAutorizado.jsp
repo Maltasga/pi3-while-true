@@ -12,6 +12,6 @@
         <title>Não</title>
     </head>
     <body>
-        <img src="/Content/img/no.jpeg" alt="não"/>
+        <img src="C:\Users\Karol.Karol-PC\Documents\SENAC\3o semestre\PI 3\pi3-while-true\CodigosFonte\app\src\main\webapp\Content\img\no.jpg" alt="não" width="50" height="50"/>
     </body>
 </html>
