@@ -64,8 +64,8 @@ public class AutorizacaoFilter implements Filter {
     private static boolean verificarAcesso(Usuario usuario, HttpServletRequest request, HttpServletResponse response) {
         String paginaAcessada = request.getRequestURI();
         String pagina = paginaAcessada.replace(request.getContextPath(), "");
-        
-        if(pagina.equals("/q/Content/css/estilo.css")){
+
+        if (pagina.equals("/q/Content/css/estilo.css")) {
             return true;
         }
 
@@ -160,6 +160,20 @@ public class AutorizacaoFilter implements Filter {
         }
 
         if (pagina.endsWith("pdv-venda")) {
+            if (idPerfil == 400) {
+                return true;
+            }
+            return false;
+        }
+
+        if (pagina.contains("editar-cliente")) {
+            if (idPerfil == 400) {
+                return true;
+            }
+            return false;
+        }
+
+        if (pagina.contains("excluircliente")) {
             if (idPerfil == 400) {
                 return true;
             }
