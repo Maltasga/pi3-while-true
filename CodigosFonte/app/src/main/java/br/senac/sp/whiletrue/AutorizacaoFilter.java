@@ -23,9 +23,11 @@ import javax.servlet.http.HttpSession;
  * @author Karol
  */
 @WebFilter(filterName = "AutorizacaoFilter",
-        urlPatterns = {"/cadastrar-cliente", "/cadastrar-filial", "/cadastrar-usuario",
-            "/editar-filial", "/editar-usuario", "/excluirfilial", "/excluirusuario",
-            "/finalizar-venda", "/home", "/clientes", "/filiais", "/usuarios", "/venda"})
+        urlPatterns = {"/cadastrar-cliente", "/cadastrar-filial", "/cadastrar-usuario", "/cadastrar-colecao", "/cadastrar-produto",
+            "/editar-cliente", "/editar-filial", "/editar-usuario", "/editar-colecao", "/editar-produto",
+            "/excluircliente", "/excluirfilial", "/excluirusuario", "/excluircolecao", "/excluirproduto",
+            "/finalizar-venda", "/home", "/clientes", "/filiais", "/usuarios", "/venda", "/colecoes", "/produtos",
+            "/rel-vendas-geral"})
 public class AutorizacaoFilter implements Filter {
 
     @Override
@@ -129,7 +131,7 @@ public class AutorizacaoFilter implements Filter {
             return false;
         }
 
-        if (pagina.endsWith("cliente")) {
+        if (pagina.endsWith("clientes")) {
             if (idPerfil == 300 || idPerfil == 400) {
                 return true;
             }
