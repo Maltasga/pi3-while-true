@@ -20,7 +20,7 @@ public class Logout extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessao = request.getSession(false);
-        if (sessao != null && sessao.getAttribute("usuario") != null) {
+        if (sessao != null && sessao.getAttribute("usuarioLogado") != null) {
             sessao.invalidate();
             
             request.getRequestDispatcher("WEB-INF/login/login.jsp")

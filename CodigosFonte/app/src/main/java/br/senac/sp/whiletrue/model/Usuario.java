@@ -93,7 +93,7 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
     public boolean isAtivo() {
         return ativo;
     }
@@ -137,8 +137,8 @@ public class Usuario {
         }
         return perfil;
     }
-    
-    public void setHashSenha(String senha){
+
+    public void setHashSenha(String senha) {
         this.senha = BCrypt.hashpw(senha, BCrypt.gensalt());
     }
 

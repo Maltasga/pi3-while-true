@@ -29,7 +29,7 @@ public class Login extends HttpServlet {
 
         // Verifica se usuário já se logou, se positivo redireciona para tela principal
         HttpSession sessao = request.getSession(false);
-        if (sessao != null && sessao.getAttribute("usuario") != null) {
+        if (sessao != null && sessao.getAttribute("usuarioLogado") != null) {
             response.sendRedirect(request.getContextPath() + "/home");
             return;
         }
@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
                     sessao.invalidate();
                 }
                 sessao = request.getSession(true);
-                sessao.setAttribute("usuario", user);
+                sessao.setAttribute("usuarioLogado", user);
 
                 MenuService menuService = new MenuService();
                 ArrayList<Menu> menus = menuService.listarPorPerfil(user.getIdPerfil());

@@ -9,39 +9,49 @@
         </head>
         <body>
         <jsp:include page="../partilals/menu.jsp"></jsp:include>
-        <div class="container form-cadastro">
-            <div class="titulo">
-                <h2>Manutenção de usuário</h2>
-            </div>
+            <div class="container form-cadastro">
+                <div class="titulo">
+                    <h2>Manutenção de usuário</h2>
+                </div>
+            <c:if test="${errosValidacao.isEmpty()==false}">
+                <div class="alert alert-danger">
+                    <h4>Erros no preenchimento do formulário</h4>
+                    <ul>
+                        <c:forEach items="${errosValidacao}" var="item">
+                            <li>${item}</li>
+                            </c:forEach>
+                    </ul>
+                </div>
+            </c:if>
             <div style="width: 70%;">
                 <form method="post" action="editar-usuario" class="form-dados">
-                    <input type="hidden" name="id" value="${usuario.id}" />
+                    <input type="hidden" name="id" value="${usuariotoedit.id}" />
                     <div class="form-group text-justify">
                         <label>Filial</label>
-                        <span>${usuario.filial.nome}</span>
+                        <span>${usuariotoedit.filial.nome}</span>
                         &nbsp;|&nbsp;
                         <label>Perfil</label>
-                        <span>${usuario.perfil.nome}</span>
+                        <span>${usuariotoedit.perfil.nome}</span>
                         &nbsp;|&nbsp;
-                        <c:if test="${usuario.ativo}">
+                        <c:if test="${usuariotoedit.ativo}">
                             <span class="glyphicon glyphicon-check"></span>
                         </c:if>
                         <label for="chkAtivo">Ativo</label>
                         &nbsp;|&nbsp;
                         <label>Data de Cadastro</label>
-                        <span><fmt:formatDate value="${usuario.dataCadastro}" pattern="dd/MM/yyyy"></fmt:formatDate></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Nome</label>
-                        <input type="text" class="form-control" name="nome" required="required" value="${usuario.nome}"/>
+                        <span><fmt:formatDate value="${usuariotoedit.dataCadastro}" pattern="dd/MM/yyyy"></fmt:formatDate></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" name="nome" required="required" value="${usuariotoedit.nome}"/>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="email" required="required" value="${usuario.email}" />
+                        <input type="email" class="form-control" name="email" required="required" value="${usuariotoedit.email}" />
                     </div>
                     <div class="form-group">
                         <label>Login</label>
-                        <input type="text" class="form-control" name="login" readonly="readonly" value="${usuario.login}"/>
+                        <input type="text" class="form-control" name="login" readonly="readonly" value="${usuariotoedit.login}"/>
                     </div>
                     <div class="form-group">
                         <label>Senha</label>

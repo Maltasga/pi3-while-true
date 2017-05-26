@@ -69,7 +69,13 @@ public class EstoqueDao {
 
     public ArrayList<Estoque> listar(int idProduto, int idFilial) throws SQLException {
         ArrayList<Estoque> lista = new ArrayList<>();
-        String query = "SELECT * FROM Estoque WHERE IdFilial = ? AND IdProduto = ?";
+        String query = "SELECT "
+                + "Id, "
+                + "IdProduto, "
+                + "IdFilial, "
+                + "Tamanho, "
+                + "Quantidade "
+                + "WHERE IdFilial = ? AND IdProduto = ?";
         PreparedStatement statement = null;
 
         try {

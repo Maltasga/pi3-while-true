@@ -19,9 +19,9 @@
         <div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="menu-usuario">
-                    <c:out value="${usuario.nome}"></c:out>
+                    <c:out value="${usuarioLogado.nome}"></c:out>
                         | 
-                    <c:out value="${usuario.perfil.nome}"></c:out>
+                    <c:out value="${usuarioLogado.perfil.nome}"></c:out>
                     | 
                     <label id="logout">sair</label>
                 </li>

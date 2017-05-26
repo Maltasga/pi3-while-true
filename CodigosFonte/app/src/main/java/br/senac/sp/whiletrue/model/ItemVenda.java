@@ -41,7 +41,7 @@ public class ItemVenda {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }
+    }    
 
     public ItemVenda(long idVenda, int idProduto, String tamanho, int quantidade) {
         this.idVenda = idVenda;

@@ -21,20 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = {"/finalizar-venda"})
 public class FinalizarVenda extends HttpServlet {
 
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//
-//        request.getRequestDispatcher("WEB-INF/pdv/caixa.jsp")
-//                .forward(request, response);
-//    }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ArrayList<ItemVenda> itens = new ArrayList<>();
-        Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuario");
+        Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
         int idCliente = Integer.parseInt(request.getParameter("idCliente"));
-        double valorTotal = Double.parseDouble(request.getParameter("valorTotal"));
 
         Map<String, String[]> map = request.getParameterMap();
         int indexMap = 0;
@@ -45,9 +37,9 @@ public class FinalizarVenda extends HttpServlet {
                 String[] quantidade = map.get("itens[" + indexMap + "].quantidade");
 
                 ItemVenda item = new ItemVenda(
-                        0, 
-                        Integer.parseInt(idProduto[0]), 
-                        tamanho[0], 
+                        0,
+                        Integer.parseInt(idProduto[0]),
+                        tamanho[0],
                         Integer.parseInt(quantidade[0]));
                 itens.add(item);
                 indexMap++;
@@ -59,13 +51,14 @@ public class FinalizarVenda extends HttpServlet {
                 0,
                 idCliente,
                 usuarioLogado.getId(),
-                valorTotal,
+                0,
                 GregorianCalendar.getInstance().getTime(),
                 itens);
-        
+
         VendaService service = new VendaService();
+        VendaService.calcularTotal(venda);
         service.salvar(venda);
-        
+
         request.getRequestDispatcher("WEB-INF/pdv/prevenda.jsp")
                 .forward(request, response);
 

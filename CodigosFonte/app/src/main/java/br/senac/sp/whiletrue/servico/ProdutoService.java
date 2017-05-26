@@ -10,13 +10,13 @@ import java.util.ArrayList;
  * @author While True
  */
 public class ProdutoService {
-    
+
     ProdutoDao dao = new ProdutoDao();
-    
+
     public ProdutoService() {
         this.dao = new ProdutoDao();
     }
-    
+
     public Produto get(String codigo) {
         Produto p = null;
         try {
@@ -31,7 +31,22 @@ public class ProdutoService {
         }
         return p;
     }
-    
+
+    public Produto get(int id) {
+        Produto p = null;
+        try {
+            for (Produto item : dao.listar()) {
+                if (item.getId() == id) {
+                    p = item;
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return p;
+    }
+
     public ArrayList<Produto> listar() {
         try {
             ArrayList<Produto> produtos = new ArrayList<>();
@@ -46,7 +61,7 @@ public class ProdutoService {
             return null;
         }
     }
-    
+
     public ArrayList<Produto> listarPorNome(String nome) {
         try {
             ArrayList<Produto> produtos = new ArrayList<>();
@@ -61,7 +76,7 @@ public class ProdutoService {
             return null;
         }
     }
-    
+
     public void salvar(Produto p) throws Exception {
         try {
             if (p.getId() == 0) {
@@ -74,7 +89,7 @@ public class ProdutoService {
             throw new Exception("Falha ao atualizar o produto");
         }
     }
-    
+
     public void excluir(int id) throws Exception {
         try {
             dao.excluir(id);

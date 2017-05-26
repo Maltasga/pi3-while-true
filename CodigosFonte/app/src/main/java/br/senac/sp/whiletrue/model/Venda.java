@@ -1,5 +1,6 @@
 package br.senac.sp.whiletrue.model;
 
+import br.senac.sp.whiletrue.servico.ProdutoService;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -71,5 +72,14 @@ public class Venda {
         this.valor = valor;
         this.dataVenda = dataVenda;
         this.itens = itens;
+    }
+
+    public void somaValorTotal() {
+        ProdutoService service = new ProdutoService();
+        double total = 0;
+        for (ItemVenda item : this.itens) {
+            total += (service.get(item.getIdProduto()).getValorVenda() * item.getQuantidade());
+        }
+        this.valor = total;
     }
 }

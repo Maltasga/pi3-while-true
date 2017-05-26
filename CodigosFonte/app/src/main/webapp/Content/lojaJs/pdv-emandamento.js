@@ -144,7 +144,6 @@ window.addEventListener("load", function () {
                     form.method = "post";
                     form.action = "finalizar-venda";
                     form.appendChild(_criarHidden("idCliente", campos.hdnClienteId.val()));
-                    form.appendChild(_criarHidden("valorTotal", total));
                     for (var i = 0; i < carrinho.length; i++) {
                         var c = carrinho[i];
                         form.appendChild(_criarHidden("itens[" + i + "].idVenda", 0));
