@@ -16,6 +16,19 @@ public class ColecaoService {
         dao = new ColecaoDao();
     }
 
+    public void salvar(Colecao c) throws Exception {
+        try {
+            if (c.getId() == 0) {
+                dao.inserir(c);
+            } else {
+                dao.atualizar(c);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Falha ao atualizar coleção.");
+        }
+    }
+
     public ArrayList<Colecao> listar(boolean ativo) {
         try {
             ArrayList<Colecao> lista = new ArrayList<>();

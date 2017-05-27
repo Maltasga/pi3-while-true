@@ -41,7 +41,7 @@ public class ColecaoDao {
         }
     }
 
-    public void editar(Colecao c) throws SQLException, Exception {
+    public void atualizar(Colecao c) throws SQLException, Exception {
         String query = "UPDATE Colecao SET Nome = ?, Periodo = ?, Ano = ? WHERE Id = ?";
         PreparedStatement statement = null;
         try {
