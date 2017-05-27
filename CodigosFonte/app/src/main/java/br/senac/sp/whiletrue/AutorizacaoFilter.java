@@ -22,12 +22,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Karol
  */
-@WebFilter(filterName = "AutorizacaoFilter",
-        urlPatterns = {"/cadastrar-cliente", "/cadastrar-filial", "/cadastrar-usuario", "/cadastrar-colecao", "/cadastrar-produto",
-            "/editar-cliente", "/editar-filial", "/editar-usuario", "/editar-colecao", "/editar-produto",
-            "/excluircliente", "/excluirfilial", "/excluirusuario", "/excluircolecao", "/excluirproduto",
-            "/finalizar-venda", "/home", "/clientes", "/filiais", "/usuarios", "/venda", "/colecoes", "/produtos",
-            "/rel-vendas-geral"})
+//@WebFilter(filterName = "AutorizacaoFilter",
+//        urlPatterns = {"/cadastrar-cliente", "/cadastrar-filial", "/cadastrar-usuario", "/cadastrar-colecao", "/cadastrar-produto",
+//            "/editar-cliente", "/editar-filial", "/editar-usuario", "/editar-colecao", "/editar-produto",
+//            "/excluircliente", "/excluirfilial", "/excluirusuario", "/excluircolecao", "/excluirproduto",
+//            "/finalizar-venda", "/home", "/clientes", "/filiais", "/usuarios", "/venda", "/colecoes", "/produtos",
+//            "/rel-vendas-geral"})
 public class AutorizacaoFilter implements Filter {
 
     @Override
