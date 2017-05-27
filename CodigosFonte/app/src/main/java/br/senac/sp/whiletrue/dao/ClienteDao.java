@@ -44,16 +44,18 @@ public class ClienteDao {
     }
 
     public void atualizar(Cliente c) throws SQLException, Exception {
-        String query = "UPDATE Cliente SET Nome = ?, Sexo = ?, DataNascimeno = ? WHERE Id = ?";
+        String query = "UPDATE Cliente SET Nome = ?, Cpf = ?, Sexo = ?, DataNascimento = ?,"
+                + " Ativo = ? WHERE Id = ?";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             statement.setString(1, c.getNome());
-            statement.setString(2, c.getSexo());
-            statement.setDate(3, Util.toSQLDate(c.getDataNascimento()));
-            statement.setInt(4, c.getId());
+            statement.setString(2, c.getCpf());
+            statement.setString(3, c.getSexo());
+            statement.setDate(4, Util.toSQLDate(c.getDataNascimento()));
+            statement.setBoolean(5, c.isAtivo());
             statement.execute();
         } finally {
             if (statement != null && !statement.isClosed()) {

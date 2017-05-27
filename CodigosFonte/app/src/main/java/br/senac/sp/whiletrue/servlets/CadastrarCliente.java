@@ -8,7 +8,6 @@ import br.senac.sp.whiletrue.servico.EnderecoService;
 import java.io.IOException;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,9 +28,9 @@ public class CadastrarCliente extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/cliente/cadastrar.jsp");
-            dispatcher.forward(request, response);
+            request.setAttribute("tituloCliente", "Cadastro de Cliente");
+            request.getRequestDispatcher("WEB-INF/cliente/cadastrar.jsp")
+                    .forward(request, response);
         } catch (IOException | ServletException ex) {
             ex.printStackTrace();
         }
@@ -60,7 +59,7 @@ public class CadastrarCliente extends HttpServlet {
             Cliente novoCliente = new Cliente(0, nome, cpf, sexo, dataNascimento, true, dataCadastro);
 
             int clienteID = clienteService.salvar(novoCliente);
-            Endereco endereco = new Endereco(clienteID,"CLIENTE", logradouro, cep, complemento, bairro, cidade, uf);
+            Endereco endereco = new Endereco(clienteID, "CLIENTE", logradouro, cep, complemento, bairro, cidade, uf);
             enderecoService.salvar(endereco);
 
             response.sendRedirect(request.getContextPath() + "/clientes");
