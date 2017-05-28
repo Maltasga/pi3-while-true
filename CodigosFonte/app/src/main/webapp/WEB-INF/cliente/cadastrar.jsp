@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,16 +9,16 @@
         </head>
         <body>
         <jsp:include page="../partilals/menu.jsp"></jsp:include>
-        <div class="container form-cadastro">
-            <div class="titulo">
-                <h2><c:out value="${tituloCliente}"></c:out></h2>   
-            </div>
-            <form method="POST">
-                <div class="form-dados">
-                    <div class="form-flex">
-                        <div class="form-group form-cliente">
-                            <label>Nome</label>
-                            <input type="text" name="cliente" required class="form-control" value="${clientetoedit.nome}" />
+            <div class="container form-cadastro">
+                <div class="titulo">
+                    <h2><c:out value="${tituloCliente}"></c:out></h2>   
+                </div>
+                <form method="POST">
+                    <div class="form-dados">
+                        <div class="form-flex">
+                            <div class="form-group form-cliente">
+                                <label>Nome</label>
+                                <input type="text" name="cliente" required class="form-control" value="${clientetoedit.nome}" />
                         </div>
 
                         <div class="form-group form-cpf">
@@ -47,18 +48,22 @@
                         </div>
                         <div class="form-group form-cidade">
                             <label>Cidade</label>
-                            <select name="cidade" required class="form-control" >
-                                <option value=""> </option>
-                                <option value="São Paulo">São Paulo</option>
-                                <option value="Rio de Janeiro">Rio de Janeiro</option>
-                            </select>  
+                            <input type="text" name="cidade" required class="form-control" value="${clientetoedit.endereco.cidade}" />
                         </div>                      
                         <div class="form-group form-uf">
                             <label>UF</label>
-                            <select name="uf" required class="form-control" >
-                                <option value=""> </option>
-                                <option value="SP">SP</option>
-                                <option value="RJ">RJ</option>
+                            <select name="uf" required class="form-control" >                                
+                                <option value=""></option>
+                                <c:forEach items="${listaUf}" var="i">                                    
+                                    <c:choose>
+                                        <c:when test="${i == clientetoedit.endereco.uf}">
+                                            <option value="${i}" selected="selected">${i}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${i}">${i}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
                             </select>  
                         </div>
                     </div>
@@ -66,18 +71,27 @@
                         <div class="form-group form-sexo">
                             <label>Sexo</label>
                             <select name="sexo" required class="form-control" >
-                                <option value=""> </option>
-                                <option value="F">Feminino</option>
-                                <option value="M">Masculino</option>
+                               <option value=""></option>
+                                <c:forEach items="${listaSexo}" var="i">                                    
+                                    <c:choose>
+                                        <c:when test="${i == clientetoedit.sexo}">
+                                            <option value="${i}" selected="selected">${i}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${i}">${i}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
                             </select>     
                         </div>
                         <div class="form-group form-nascimento">
                             <label>Data de Nascimento</label>
-                            <input type="text" name="nascimento" required class="form-control" />
+                            <fmt:formatDate value="${clientetoedit.dataNascimento}" pattern="dd/MM/yyyy" var="dataFormatada"></fmt:formatDate>
+                            <input type="text" name="nascimento" required class="form-control" value="${dataFormatada}" />
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="actions" class="form-group">
                     <div class="form-botoes">
                         <button type="submit" class="btn btn-primary">Salvar</button>

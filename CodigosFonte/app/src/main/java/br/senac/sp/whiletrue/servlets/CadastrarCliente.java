@@ -2,6 +2,7 @@ package br.senac.sp.whiletrue.servlets;
 
 import br.senac.sp.whiletrue.model.Cliente;
 import br.senac.sp.whiletrue.model.Endereco;
+import br.senac.sp.whiletrue.model.ListasFixas;
 import br.senac.sp.whiletrue.model.Util;
 import br.senac.sp.whiletrue.servico.ClienteService;
 import br.senac.sp.whiletrue.servico.EnderecoService;
@@ -29,6 +30,8 @@ public class CadastrarCliente extends HttpServlet {
             throws ServletException, IOException {
         try {
             request.setAttribute("tituloCliente", "Cadastro de Cliente");
+            request.setAttribute("listaUf", ListasFixas.getUf());
+            request.setAttribute("listaSexo", ListasFixas.getSexo());
             request.getRequestDispatcher("WEB-INF/cliente/cadastrar.jsp")
                     .forward(request, response);
         } catch (IOException | ServletException ex) {

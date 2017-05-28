@@ -3,6 +3,7 @@ package br.senac.sp.whiletrue.servlets;
 
 import br.senac.sp.whiletrue.model.Cliente;
 import br.senac.sp.whiletrue.model.Endereco;
+import br.senac.sp.whiletrue.model.ListasFixas;
 import br.senac.sp.whiletrue.model.Util;
 import br.senac.sp.whiletrue.servico.ClienteService;
 import br.senac.sp.whiletrue.servico.EnderecoService;
@@ -32,6 +33,8 @@ public class EditarCliente extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("q"));
             clienteService = new ClienteService();
 
+            request.setAttribute("listaUf", ListasFixas.getUf());
+            request.setAttribute("listaSexo", ListasFixas.getSexo());
             request.setAttribute("clientetoedit", clienteService.get(id));
             request.setAttribute("tituloCliente", "Manutenção de Cliente");
 
