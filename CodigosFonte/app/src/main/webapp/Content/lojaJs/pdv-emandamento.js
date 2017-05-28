@@ -1,5 +1,5 @@
 window.addEventListener("load", function () {
-    var produtos = [], total = 0, carrinho = [];
+    var total = 0, carrinho = [], produtos = [];
 
     var campos = {
         hdnClienteId: $("#hdnClienteId"),
@@ -53,10 +53,24 @@ window.addEventListener("load", function () {
                         document.querySelector("#lblDescricao").textContent = produto.descricao;
                         document.querySelector("#lblValor").textContent = formataValorMoeda(produto.valorVenda);
                         document.querySelector("#lblCor").textContent = produto.cor;
+                        carregarTamanhos(produto);
                     }
                 }
             }
         });
+    }
+
+    function carregarTamanhos(produto) {
+        var ddlTamanho = document.querySelector("#ddlTamanho");
+        ddlTamanho.innerHTML = "";
+        var novoOption = null;
+        ddlTamanho.appendChild(document.createElement("option"));
+        for (var j = 0; j < produto.estoque.length; j++) {
+            novoOption = document.createElement("option");
+            novoOption.value = produto.estoque[j].tamanho;
+            novoOption.textContent = produto.estoque[j].tamanho;
+            ddlTamanho.appendChild(novoOption);
+        }
     }
 
     function adicionaItemGrid(produto) {
@@ -101,8 +115,38 @@ window.addEventListener("load", function () {
         }
     }
 
+    function validarQtdeEstoque(idProduto, tamanho, quantidade) {
+        var produto = produtos.filter(function (item) {
+            return item.id === idProduto;
+        });
+        if (produto.length) {
+            produto = produto[0];
+            var estoque = produto.estoque.filter(function (e) {
+                return e.tamanho == tamanho;
+            })[0];
+            if (parseInt(quantidade) > estoque.quantidade) {
+                mostrarAlerta("Estoque disponível: " + estoque.quantidade);
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
     escreveValorTotal();
-    xhrRequest("getProdutos", "post", "application/x-www-form-urlencoded", null, function (response) {
+
+    function mostrarAlerta(msg) {
+        var containerMensagem = document.createElement("div");
+        containerMensagem.textContent = msg;
+        containerMensagem.classList.add("alert", "alert-danger");
+        containerMensagem.style.margin = "10px auto";
+        document.querySelector(".form-inline").appendChild(containerMensagem);
+        setTimeout(function () {
+            containerMensagem.remove();
+        }, 2000);
+    }
+
+    xhrRequest("getProdutos", "post", function (response) {
         produtos = (JSON.parse(response));
         carregaAutoComplete();
     });
@@ -116,18 +160,35 @@ window.addEventListener("load", function () {
                 if (produto.length) {
                     produto = produto[0];
                     var ddlTamanho = document.querySelector("#ddlTamanho");
-                    var itemCarrinho = {
-                        idVenda: 0,
-                        idProduto: produto.id,
-                        tamanho: ddlTamanho.options[ddlTamanho.selectedIndex].value,
-                        quantidade: parseInt(document.querySelector("#txtQtde").value),
-                        valorUnitario: produto.valorVenda
-                    };
-                    carrinho.push(itemCarrinho);
-                    adicionaItemGrid(produto);
-                    calculaValorTotal();
-                    escreveValorTotal();
-                    limparCampos();
+                    var tamanho = ddlTamanho.options[ddlTamanho.selectedIndex].value;
+                    var quantidade = parseInt(document.querySelector("#txtQtde").value);
+                    
+                    if(!tamanho){
+                        mostrarAlerta("Tamanho não informado");
+                        return;
+                    }
+
+                    if (isNaN(quantidade) || quantidade < 1) {
+                        mostrarAlerta("Quantidade deve ser maior ou igual a 1");
+                        return;
+                    }
+
+                    if (validarQtdeEstoque(produto.id, tamanho, quantidade)) {
+                        var itemCarrinho = {
+                            idVenda: 0,
+                            idProduto: produto.id,
+                            tamanho: tamanho,
+                            quantidade: quantidade,
+                            valorUnitario: produto.valorVenda
+                        };
+                        carrinho.push(itemCarrinho);
+                        adicionaItemGrid(produto);
+                        calculaValorTotal();
+                        escreveValorTotal();
+                        limparCampos();
+                    }
+                } else {
+                    mostrarAlerta("Produto não encontrado!");
                 }
             });
 

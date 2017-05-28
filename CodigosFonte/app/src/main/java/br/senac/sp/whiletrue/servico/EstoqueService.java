@@ -20,7 +20,7 @@ public class EstoqueService {
     public Estoque get(Estoque e) {
         Estoque estoque = null;
         try {
-            for (Estoque est : dao.listar(e.getIdProduto(), e.getIdFilial())) {
+            for (Estoque est : dao.listarPorProduto(e.getIdProduto(), e.getIdFilial())) {
                 if (est.equals(e)) {
                     estoque = est;
                     break;
@@ -32,13 +32,26 @@ public class EstoqueService {
         return estoque;
     }
 
-    public ArrayList<Estoque> listar(int idFilial, int idProduto) {
+    public ArrayList<Estoque> listarPorFilial(int idFilial) {
         try {
-            ArrayList<Estoque> estoque = new ArrayList<>();
-            for (Estoque est : dao.listar(idProduto, idFilial)) {
-                estoque.add(est);
+            ArrayList<Estoque> listaRetorno = new ArrayList<>();
+            for (Estoque est : dao.listarPorFilial(idFilial)) {
+                listaRetorno.add(est);
             }
-            return estoque;
+            return listaRetorno;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Estoque> listarPorProduto(int idProduto, int idFilial) {
+        try {
+            ArrayList<Estoque> listaRetorno = dao.listarPorProduto(idProduto, idFilial);
+            if (listaRetorno.size() > 0) {
+                return listaRetorno;
+            }
+            return null;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

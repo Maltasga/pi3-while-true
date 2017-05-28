@@ -67,7 +67,7 @@ public class EstoqueDao {
         }
     }
 
-    public ArrayList<Estoque> listar(int idProduto, int idFilial) throws SQLException {
+    public ArrayList<Estoque> listarPorFilial(int idFilial) throws SQLException {
         ArrayList<Estoque> lista = new ArrayList<>();
         String query = "SELECT "
                 + "Id, "
@@ -75,14 +75,54 @@ public class EstoqueDao {
                 + "IdFilial, "
                 + "Tamanho, "
                 + "Quantidade "
-                + "WHERE IdFilial = ? AND IdProduto = ?";
+                + "FROM ESTOQUE "
+                + "WHERE IdFilial = ?";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             statement.setInt(1, idFilial);
-            statement.setInt(2, idProduto);
+            ResultSet result = statement.executeQuery();
+
+            while (result.next()) {
+                lista.add(new Estoque(
+                        result.getInt("Id"),
+                        result.getInt("IdProduto"),
+                        result.getInt("IdFilial"),
+                        result.getString("Tamanho"),
+                        result.getInt("Quantidade")));
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null && !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return lista;
+    }
+
+    public ArrayList<Estoque> listarPorProduto(int idProduto, int idFilial) throws SQLException {
+        ArrayList<Estoque> lista = new ArrayList<>();
+        String query = "SELECT "
+                + "Id, "
+                + "IdProduto, "
+                + "IdFilial, "
+                + "Tamanho, "
+                + "Quantidade "
+                + "FROM ESTOQUE "
+                + "WHERE IdProduto = ? "
+                + "AND IdFilial = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, idProduto);
+            statement.setInt(2, idFilial);
             ResultSet result = statement.executeQuery();
 
             while (result.next()) {

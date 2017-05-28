@@ -62,6 +62,21 @@ public class ProdutoService {
         }
     }
 
+    public ArrayList<Produto> listarPorFilial(int idFilial) {
+        try {
+            ArrayList<Produto> produtos = new ArrayList<>();
+            for (Produto item : dao.listarPorFilial(idFilial)) {
+                if (item.isAtivo()) {
+                    produtos.add(item);
+                }
+            }
+            return produtos;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
     public ArrayList<Produto> listarPorNome(String nome) {
         try {
             ArrayList<Produto> produtos = new ArrayList<>();

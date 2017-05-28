@@ -1,4 +1,3 @@
-
 package br.senac.sp.whiletrue.model;
 
 /**
@@ -6,6 +5,7 @@ package br.senac.sp.whiletrue.model;
  * @author While True
  */
 public class Estoque {
+
     private int id;
     private int idProduto;
     private int idFilial;
@@ -58,5 +58,9 @@ public class Estoque {
         this.idFilial = idFilial;
         this.tamanho = tamanho;
         this.quantidade = quantidade;
+    }
+
+    public boolean equals(Estoque e) {
+        return this.idProduto == e.getIdProduto() && this.idFilial == e.getIdFilial() && this.tamanho.equals(e.getTamanho());
     }
 }

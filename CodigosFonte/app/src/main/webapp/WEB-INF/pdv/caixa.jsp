@@ -80,24 +80,19 @@
                         </div>
                         <div class="form-group">
                             <label>
-                                Quantidade
-                            </label>
-                            <br />
-                            <input id="txtQtde" type="number" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label>
                                 Tamanho
                             </label>
                             <br />
                             <select id="ddlTamanho" class="form-control">
                                 <option value=""></option>
-                                <option value="PP">PP</option>
-                                <option value="P">P</option>
-                                <option value="M">M</option>
-                                <option value="G">G</option>
-                                <option value="GG">GG</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Quantidade
+                            </label>
+                            <br />
+                            <input id="txtQtde" type="number" min="1" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label>&nbsp;</label>

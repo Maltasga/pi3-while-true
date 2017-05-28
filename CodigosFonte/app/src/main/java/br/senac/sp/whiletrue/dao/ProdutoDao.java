@@ -145,4 +145,60 @@ public class ProdutoDao {
         }
         return produtos;
     }
+    
+    public ArrayList<Produto> listarPorFilial(int idFilial) throws SQLException {
+        ArrayList<Produto> produtos = new ArrayList<>();
+
+        String query = "SELECT DISTINCT "
+                + "p.Id, "
+                + "p.Codigo, "
+                + "p.Nome, "
+                + "p.Descricao, "
+                + "p.IdColecao, "
+                + "c.Nome AS NomeColecao, "
+                + "p.Tipo, "
+                + "p.Cor, "
+                + "p.ValorProducao, "
+                + "p.ValorVenda, "
+                + "p.Ativo, "
+                + "p.DataCadastro "
+                + "FROM Produto P "
+                + "JOIN Colecao C ON P.IdColecao = C.Id "
+                + "JOIN Estoque E ON P.Id = E.IdProduto "
+                + "WHERE E.IdFilial = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, idFilial);
+            ResultSet result = statement.executeQuery();
+            Produto p = null;
+            while (result.next()) {
+                p = new Produto(
+                        result.getInt("Id"),
+                        result.getString("Nome"),
+                        result.getString("Descricao"),
+                        result.getInt("IdColecao"),
+                        result.getString("Tipo"),
+                        result.getString("Cor"),
+                        result.getDouble("ValorProducao"),
+                        result.getDouble("ValorVenda"),
+                        result.getBoolean("Ativo"),
+                        Util.toUtilDate(result.getDate("DataCadastro")));
+                p.setColecao(new Colecao(result.getInt("IdColecao"), result.getString("NomeColecao")));
+                produtos.add(p);
+
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return produtos;        
+    }
 }

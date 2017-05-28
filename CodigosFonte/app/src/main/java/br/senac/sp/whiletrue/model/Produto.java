@@ -125,10 +125,11 @@ public class Produto {
     }
 
     public ArrayList<Estoque> getEstoque() {
-        if (estoque == null) {
-
-        }
         return estoque;
+    }
+
+    public void setEstoque(ArrayList<Estoque> estoque) {
+        this.estoque = estoque;
     }
 
     public void setColecao(Colecao colecao) {

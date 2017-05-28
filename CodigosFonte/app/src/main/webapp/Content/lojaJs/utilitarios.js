@@ -1,7 +1,7 @@
-function xhrRequest(url, method, contentType, data, callback) {
+function xhrRequest(url, method, callback, data) {
     var xhr = new XMLHttpRequest();
     xhr.open(method, url, true);
-    //xhr.setRequestHeader("Content-type", contentType);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             if (typeof callback === "function")
