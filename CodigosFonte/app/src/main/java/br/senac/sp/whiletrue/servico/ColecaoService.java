@@ -2,6 +2,7 @@ package br.senac.sp.whiletrue.servico;
 
 import br.senac.sp.whiletrue.dao.ColecaoDao;
 import br.senac.sp.whiletrue.model.Colecao;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -29,22 +30,26 @@ public class ColecaoService {
         }
     }
 
-    public ArrayList<Colecao> listar(boolean ativo) {
+     public ArrayList<Colecao> listar() {
         try {
-            ArrayList<Colecao> lista = new ArrayList<>();
-            if (ativo) {
-                for (Colecao c : dao.listar()) {
-                    if (c.isAtivo()) {
-                        lista.add(c);
-                    }
+            ArrayList<Colecao> colecao = new ArrayList<>();
+            for (Colecao c : dao.listar()) {
+                if (c.isAtivo()) {
+                    colecao.add(c);
                 }
-            } else {
-                lista = dao.listar();
             }
-            return lista;
+            return colecao;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public void excluir(int id) throws Exception {
+        try {
+            dao.excluir(id);
         } catch (Exception e) {
             e.printStackTrace();
+            throw new Exception("Falha ao tentar excluir o cadastro de cliente");
         }
-        return null;
     }
 }

@@ -87,4 +87,18 @@ public abstract class ListasFixas {
 
         return cores;
     }
+    
+    public static ArrayList<String> getAno() {
+        ArrayList<String> ano = new ArrayList<>();
+        ano.add("2010");
+        ano.add("2011");
+        ano.add("2012");
+        ano.add("2013");
+        ano.add("2014");
+        ano.add("2015");
+        ano.add("2016");
+        ano.add("2017");
+        
+        return ano;
+    }
 }

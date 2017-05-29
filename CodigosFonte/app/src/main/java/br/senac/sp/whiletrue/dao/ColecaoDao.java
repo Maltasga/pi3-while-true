@@ -84,7 +84,7 @@ public class ColecaoDao {
         }
     }
 
-    public ArrayList<Colecao> listar() throws SQLException, Exception {
+    public ArrayList<Colecao> listar() throws SQLException {
         ArrayList<Colecao> colecoes = new ArrayList<>();
         String query = "SELECT * FROM Colecao";
 

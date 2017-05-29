@@ -1,6 +1,7 @@
 package br.senac.sp.whiletrue.servlets;
 
 import br.senac.sp.whiletrue.model.Colecao;
+import br.senac.sp.whiletrue.model.ListasFixas;
 import br.senac.sp.whiletrue.servico.ColecaoService;
 import java.io.IOException;
 import java.util.Date;
@@ -24,6 +25,7 @@ public class CadastrarColecao extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            request.setAttribute("listaSexo", ListasFixas.getSexo());
             request.setAttribute("tituloCliente", "Cadastro de Coleção");
             request.getRequestDispatcher("WEB-INF/colecao/cadastrar.jsp")
                     .forward(request, response);

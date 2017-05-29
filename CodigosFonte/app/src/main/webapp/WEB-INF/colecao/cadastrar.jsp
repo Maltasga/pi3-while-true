@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,7 +13,7 @@
                 <div class="titulo">
                     <h2>Cadastro de Coleção</h2>   
                 </div>
-                <form>
+                <form method="POST" action="cadastrar-colecao">
                     <div class="form-dados">
                         <div  class="form-group form-colecao">
                             <label>Nome da Coleção</label>
