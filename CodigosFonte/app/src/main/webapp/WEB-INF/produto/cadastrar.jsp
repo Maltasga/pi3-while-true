@@ -1,21 +1,21 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt">
     <head>
         <title>Produto</title>
-        <jsp:include page="WEB-INF/partilals/htmlHead.jsp"></jsp:include>
-        <link href="Content/css/produto.css" rel="stylesheet" type="text/css"/>
+        <jsp:include page="../partilals/htmlHead.jsp"></jsp:include>
         </head>
         <body>
-        <jsp:include page="WEB-INF/partilals/menu.jsp"></jsp:include>
+        <jsp:include page="../partilals/menu.jsp"></jsp:include>
             <div class="container form-cadastro">
                 <div class="titulo">
                     <h2>Cadastro de Produto</h2>   
                 </div>
-                <form method="POST">
+                <form method="POST" action="cadastrar-produto">
                     <div class="form-dados">
                         <div class="form-flex">
-                            <div  class="form-group form-codigo">
+                            <div class="form-group form-codigo">
                                 <label>Cód.Produto</label>
                                 <input type="text" required name="codigo" required class="form-control">
                             </div>
@@ -34,59 +34,54 @@
                             <div class="form-group form-comboColecao">
                                 <label>Coleção</label>
                                 <select name="colecao" required class="form-control" >
-                                    <option value="">   </option>
-                                    <option value="">Outono</option>
-                                    <option value="">Primavera</option>
-                                    <option value="">Verão</option>
-                                    <option value="">Inverno</option>                        
-                                </select>
-                            </div>
+                                    <option value=""></option>
+                                    <c:forEach items="${listaColecoes}" var="c">
+                                        <option value ="${c.id}">${c.nome}</option>
+                                    </c:forEach>
+                            </select>
+                        </div>
 
-                            <div class="form-group form-tipo">
-                                <label>Tipo</label>
+                        <div class="form-group form-tipo">
+                            <label>Tipo</label>
                                 <select name="tipo" required class="form-control" >
-                                    <option value="">   </option>
-                                    <option value="">Outono</option>
-                                    <option value="">Primavera</option>
-                                    <option value="">Verão</option>
-                                    <option value="">Inverno</option>                        
-                                </select>
-                            </div>
-
-                            <div class="form-group form-cor">
-                                <label>Cor</label>
-                                <select name="cor" required class="form-control" required >
-                                    <option value="">   </option>
-                                    <option value="">Preto</option>
-                                    <option value="">Azul</option>
-                                    <option value="">Rosa</option>
-                                    <option value="">Violeta</option>                        
-                                </select>
-                            </div>
+                                    <option value=""></option>
+                                    <c:forEach items="${listaTipos}" var="t">
+                                        <option value ="${t}">${t}</option>
+                                    </c:forEach>                      
+                            </select>
                         </div>
 
-                        <div class="form-valor">
-                            <div  class="form-group form-valor-item">
-                                <label>Valor de Produção</label>
-                                <input type="text" pattern="[0-9]+" name="valProducao" required class="form-control">
-                            </div>
-
-                            <div  class="form-group form-valor-item">
-                                <label>Valor de Venda</label>
-                                <input type="text" pattern="[0-9]+" name="valVenda" required class="form-control">
-                            </div>
+                        <div class="form-group form-cor">
+                            <label>Cor</label>
+                            <select name="cor" required class="form-control" required >
+                                    <option value=""></option>
+                                    <c:forEach items="${listaCores}" var="cr">
+                                        <option value ="${cr}">${cr}</option>
+                                    </c:forEach>                         
+                            </select>
                         </div>
                     </div>
-                    <div id="actions" class="form-group">
-                        <div class="form-botoes">
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                            <a href="index.html" class="btn btn-warning">Cancelar</a>
+
+                    <div class="form-valor">
+                        <div  class="form-group form-valor-item">
+                            <label>Valor de Produção</label>
+                            <input type="text" pattern="[0-9]+" name="valProducao" required class="form-control">
+                        </div>
+
+                        <div  class="form-group form-valor-item">
+                            <label>Valor de Venda</label>
+                            <input type="text" pattern="[0-9]+" name="valVenda" required class="form-control">
                         </div>
                     </div>
-                </form>
-            </div>
-<!--            <footer>
-        <jsp:include page="/WEB-INF/partilals/rodape.jsp"></jsp:include>
-        </footer>-->
+                </div>
+                <div id="actions" class="form-group">
+                    <div class="form-botoes">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <a href="index.html" class="btn btn-warning">Cancelar</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <script src="Content/lojaJs/form-usuario.js" type="text/javascript"></script>
     </body>
 </html>

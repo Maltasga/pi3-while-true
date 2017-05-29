@@ -20,8 +20,6 @@
                         <tr>
                             <th>Razão Social</th>
                             <th>CNPJ</th>
-<!--                            <th>UF</th>
-                            <th>Cidade</th>-->
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -30,8 +28,6 @@
                         <tr>
                             <td><c:out value="${f.nome}"></c:out></td>
                             <td><c:out value="${f.cnpj}"></c:out></td>
-                            <%--<td><c:out value="${f.uf}"></c:out></td>--%>
-                            <%--<td><c:out value="${f.cidade}"></c:out></td>--%>
                             <td><c:out value="${f.ativo}"></c:out></td>
                                 <td>
                                     <span class="btn-editar glyphicon glyphicon-pencil" data-id="<c:out value="${f.id}"></c:out>" title="editar"></span>

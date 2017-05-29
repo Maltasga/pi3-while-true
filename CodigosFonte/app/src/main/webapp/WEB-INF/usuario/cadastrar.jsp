@@ -79,7 +79,7 @@
                         </div>
                         <div class="form-group form-senha">
                             <label>Confirme sua senha</label>
-                            <input type="password" for="senha" class="form-control" id="txtConfirmarSenha" required="required"/>
+                            <input type="password" name="senha" class="form-control" id="txtConfirmarSenha" required="required"/>
                         </div>
                     </div>
 

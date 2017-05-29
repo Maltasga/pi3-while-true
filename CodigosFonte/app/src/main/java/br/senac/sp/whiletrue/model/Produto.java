@@ -23,9 +23,10 @@ public class Produto {
     private Colecao colecao;
     private ArrayList<Estoque> estoque;
 
-    public Produto(int id, String nome, String descricao, int idColecao, String tipo, String cor, double valorProducao, double valorVenda, boolean ativo, Date dataCadastro) {
+    public Produto(int id, String codigo, String nome, String descricao, int idColecao, String tipo, String cor, double valorProducao, double valorVenda, boolean ativo, Date dataCadastro) {
         this.id = id;
         this.nome = nome;
+        this.codigo = codigo;
         this.descricao = descricao;
         this.idColecao = idColecao;
         this.tipo = tipo;

@@ -95,9 +95,9 @@ public class ProdutoService {
     public void salvar(Produto p) throws Exception {
         try {
             if (p.getId() == 0) {
-                dao.atualizar(p);
-            } else {
                 dao.inserir(p);
+            } else {
+                dao.atualizar(p);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

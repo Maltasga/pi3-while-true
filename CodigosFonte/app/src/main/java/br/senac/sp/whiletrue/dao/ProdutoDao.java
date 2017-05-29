@@ -20,7 +20,7 @@ public class ProdutoDao {
 
     public void inserir(Produto p) throws SQLException, Exception {
         String query = "INSERT INTO Produto "
-                + "(Codigo, Nome, Descricao, IdColecao, Tipo, Cor, ValorProducao, ValorVenda, Ativo, DataCadatro) "
+                + "(Codigo, Nome, Descricao, IdColecao, Tipo, Cor, ValorProducao, ValorVenda, Ativo, DataCadastro) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
 
@@ -121,6 +121,7 @@ public class ProdutoDao {
             while (result.next()) {
                 p = new Produto(
                         result.getInt("Id"),
+                        result.getString("Codigo"),
                         result.getString("Nome"),
                         result.getString("Descricao"),
                         result.getInt("IdColecao"),
@@ -177,6 +178,7 @@ public class ProdutoDao {
             while (result.next()) {
                 p = new Produto(
                         result.getInt("Id"),
+                        result.getString("Codigo"),
                         result.getString("Nome"),
                         result.getString("Descricao"),
                         result.getInt("IdColecao"),

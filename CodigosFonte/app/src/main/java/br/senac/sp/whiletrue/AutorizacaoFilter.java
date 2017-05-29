@@ -180,6 +180,27 @@ public class AutorizacaoFilter implements Filter {
             return false;
         }
 
+        if (pagina.endsWith("produtos")) {
+            if (idPerfil == 300) {
+                return true;
+            }
+            return false;
+        }
+
+        if (pagina.endsWith("cadastrar-produto")) {
+            if (idPerfil == 300) {
+                return true;
+            }
+            return false;
+        }
+        
+        if (pagina.contains("editar-produto")) {
+            if (idPerfil == 300) {
+                return true;
+            }
+            return false;
+        }
+
         return false;
     }
 
