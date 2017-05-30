@@ -20,15 +20,13 @@
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Sexo</th>
-                            <th>Data de Nascimento</th>
-                            <th>Data de Cadastro</th>
+                            <th>Periodo</th>
+                            <th>Ano</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${listaUsuarios}" var="c">
+                    <c:forEach items="${listaColecoes}" var="c">
                         <tr>
                             <td><c:out value="${c.nome}"></c:out></td>
                             <td><c:out value="${c.cpf}"></c:out></td>

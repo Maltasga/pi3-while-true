@@ -27,7 +27,7 @@ public class ListarCliente extends HttpServlet {
         servico = new ClienteService();
         ArrayList<Cliente> cliente = servico.listar();
 
-        request.setAttribute("listaUsuarios", cliente);
+        request.setAttribute("listaClientes", cliente);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/cliente/listagem.jsp");
 
         dispatcher.forward(request, response);

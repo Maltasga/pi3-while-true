@@ -34,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${listaUsuarios}" var="c">
+                    <c:forEach items="${listaClientes}" var="c">
                         <tr>
                             <td><c:out value="${c.nome}"></c:out></td>
                             <td><c:out value="${c.cpf}"></c:out></td>
