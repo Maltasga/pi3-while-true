@@ -22,12 +22,12 @@ import javax.servlet.http.HttpSession;
  *
  * @author Karol
  */
-//@WebFilter(filterName = "AutorizacaoFilter",
-//        urlPatterns = {"/cadastrar-cliente", "/cadastrar-filial", "/cadastrar-usuario", "/cadastrar-colecao", "/cadastrar-produto",
-//            "/editar-cliente", "/editar-filial", "/editar-usuario", "/editar-colecao", "/editar-produto",
-//            "/excluircliente", "/excluirfilial", "/excluirusuario", "/excluircolecao", "/excluirproduto",
-//            "/finalizar-venda", "/home", "/clientes", "/filiais", "/usuarios", "/venda", "/colecoes", "/produtos",
-//            "/rel-vendas-geral"})
+@WebFilter(filterName = "AutorizacaoFilter",
+        urlPatterns = {"/cadastrar-cliente", "/cadastrar-filial", "/cadastrar-usuario", "/cadastrar-colecao", "/cadastrar-produto",
+            "/editar-cliente", "/editar-filial", "/editar-usuario", "/editar-colecao", "/editar-produto",
+            "/excluircliente", "/excluirfilial", "/excluirusuario", "/excluircolecao", "/excluirproduto",
+            "/finalizar-venda", "/home", "/clientes", "/filiais", "/usuarios", "/venda", "/colecoes", "/produtos",
+            "/rel-vendas-geral"})
 public class AutorizacaoFilter implements Filter {
 
     @Override
@@ -41,7 +41,7 @@ public class AutorizacaoFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         HttpSession sessao = httpRequest.getSession();
-        Usuario usuario = (Usuario) sessao.getAttribute("usuario");
+        Usuario usuario = (Usuario) sessao.getAttribute("usuarioLogado");
 
         if (usuario == null) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
@@ -53,7 +53,7 @@ public class AutorizacaoFilter implements Filter {
                 chain.doFilter(request, response);
             } else {
                 // Usuário não tem permissão de acesso a página.
-                httpResponse.sendRedirect(httpRequest.getContextPath() + "/nao-autorizado");
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/home");
             }
 
         } catch (Throwable t) {
@@ -65,13 +65,9 @@ public class AutorizacaoFilter implements Filter {
         String paginaAcessada = request.getRequestURI();
         String pagina = paginaAcessada.replace(request.getContextPath(), "");
 
-        if (pagina.equals("/q/Content/css/estilo.css")) {
-            return true;
-        }
-
         int idPerfil = usuario.getIdPerfil();
 
-        if (pagina.endsWith("home") || pagina.endsWith("utilitarios.js") || pagina.endsWith("estilo.css")) {
+        if (pagina.endsWith("home")) {
             return true;
         }
 
