@@ -29,14 +29,8 @@
                     <c:forEach items="${listaColecoes}" var="c">
                         <tr>
                             <td><c:out value="${c.nome}"></c:out></td>
-                            <td><c:out value="${c.cpf}"></c:out></td>
-                            <td><c:out value="${c.sexo}"></c:out></td>
-                                <td>
-                                <fmt:formatDate value="${c.dataNascimento}" pattern="dd/MM/yyyy"></fmt:formatDate>
-                                </td>
-                                <td>
-                                <fmt:formatDate value="${c.dataCadastro}" pattern="dd/MM/yyyy"></fmt:formatDate>
-                                </td>
+                            <td><c:out value="${c.periodo}"></c:out></td>
+                            <td><c:out value="${c.ano}"></c:out></td>
                                 <td>
                                     <span class="btn-editar glyphicon glyphicon-pencil" data-id="<c:out value="${c.id}"></c:out>" title="editar"></span>
                                     &nbsp;

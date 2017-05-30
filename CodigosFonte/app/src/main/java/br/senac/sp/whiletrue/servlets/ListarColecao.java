@@ -30,10 +30,10 @@ public class ListarColecao extends HttpServlet {
             throws ServletException, IOException {
 
         servico = new ColecaoService();
-//        ArrayList<Colecao> colecao = servico.listar();
-//        
-//
-//        request.setAttribute("listaColecao", colecao);
+        ArrayList<Colecao> colecao = servico.listar();
+        
+
+        request.setAttribute("listaColecao", colecao);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/colecao/listagem.jsp");
 
         dispatcher.forward(request, response);
