@@ -76,4 +76,13 @@ public class ClienteService {
             throw new Exception("Falha ao atualizar cliente.");
         }
     }
+
+    public void excluir(int id) throws Exception {
+        try {
+            dao.excluir(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("Falha ao tentar excluir o cadastro de cliente");
+        }
+    }
 }
