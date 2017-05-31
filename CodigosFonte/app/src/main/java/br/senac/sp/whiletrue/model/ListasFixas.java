@@ -101,4 +101,14 @@ public abstract class ListasFixas {
         
         return ano;
     }
+    
+    public static ArrayList<String> getPeriodo() {
+        ArrayList<String> periodo = new ArrayList<>();
+        periodo.add("Inverno");
+        periodo.add("Outono");
+        periodo.add("Primavera");
+        periodo.add("Verão");
+
+        return periodo;
+    }
 }

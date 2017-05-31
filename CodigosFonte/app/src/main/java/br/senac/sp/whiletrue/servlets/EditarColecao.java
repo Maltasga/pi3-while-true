@@ -6,6 +6,7 @@
 package br.senac.sp.whiletrue.servlets;
 
 import br.senac.sp.whiletrue.model.Colecao;
+import br.senac.sp.whiletrue.model.ListasFixas;
 import br.senac.sp.whiletrue.servico.ColecaoService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +32,8 @@ public class EditarColecao extends HttpServlet {
         try {
             int id = Integer.parseInt(request.getParameter("q"));
             colecaoService = new ColecaoService();
-
+            request.setAttribute("listaPeriodo", ListasFixas.getPeriodo());
+            request.setAttribute("listaAno", ListasFixas.getAno());
             request.setAttribute("colecaotoedit", colecaoService.get(id));
             request.setAttribute("tituloColecao", "Manutenção de Coleção");
 
@@ -55,7 +57,7 @@ public class EditarColecao extends HttpServlet {
             int ano = Integer.parseInt(request.getParameter("ano"));
 
             Colecao novaColecao = new Colecao(id, nome, periodo, ano, true, null);
-
+            colecaoService.salvar(novaColecao);
             response.sendRedirect(request.getContextPath() + "/colecoes");
 
         } catch (Exception ex) {

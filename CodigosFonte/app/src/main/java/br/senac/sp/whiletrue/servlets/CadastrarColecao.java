@@ -26,6 +26,8 @@ public class CadastrarColecao extends HttpServlet {
             throws ServletException, IOException {
         try {
             request.setAttribute("tituloColecao", "Cadastro de Coleção");
+            request.setAttribute("listaPeriodo", ListasFixas.getPeriodo());
+            request.setAttribute("listaAno", ListasFixas.getAno());
             request.getRequestDispatcher("WEB-INF/colecao/cadastrar.jsp")
                     .forward(request, response);
         } catch (IOException | ServletException ex) {
@@ -47,7 +49,7 @@ public class CadastrarColecao extends HttpServlet {
             
             colecaoService.salvar(colecao);
             
-            response.sendRedirect(request.getContextPath() + "/colecao");
+            response.sendRedirect(request.getContextPath() + "/colecoes");
 
         } catch (Exception ex) {
             ex.printStackTrace();
