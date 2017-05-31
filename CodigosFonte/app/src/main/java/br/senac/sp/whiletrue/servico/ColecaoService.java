@@ -49,7 +49,22 @@ public class ColecaoService {
             dao.excluir(id);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new Exception("Falha ao tentar excluir o cadastro de cliente");
+            throw new Exception("Falha ao tentar excluir o cadastro de Coleção");
         }
+    }
+    
+      public Colecao get(int id) {
+        Colecao colecao = null;
+        try {
+            for (Colecao c : dao.listar()) {
+                if (c.getId() == id) {
+                    colecao = c;
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return colecao;
     }
 }

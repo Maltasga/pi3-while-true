@@ -3,21 +3,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Coleção</title>
-        <jsp:include page="WEB-INF/partilals/htmlHead.jsp"></jsp:include>
-            <link href="Content/css/colecao.css" rel="stylesheet" type="text/css"/>
+        <jsp:include page="../partilals/htmlHead.jsp"></jsp:include>
+            <title>Coleção</title>
         </head>
         <body>
-        <jsp:include page="WEB-INF/partilals/menu.jsp"></jsp:include>
+        <jsp:include page="../partilals/menu.jsp"></jsp:include>
             <div class="container form-cadastro">
                 <div class="titulo">
-                    <h2>Cadastro de Coleção</h2>   
+                     <h2><c:out value="${tituloColecao}"></c:out></h2>     
                 </div>
-                <form method="POST" action="cadastrar-colecao">
+                <form method="POST">
                     <div class="form-dados">
                         <div  class="form-group form-colecao">
                             <label>Nome da Coleção</label>
-                            <input pattern="[a-zA-Z]+" type="text" required name="colecao" class="form-control" placeholder="Nome da Coleção" >
+                            <input type="text" required name="colecao" class="form-control" placeholder="Nome da Coleção" >
                         </div>
 
                         <div class="form-flex">

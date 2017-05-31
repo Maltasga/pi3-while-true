@@ -26,7 +26,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${listaColecoes}" var="c">
+                    <c:forEach items="${listaColecao}" var="c">
                         <tr>
                             <td><c:out value="${c.nome}"></c:out></td>
                             <td><c:out value="${c.periodo}"></c:out></td>
@@ -46,6 +46,6 @@
         </div>  
         <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
          <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
-        <script src="Content/lojaJs/listagem-cliente.js" type="text/javascript"></script>
+        <script src="Content/lojaJs/listagem-colecao.js" type="text/javascript"></script>
     </body>
 </html>
