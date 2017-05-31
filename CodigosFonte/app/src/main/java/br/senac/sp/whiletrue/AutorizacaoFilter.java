@@ -189,11 +189,33 @@ public class AutorizacaoFilter implements Filter {
             }
             return false;
         }
-        
+
         if (pagina.contains("editar-produto")) {
             if (idPerfil == 300) {
                 return true;
             }
+            return false;
+        }
+
+        if (pagina.endsWith("colecoes")) {
+            if (idPerfil == 300) {
+                return true;
+            }
+            return false;
+        }
+
+        if (pagina.contains("editar-colecao")) {
+            if (idPerfil == 300) {
+                return true;
+            }
+            return false;
+        }
+
+        if (pagina.contains("excluircolecao")) {
+            if (idPerfil == 300) {
+                return true;
+            }
+
             return false;
         }
 
