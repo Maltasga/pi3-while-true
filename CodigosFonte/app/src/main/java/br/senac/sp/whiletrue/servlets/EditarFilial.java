@@ -34,7 +34,6 @@ public class EditarFilial extends HttpServlet {
             service = new FilialService();
             enderecoService = new EnderecoService();
 
-            request.setAttribute("listaFilial", service.listar());
             request.setAttribute("listaEndereco", enderecoService.get(id, "FILIAL"));
             request.setAttribute("filial", service.get(id));
             request.setAttribute("endereco", enderecoService.get(id, "FILIAL"));

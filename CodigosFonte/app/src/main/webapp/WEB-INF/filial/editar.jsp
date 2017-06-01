@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group text-right">
                         <input type="submit" value="Salvar" class="btn btn-primary" />
-                        <input type="reset" value="Cancelar" class="btn btn-warning"/>
+                        <a href="index.html" class="btn btn-warning">Cancelar</a>
                     </div>
                 </form>
             </div>

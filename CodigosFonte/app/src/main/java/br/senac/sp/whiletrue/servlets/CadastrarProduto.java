@@ -36,6 +36,7 @@ public class CadastrarProduto extends HttpServlet {
             request.setAttribute("listaColecoes", colecaoService.listar());
             request.setAttribute("listaTipos", ListasFixas.getTipoProduto());
             request.setAttribute("listaCores", ListasFixas.getCorProduto());
+            request.setAttribute("tituloProduto", "Cadastro de Produto");
             request.getRequestDispatcher("WEB-INF/produto/cadastrar.jsp")
                     .forward(request, response);
         } catch (IOException | ServletException ex) {
