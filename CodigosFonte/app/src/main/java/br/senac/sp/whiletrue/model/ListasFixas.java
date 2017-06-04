@@ -111,4 +111,13 @@ public abstract class ListasFixas {
 
         return periodo;
     }
+    
+    public static ArrayList<String> getPeriodoRelatorio(){
+        ArrayList<String> periodoRelatorio = new ArrayList<>();
+        periodoRelatorio.add("Mensal");
+        periodoRelatorio.add("Semestral");
+        periodoRelatorio.add("Anual");
+        
+        return periodoRelatorio;
+    }
 }
