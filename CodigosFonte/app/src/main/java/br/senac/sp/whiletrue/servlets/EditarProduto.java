@@ -6,9 +6,12 @@
 package br.senac.sp.whiletrue.servlets;
 
 import br.senac.sp.whiletrue.model.ListasFixas;
+import br.senac.sp.whiletrue.model.Produto;
 import br.senac.sp.whiletrue.servico.ColecaoService;
 import br.senac.sp.whiletrue.servico.ProdutoService;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,10 +39,9 @@ public class EditarProduto extends HttpServlet {
 
             request.setAttribute("produtotoedit", service.get(id));
             request.setAttribute("listaColecoes", colecaoService.listar());
-            request.setAttribute("listaTipos", ListasFixas.getTipoProduto());
-            request.setAttribute("listaCores", ListasFixas.getCorProduto());
             request.setAttribute("tituloProduto", "Manutenção de Produto");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/produto/cadastrar.jsp");
+            request.setAttribute("produtoid", service.get(id));
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/produto/editar.jsp");
             dispatcher.forward(request, response);
 
         } catch (Exception ex) {
@@ -49,8 +51,24 @@ public class EditarProduto extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp); //To change body of generated methods, choose Tools | Templates.
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            service = new ProdutoService();
+
+            int id = Integer.parseInt(request.getParameter("id"));
+            String nome = request.getParameter("produto");
+            String descricao = request.getParameter("descricao");
+            double valProd = Double.parseDouble(request.getParameter("valorProducao"));
+            double valVenda = Double.parseDouble(request.getParameter("valorVenda"));
+
+            Produto produto = new Produto(id, null, nome, descricao, 0, null, null, valProd, valVenda, true, null);
+
+            service.salvar(produto);
+
+            response.sendRedirect(request.getContextPath() + "/produtos");
+        } catch (Exception ex) {
+            Logger.getLogger(EditarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

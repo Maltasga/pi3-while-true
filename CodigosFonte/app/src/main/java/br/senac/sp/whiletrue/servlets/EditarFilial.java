@@ -6,6 +6,7 @@
 package br.senac.sp.whiletrue.servlets;
 
 import br.senac.sp.whiletrue.model.Endereco;
+import br.senac.sp.whiletrue.model.ListasFixas;
 import br.senac.sp.whiletrue.servico.EnderecoService;
 import br.senac.sp.whiletrue.servico.FilialService;
 import java.io.IOException;
@@ -34,10 +35,9 @@ public class EditarFilial extends HttpServlet {
             service = new FilialService();
             enderecoService = new EnderecoService();
 
-            request.setAttribute("listaEndereco", enderecoService.get(id, "FILIAL"));
             request.setAttribute("filial", service.get(id));
             request.setAttribute("endereco", enderecoService.get(id, "FILIAL"));
-
+            request.setAttribute("listaUF", ListasFixas.getUf());
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/filial/editar.jsp");
             dispatcher.forward(request, response);
 
@@ -59,6 +59,7 @@ public class EditarFilial extends HttpServlet {
             String cidade = request.getParameter("cidade");
             String uf = request.getParameter("uf");
             Endereco endereco = new Endereco(id, "FILIAL", logradouro, cep, complemento, bairro, cidade, uf);
+            
             enderecoService.salvar(endereco);
             
             response.sendRedirect(request.getContextPath() + "/filiais");

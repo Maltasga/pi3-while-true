@@ -66,6 +66,10 @@ public class AutorizacaoFilter implements Filter {
         String pagina = paginaAcessada.replace(request.getContextPath(), "");
 
         int idPerfil = usuario.getIdPerfil();
+        
+        if(idPerfil == 500){
+            return true;
+        }
 
         if (pagina.endsWith("home")) {
             return true;

@@ -56,8 +56,8 @@ public class CadastrarProduto extends HttpServlet {
             int idcolecao = Integer.parseInt(request.getParameter("colecao"));
             String tipo = request.getParameter("tipo");
             String cor = request.getParameter("cor");
-            double valProd = Double.parseDouble(request.getParameter("valProducao"));
-            double valVenda = Double.parseDouble(request.getParameter("valVenda"));
+            double valProd = Double.parseDouble(request.getParameter("valorProducao").replaceAll(",", "."));
+            double valVenda = Double.parseDouble(request.getParameter("valorVenda").replaceAll(",", "."));
             Date dataCadastro = GregorianCalendar.getInstance().getTime();
 
             Produto novoProduto = new Produto(0, codigo, nome, descricao, idcolecao, tipo, cor, valProd, valVenda, true, dataCadastro);

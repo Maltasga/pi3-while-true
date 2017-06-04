@@ -2,6 +2,7 @@ package br.senac.sp.whiletrue.servlets;
 
 import br.senac.sp.whiletrue.model.Endereco;
 import br.senac.sp.whiletrue.model.Filial;
+import br.senac.sp.whiletrue.model.ListasFixas;
 import br.senac.sp.whiletrue.servico.EnderecoService;
 import br.senac.sp.whiletrue.servico.FilialService;
 import java.io.IOException;
@@ -20,17 +21,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/cadastrar-filial")
 public class CadastrarFilial extends HttpServlet {
-    
+
     FilialService filialService;
     EnderecoService enderecoService;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             filialService = new FilialService();
-            
-            //request.setAttribute("listaFiliais", filialService.listar());
+
+            request.setAttribute("listaUF", ListasFixas.getUf());
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/filial/cadastrar.jsp");
             dispatcher.forward(request, response);
@@ -52,21 +53,19 @@ public class CadastrarFilial extends HttpServlet {
             String bairro = request.getParameter("bairro");
             String cidade = request.getParameter("cidade");
             String uf = request.getParameter("uf");
-            boolean ativo = Boolean.parseBoolean(request.getParameter("ativo"));
             boolean ativoMatriz = Boolean.parseBoolean(request.getParameter("ativo-matriz"));
             Date dataCadastro = GregorianCalendar.getInstance().getTime();
-            
-            Filial filial = new Filial(0, razaoSocial, cnpj, ativoMatriz, ativo, dataCadastro);
-            
+
+            Filial filial = new Filial(0, razaoSocial, cnpj, ativoMatriz, true, dataCadastro);
+
             int filialId = filialService.salvar(filial);
             Endereco endereco = new Endereco(filialId, "FILIAL", logradouro, cep, complemento, bairro, cidade, uf);
             enderecoService.salvar(endereco);
-            
-            response.sendRedirect(request.getContextPath() + "/filiais");           
+
+            response.sendRedirect(request.getContextPath() + "/filiais");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-    
-    
+
 }
