@@ -222,6 +222,13 @@ public class AutorizacaoFilter implements Filter {
 
             return false;
         }
+        
+        if (pagina.endsWith("rel-vendas-geral")) {
+            if (idPerfil == 200){
+                return true;
+            }
+            return false;
+        }
 
         return false;
     }

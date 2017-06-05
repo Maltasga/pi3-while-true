@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Karol
  */
-@WebServlet("/relatorio")
+@WebServlet("/rel-vendas-geral")
 public class Relatorio extends HttpServlet {
     
     RelatorioService service = null;
