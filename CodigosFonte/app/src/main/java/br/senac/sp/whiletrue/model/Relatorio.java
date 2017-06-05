@@ -5,7 +5,7 @@
  */
 package br.senac.sp.whiletrue.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -13,16 +13,34 @@ import java.sql.Date;
  */
 public class Relatorio {
 
-    String filial;
+    String nome;
     Date dataVenda;
     String vendedor;
     Double valorTotal;
 
-    public Relatorio(String filial, Date dataVenda, String vendedor, double valorTotal) {
-        this.filial = filial;
+    public Relatorio(String nome, Date dataVenda, String vendedor, double valorTotal) {
+        this.nome = nome;
         this.dataVenda = dataVenda;
         this.vendedor = vendedor;
         this.valorTotal = valorTotal;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Date getDataVenda() {
+        return dataVenda;
+    }
+
+    public String getVendedor() {
+        return vendedor;
+    }
+
+    public Double getValorTotal() {
+        return valorTotal;
+    }
+    
+    
 
 }

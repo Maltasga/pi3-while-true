@@ -10,7 +10,7 @@
         <body>
         <jsp:include page="../../WEB-INF/partilals/menu.jsp"></jsp:include>
             <h2>Relatórios por Filial</h2>        
-            <form method="GET" action="relatorios">
+            <form method="POST" action="rel-vendas-geral">
             <c:choose>
                 <c:when test="${filialAtiva != 1}">
                     <select name="filial" disabled>
@@ -21,7 +21,7 @@
                     <select name="filial">
                         <option value=""></option>
                         <option value="todas">Todas as Filiais</option>
-                        <c:forEach items="$listaFiliais" var="f">
+                        <c:forEach items="${listaFiliais}" var="f">
                             <option value="${f.id}">${f.nome}</option>
                         </c:forEach>
                     </select>
@@ -53,7 +53,7 @@
                 <c:forEach items="${listaVendas}" var="v">
                     <tr>
                         <td><c:out value="${v.nome}"></c:out></td>
-                        <td><fmt:formatDate value="${u.dataCadastro}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
+                        <td><fmt:formatDate value="${v.dataVenda}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
                         <td><c:out value="${v.vendedor}"></c:out></td>
                         <td><c:out value="${v.valorTotal}"></c:out></td>
                         </tr>
