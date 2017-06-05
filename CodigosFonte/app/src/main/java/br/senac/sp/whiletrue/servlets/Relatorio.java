@@ -8,11 +8,10 @@ package br.senac.sp.whiletrue.servlets;
 import br.senac.sp.whiletrue.servico.FilialService;
 import br.senac.sp.whiletrue.servico.RelatorioService;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,12 +40,20 @@ public class Relatorio extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String paramFilial = request.getParameter("filial");
         String paramPeriodo = request.getParameter("periodo");
-        
+
         ArrayList<br.senac.sp.whiletrue.model.Relatorio> hell = new ArrayList<>();
         hell.add(new br.senac.sp.whiletrue.model.Relatorio("MATRIZ", (Date) Calendar.getInstance().getTime(), "Gabriel", 1987.43));
+
+        for (int i = 0; i < 25; i++) {
+            hell.add(new br.senac.sp.whiletrue.model.Relatorio(
+                    "MATRIZ",
+                    (Date) Calendar.getInstance().getTime(),
+                    "Vendedor_" + (i + 1),
+                    (new Random().nextDouble() * 10)));
+        }
         request.setAttribute("listaVendas", hell);
 
         request.getRequestDispatcher("/WEB-INF/relatorios/relatorios.jsp")

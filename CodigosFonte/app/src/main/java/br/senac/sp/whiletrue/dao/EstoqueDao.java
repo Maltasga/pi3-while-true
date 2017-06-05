@@ -144,4 +144,8 @@ public class EstoqueDao {
         }
         return lista;
     }
+
+    public void atualizarEstoqueVenda(int idFilial, int idProduto, String tamanho, int quantidade) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

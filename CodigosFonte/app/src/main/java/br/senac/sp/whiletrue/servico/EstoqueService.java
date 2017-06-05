@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class EstoqueService {
 
-    EstoqueDao dao;
+    private EstoqueDao dao;
 
     public EstoqueService() {
         dao = new EstoqueDao();
@@ -55,6 +55,14 @@ public class EstoqueService {
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void baixaVenda(int idFilial, int idProduto, String tamanho, int quantidade) {
+        try {
+            dao.atualizarEstoqueVenda(idFilial, idProduto, tamanho, quantidade);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

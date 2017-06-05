@@ -56,7 +56,6 @@ public class FinalizarVenda extends HttpServlet {
                 itens);
 
         VendaService service = new VendaService();
-        VendaService.calcularTotal(venda);
         service.salvar(venda);
 
         request.getRequestDispatcher("WEB-INF/pdv/prevenda.jsp")
