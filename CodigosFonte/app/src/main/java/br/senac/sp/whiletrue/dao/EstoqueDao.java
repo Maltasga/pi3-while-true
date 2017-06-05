@@ -47,14 +47,20 @@ public class EstoqueDao {
     }
 
     public void atualizar(Estoque e) throws SQLException {
-        String query = "UPDATE Estoque SET Quantidade = ? WHERE Id = ?";
+        String query = "UPDATE Estoque SET Quantidade = ? "
+                + "WHERE IdProduto = ?"
+                + " AND IdFilial = ? "
+                + "AND Tamanho = ?";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             statement.setInt(1, e.getQuantidade());
-            statement.setInt(2, e.getId());
+            statement.setInt(2, e.getIdProduto());
+            statement.setInt(3, e.getIdFilial());
+            statement.setString(4, e.getTamanho());
+
             statement.execute();
         } finally {
             if (statement != null && !statement.isClosed()) {
@@ -143,9 +149,5 @@ public class EstoqueDao {
             }
         }
         return lista;
-    }
-
-    public void atualizarEstoqueVenda(int idFilial, int idProduto, String tamanho, int quantidade) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

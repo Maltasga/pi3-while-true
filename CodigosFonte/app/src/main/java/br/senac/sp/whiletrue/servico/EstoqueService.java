@@ -60,9 +60,27 @@ public class EstoqueService {
 
     public void baixaVenda(int idFilial, int idProduto, String tamanho, int quantidade) {
         try {
-            dao.atualizarEstoqueVenda(idFilial, idProduto, tamanho, quantidade);
+            int qtdeAtual = this.quantidadePorTamanho(idProduto, idFilial, tamanho) - quantidade;
+            Estoque estoque = new Estoque(0, idProduto, idFilial, tamanho, qtdeAtual);
+            dao.atualizar(estoque);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private int quantidadePorTamanho(int idProduto, int idFilial, String tamanho) {
+        int qtde = 0;
+        try {
+            ArrayList<Estoque> lista = dao.listarPorProduto(idProduto, idFilial);
+            for (Estoque e : lista) {
+                if (e.getTamanho().toLowerCase().equals(tamanho.toLowerCase())) {
+                    qtde = e.getQuantidade();
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return qtde;
     }
 }

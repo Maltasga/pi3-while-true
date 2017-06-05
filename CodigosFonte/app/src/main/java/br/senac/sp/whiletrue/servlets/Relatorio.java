@@ -25,12 +25,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/rel-vendas-geral")
 public class Relatorio extends HttpServlet {
 
+    FilialService filialService = null;
     RelatorioService service = null;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FilialService filialService = new FilialService();
+        filialService = new FilialService();
         request.setAttribute("listaFiliais", filialService.listar());
         request.setAttribute("filialAtiva", 1);
         request.getRequestDispatcher("/WEB-INF/relatorios/relatorios.jsp")
@@ -40,7 +41,8 @@ public class Relatorio extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        filialService = new FilialService();
+        
         String paramFilial = request.getParameter("filial");
         String paramPeriodo = request.getParameter("periodo");
 
@@ -54,6 +56,7 @@ public class Relatorio extends HttpServlet {
                     "Vendedor_" + (i + 1),
                     (new Random().nextDouble() * 10)));
         }
+        request.setAttribute("listaFiliais", filialService.listar());
         request.setAttribute("listaVendas", hell);
 
         request.getRequestDispatcher("/WEB-INF/relatorios/relatorios.jsp")
