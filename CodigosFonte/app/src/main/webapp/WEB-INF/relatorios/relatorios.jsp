@@ -9,8 +9,35 @@
         </head>
         <body>
         <jsp:include page="../../WEB-INF/partilals/menu.jsp"></jsp:include>
-            <h2>Relatório de Vendas</h2>
-            <p>Período: <c:out value="${periodo}"></c:out></p>
+            <h2>Relatórios por Filial</h2>        
+            <form method="GET" action="relatorios">
+            <c:choose>
+                <c:when test="${filialAtiva != 1}">
+                    <select name="filial" disabled>
+                        <option value="${filialAtiva.id}" selected="selected" >${filialAtiva.nome}</option>  
+                    </select>
+                </c:when>
+                <c:otherwise>
+                    <select name="filial">
+                        <option value=""></option>
+                        <option value="todas">Todas as Filiais</option>
+                        <c:forEach items="$listaFiliais" var="f">
+                            <option value="${f.id}">${f.nome}</option>
+                        </c:forEach>
+                    </select>
+                </c:otherwise>
+            </c:choose>
+            <label>Período</label>
+            <select name="periodo">
+                <option value=""></option>
+                <c:forEach items="${periodo}" var="p">
+                    <option value="${periodo}">${periodo}</option>
+                </c:forEach>
+            </select>
+            <button type="submit">Gerar</button>
+        </form>
+        <h2>Relatório de Vendas</h2>
+        <p>Período: <c:out value="${periodo}"></c:out></p>
         <p>Filial: <c:out value="${nomeFilial}"></c:out></p>
             <!--        <p>Total de Vendas no período: </p>-->
             <table class="table table-hover">

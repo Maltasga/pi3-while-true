@@ -61,4 +61,13 @@ public class Util {
         Matcher matcher = pattern.matcher(e);
         return matcher.matches();
     }
+    
+    public static boolean stringToNumber(String s){
+        try {
+            int numero = Integer.parseInt(s);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

@@ -11,6 +11,7 @@ import br.senac.sp.whiletrue.servico.EnderecoService;
 import br.senac.sp.whiletrue.servico.FilialService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +46,7 @@ public class EditarFilial extends HttpServlet {
             ex.printStackTrace();
         }
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,10 +60,28 @@ public class EditarFilial extends HttpServlet {
             String cidade = request.getParameter("cidade");
             String uf = request.getParameter("uf");
             Endereco endereco = new Endereco(id, "FILIAL", logradouro, cep, complemento, bairro, cidade, uf);
-            
-            enderecoService.salvar(endereco);
-            
-            response.sendRedirect(request.getContextPath() + "/filiais");
+            ArrayList<String> erros = enderecoService.validar(endereco);
+            if (erros.isEmpty()) {
+                enderecoService.salvar(endereco);
+                response.sendRedirect(request.getContextPath() + "/filiais");
+            } else {
+                service = new FilialService();
+                enderecoService = new EnderecoService();
+                request.setAttribute("erros", erros);
+                request.setAttribute("filial", service.get(id));
+                request.setAttribute("endereco", enderecoService.get(id, "FILIAL"));
+                request.setAttribute("listaUF", ListasFixas.getUf());
+                int id2 = Integer.parseInt(request.getParameter("id"));
+                request.setAttribute("logradouro", endereco.getLogradouro());
+                request.setAttribute("cep", endereco.getCep());
+                request.setAttribute("complemento", endereco.getComplemento());
+                request.setAttribute("bairro", endereco.getBairro());
+                request.setAttribute("cidade", endereco.getCidade());
+                request.setAttribute("uf", uf);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/filial/editar.jsp");
+                dispatcher.forward(request, response);
+            }
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }

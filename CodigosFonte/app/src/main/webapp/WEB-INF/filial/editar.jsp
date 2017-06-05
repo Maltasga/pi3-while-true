@@ -13,9 +13,19 @@
                 <div class="titulo">
                     <h2>Manutenção de filial</h2>
                 </div>
-                <div style="width: 70%;">
-                    <form method="post" action="editar-filial" class="form-dados">
-                        <input type="hidden" name="id" value="${filial.id}" />
+            <c:if test="${erros.isEmpty()==false}">
+                <div class="alert alert-danger">
+                    <h4>Erros no preenchimento do formulário</h4>
+                    <ul>
+                            <c:forEach items="${errosEndereco}" var="item">
+                                <li>${item}</li>
+                                </c:forEach>
+                    </ul>
+                </div>
+            </c:if>
+            <div style="width: 70%;">
+                <form method="post" action="editar-filial" class="form-dados">
+                    <input type="hidden" name="id" value="${filial.id}" />
                     <div class="form-group text-justify">
                         <label>Razão Social</label>
                         <span>${filial.nome}</span>

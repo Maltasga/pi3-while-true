@@ -6,6 +6,7 @@ import br.senac.sp.whiletrue.model.ListasFixas;
 import br.senac.sp.whiletrue.servico.EnderecoService;
 import br.senac.sp.whiletrue.servico.FilialService;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.servlet.RequestDispatcher;
@@ -57,12 +58,24 @@ public class CadastrarFilial extends HttpServlet {
             Date dataCadastro = GregorianCalendar.getInstance().getTime();
 
             Filial filial = new Filial(0, razaoSocial, cnpj, ativoMatriz, true, dataCadastro);
-
-            int filialId = filialService.salvar(filial);
+            ArrayList<String> errosFilial = filialService.validar(filial);
+            int filialId = filialService.getLastId() + 1;
             Endereco endereco = new Endereco(filialId, "FILIAL", logradouro, cep, complemento, bairro, cidade, uf);
-            enderecoService.salvar(endereco);
+            ArrayList<String> errosEndereco = enderecoService.validar(endereco);
+            if (errosFilial.isEmpty() && errosEndereco.isEmpty()) {
+                int f = filialService.salvar(filial);
+                enderecoService.salvar(endereco);
+                response.sendRedirect(request.getContextPath() + "/filiais");
+            } else {
+                request.setAttribute("listaUF", ListasFixas.getUf());
+                request.setAttribute("errosFilial", errosFilial);
+                request.setAttribute("errosEndereco", errosEndereco);
+                request.setAttribute("novaFilial", filial);
+                request.setAttribute("novoEndereco", endereco);
+                request.getRequestDispatcher("/WEB-INF/filial/cadastrar.jsp")
+                        .forward(request, response);
+            }
 
-            response.sendRedirect(request.getContextPath() + "/filiais");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
