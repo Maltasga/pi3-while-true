@@ -43,7 +43,7 @@ window.addEventListener("load", function () {
                 linhas[i].classList.remove("hide"); 
             } else {
                 var nome = linhas[i].querySelector("td:first-of-type").textContent;
-                if (filtro.toLowerCase().indexOf(nome.toLowerCase()) === -1) {
+                if (!nome.toLowerCase().includes(filtro.toLowerCase())) {
                     linhas[i].classList.add("hide");
                 } else {
                     linhas[i].classList.remove("hide");
