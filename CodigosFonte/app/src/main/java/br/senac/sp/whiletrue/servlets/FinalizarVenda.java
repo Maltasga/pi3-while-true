@@ -27,39 +27,43 @@ public class FinalizarVenda extends HttpServlet {
         ArrayList<ItemVenda> itens = new ArrayList<>();
         Usuario usuarioLogado = (Usuario) request.getSession().getAttribute("usuarioLogado");
         int idCliente = Integer.parseInt(request.getParameter("idCliente"));
+        try {
+            Map<String, String[]> map = request.getParameterMap();
+            int indexMap = 0;
+            while (true) {
+                if (map.containsKey("itens[" + indexMap + "].idVenda")) {
+                    String[] idProduto = map.get("itens[" + indexMap + "].idProduto");
+                    String[] tamanho = map.get("itens[" + indexMap + "].tamanho");
+                    String[] quantidade = map.get("itens[" + indexMap + "].quantidade");
 
-        Map<String, String[]> map = request.getParameterMap();
-        int indexMap = 0;
-        while (true) {
-            if (map.containsKey("itens[" + indexMap + "].idVenda")) {
-                String[] idProduto = map.get("itens[" + indexMap + "].idProduto");
-                String[] tamanho = map.get("itens[" + indexMap + "].tamanho");
-                String[] quantidade = map.get("itens[" + indexMap + "].quantidade");
-
-                ItemVenda item = new ItemVenda(
-                        0,
-                        Integer.parseInt(idProduto[0]),
-                        tamanho[0],
-                        Integer.parseInt(quantidade[0]));
-                itens.add(item);
-                indexMap++;
-            } else {
-                break;
+                    ItemVenda item = new ItemVenda(
+                            0,
+                            Integer.parseInt(idProduto[0]),
+                            tamanho[0],
+                            Integer.parseInt(quantidade[0]));
+                    itens.add(item);
+                    indexMap++;
+                } else {
+                    break;
+                }
             }
+            Venda venda = new Venda(
+                    0,
+                    idCliente,
+                    usuarioLogado.getId(),
+                    0,
+                    GregorianCalendar.getInstance().getTime(),
+                    itens);
+
+            VendaService service = new VendaService();
+            service.salvar(venda);
+
+            request.setAttribute("msgFimVenda", "Venda finalizada com sucesso.");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            request.setAttribute("msgFimVenda", "Falha ao concluir a venda.");
         }
-        Venda venda = new Venda(
-                0,
-                idCliente,
-                usuarioLogado.getId(),
-                0,
-                GregorianCalendar.getInstance().getTime(),
-                itens);
-
-        VendaService service = new VendaService();
-        service.salvar(venda);
-
-        request.getRequestDispatcher("WEB-INF/pdv/prevenda.jsp")
+        request.getRequestDispatcher("WEB-INF/pdv/posvenda.jsp")
                 .forward(request, response);
-
     }
 }
