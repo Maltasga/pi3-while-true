@@ -52,6 +52,6 @@ INSERT INTO LOJA.MENUPERFIL VALUES (4000, 500);
 INSERT INTO LOJA.MENUPERFIL VALUES (5000, 500);
 INSERT INTO LOJA.MENUPERFIL VALUES (6000, 500);
 INSERT INTO LOJA.MENUPERFIL VALUES (7000, 500);
-INSERT INTO USUARIO (IdPerfil, IdFilial, Nome, Email, Login, Senha, Ativo, DataCadastro) VALUES (500, 1, 'master', 'master@master.com', 'master', '$2a$10$bGjTYTfQNfybErNO8YpCPOsXqgVmx9mbxj1TyL04xcs9ytMwIvwr6', true, '2017-06-04');)
+INSERT INTO USUARIO (IdPerfil, IdFilial, Nome, Email, Login, Senha, Ativo, DataCadastro) VALUES (500, 1, 'master', 'master@master.com', 'master', '$2a$10$bGjTYTfQNfybErNO8YpCPOsXqgVmx9mbxj1TyL04xcs9ytMwIvwr6', true, '2017-06-04');
 
 
