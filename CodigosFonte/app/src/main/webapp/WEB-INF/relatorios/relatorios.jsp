@@ -10,7 +10,7 @@
         <body>
         <jsp:include page="../../WEB-INF/partilals/menu.jsp"></jsp:include>
             <div class="container form-cadastro">
-                <h2 class="titulo">Relatórios</h2>        
+                <h2 class="titulo">Relatórios de Vendas</h2>        
                 <form method="POST" action="rel-vendas-geral">
                     <div class="form-flex">
                         <div class="form-group">
@@ -41,12 +41,15 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <button type="submit">Gerar</button>
+                    <button type="submit" class="btns">Gerar</button>
                 </div>
             </form>
-            <h2>Relatório de Vendas</h2>
-            <p>Período: <c:out value="${periodoSelecionado}"></c:out></p>
-            <p>Filial: <c:out value="${nomeFilial}"></c:out></p>
+            <!--            <h2>Relatório de Vendas</h2>-->
+            <div class="form-group">
+                <p>Período: <c:out value="${periodoSelecionado}"></c:out></p>
+                <p>Filial: <c:out value="${nomeFilial}"></c:out></p>
+                </div>
+
                 <!--        <p>Total de Vendas no período: </p>-->
                 <table class="table table-hover">
                     <thead>
