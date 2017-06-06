@@ -53,21 +53,6 @@ body{
     border-bottom: 1px solid #eeeeee;
     font-size: 36pt;
 }
-
-/*footer{
-    height: 30px;
-    width: 100%;
-    bottom: 0;
-    margin: auto; 
-    position: fixed;
-    text-align: center;
-    background: -webkit-linear-gradient(bottom, #000000, rgba(165, 198, 196, 0.26));
-    color: #FFF;
-    padding: 1em;
-    font-size: 18px;
-    font-family: 'Kaushan Script', cursive;
-}*/
-
 .menu-itens>li>a {
     color: black;
     font-weight: bold;
@@ -92,6 +77,11 @@ body{
 .form-borda{
     border: 1px solid #888888;
     border-radius:20px 20px 20px 20px;
+}
+
+.btns{
+    height: 30px;
+    align-self: center;
 }
 /*Tamanho de campos*/
 
