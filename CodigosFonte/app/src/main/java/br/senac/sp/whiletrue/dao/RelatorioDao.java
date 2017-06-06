@@ -21,14 +21,15 @@ public class RelatorioDao {
 
     Connection conexao = null;
 
-    public ArrayList<Relatorio> listarTudoMensal() throws SQLException {
-        ArrayList<Relatorio> vendasMensal = new ArrayList<>();
+    public ArrayList<Relatorio> listarTudo() throws SQLException {
+        ArrayList<Relatorio> vendas = new ArrayList<>();
 
-        String query = "SELECT F.NOME, V.DATAVENDA, U.NOME, V.VALOR FROM LOJA.VENDA as V\n"
+        String query = "SELECT F.NOME as Filial, V.DATAVENDA as DataVenda, U.NOME as Vendedor, V.VALOR as Valor FROM LOJA.VENDA as V\n"
                 + "INNER JOIN LOJA.USUARIO as U\n"
                 + "ON U.ID = V.IDUSUARIO\n"
                 + "INNER JOIN LOJA.FILIAL as F\n"
-                + "ON F.ID = U.IDFILIAL";
+                + "ON F.ID = U.IDFILIAL\n"
+                + "ORDER BY V.DATAVENDA";
         PreparedStatement statement = null;
 
         try {
@@ -38,10 +39,47 @@ public class RelatorioDao {
             Relatorio r;
             while (result.next()) {
                 r = new Relatorio(
-                        result.getString("NOME"),
-                        result.getDate("DATAVENDA"),
-                        result.getString("NOME"),
-                        result.getDouble("VALOR"));
+                        result.getString("Filial"),
+                        result.getDate("DataVenda"),
+                        result.getString("Vendedor"),
+                        result.getDouble("Valor"));
+                vendas.add(r);
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return vendas;
+    }
+
+    public ArrayList<Relatorio> listarTudoMensal() throws SQLException {
+        ArrayList<Relatorio> vendasMensal = new ArrayList<>();
+
+        String query = "SELECT F.NOME as Filial, V.DATAVENDA as DataVenda, U.NOME as Vendedor, V.VALOR as Valor FROM LOJA.VENDA as V\n"
+                + "INNER JOIN LOJA.USUARIO as U\n"
+                + "ON U.ID = V.IDUSUARIO\n"
+                + "INNER JOIN LOJA.FILIAL as F\n"
+                + "ON F.ID = U.IDFILIAL\n"
+                + "WHERE {fn TIMESTAMPDIFF(SQL_TSI_DAY, DATAVENDA, CURRENT_DATE)} <= 30\n"
+                + "ORDER BY V.DATAVENDA";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            Relatorio r;
+            while (result.next()) {
+                r = new Relatorio(
+                        result.getString("Filial"),
+                        result.getDate("DataVenda"),
+                        result.getString("Vendedor"),
+                        result.getDouble("Valor"));
                 vendasMensal.add(r);
             }
         } finally {
@@ -59,11 +97,13 @@ public class RelatorioDao {
     public ArrayList<Relatorio> listarTudoSemestral() throws SQLException {
         ArrayList<Relatorio> vendasSemestral = new ArrayList<>();
 
-        String query = "SELECT F.NOME, V.DATAVENDA, U.NOME, V.VALOR FROM LOJA.VENDA as V\n"
+        String query = "SELECT F.NOME as Filial, V.DATAVENDA as DataVenda, U.NOME as Vendedor, V.VALOR as Valor FROM LOJA.VENDA as V\n"
                 + "INNER JOIN LOJA.USUARIO as U\n"
                 + "ON U.ID = V.IDUSUARIO\n"
                 + "INNER JOIN LOJA.FILIAL as F\n"
-                + "ON F.ID = U.IDFILIAL";
+                + "ON F.ID = U.IDFILIAL\n"
+                + "WHERE {fn TIMESTAMPDIFF(SQL_TSI_DAY, DATAVENDA, CURRENT_DATE)} <= 182\n"
+                + "ORDER BY V.DATAVENDA";
         PreparedStatement statement = null;
 
         try {
@@ -73,10 +113,10 @@ public class RelatorioDao {
             Relatorio r;
             while (result.next()) {
                 r = new Relatorio(
-                        result.getString("NOME"),
-                        result.getDate("DATAVENDA"),
-                        result.getString("NOME"),
-                        result.getDouble("VALOR"));
+                        result.getString("Filial"),
+                        result.getDate("DataVenda"),
+                        result.getString("Vendedor"),
+                        result.getDouble("Valor"));
                 vendasSemestral.add(r);
             }
         } finally {
@@ -94,11 +134,13 @@ public class RelatorioDao {
     public ArrayList<Relatorio> listarTudoAnual() throws SQLException {
         ArrayList<Relatorio> vendasAnual = new ArrayList<>();
 
-        String query = "SELECT F.NOME, V.DATAVENDA, U.NOME, V.VALOR FROM LOJA.VENDA as V\n"
+        String query = "SELECT F.NOME as Filial, V.DATAVENDA as DataVenda, U.NOME as Vendedor, V.VALOR as Valor FROM LOJA.VENDA as V\n"
                 + "INNER JOIN LOJA.USUARIO as U\n"
                 + "ON U.ID = V.IDUSUARIO\n"
                 + "INNER JOIN LOJA.FILIAL as F\n"
-                + "ON F.ID = U.IDFILIAL";
+                + "ON F.ID = U.IDFILIAL\n"
+                + "WHERE {fn TIMESTAMPDIFF(SQL_TSI_DAY, DATAVENDA, CURRENT_DATE)} <= 365\n"
+                + "ORDER BY V.DATAVENDA";
         PreparedStatement statement = null;
 
         try {
@@ -108,10 +150,10 @@ public class RelatorioDao {
             Relatorio r;
             while (result.next()) {
                 r = new Relatorio(
-                        result.getString("NOME"),
-                        result.getDate("DATAVENDA"),
-                        result.getString("NOME"),
-                        result.getDouble("VALOR"));
+                        result.getString("Filial"),
+                        result.getDate("DataVenda"),
+                        result.getString("Vendedor"),
+                        result.getDouble("Valor"));
                 vendasAnual.add(r);
             }
         } finally {
@@ -126,15 +168,16 @@ public class RelatorioDao {
         return vendasAnual;
     }
 
-    public ArrayList<Relatorio> listarFilialMensal(int idFilial) throws SQLException {
-        ArrayList<Relatorio> vendasFilialMensal = new ArrayList<>();
+    public ArrayList<Relatorio> listarFilial(int idFilial) throws SQLException {
+        ArrayList<Relatorio> vendasFilial = new ArrayList<>();
 
-        String query = "SELECT F.NOME, V.DATAVENDA, U.NOME, V.VALOR FROM LOJA.VENDA as V\n"
+        String query = "SELECT F.NOME as Filial, V.DATAVENDA as DataVenda, U.NOME as Vendedor, V.VALOR as Valor FROM LOJA.VENDA as V\n"
                 + "INNER JOIN LOJA.USUARIO as U\n"
                 + "ON U.ID = V.IDUSUARIO\n"
                 + "INNER JOIN LOJA.FILIAL as F\n"
                 + "ON F.ID = U.IDFILIAL\n"
-                + "WHERE F.ID = ?";
+                + "WHERE F.ID = ?\n"
+                + "ORDER BY V.DATAVENDA";
         PreparedStatement statement = null;
 
         try {
@@ -145,10 +188,49 @@ public class RelatorioDao {
             Relatorio r;
             while (result.next()) {
                 r = new Relatorio(
-                        result.getString("NOME"),
-                        result.getDate("DATAVENDA"),
-                        result.getString("NOME"),
-                        result.getDouble("VALOR"));
+                        result.getString("Filial"),
+                        result.getDate("DataVenda"),
+                        result.getString("Vendedor"),
+                        result.getDouble("Valor"));
+                vendasFilial.add(r);
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return vendasFilial;
+    }
+
+    public ArrayList<Relatorio> listarFilialMensal(int idFilial) throws SQLException {
+        ArrayList<Relatorio> vendasFilialMensal = new ArrayList<>();
+
+        String query = "SELECT F.NOME as Filial, V.DATAVENDA as DataVenda, U.NOME as Vendedor, V.VALOR as Valor FROM LOJA.VENDA as V\n"
+                + "INNER JOIN LOJA.USUARIO as U\n"
+                + "ON U.ID = V.IDUSUARIO\n"
+                + "INNER JOIN LOJA.FILIAL as F\n"
+                + "ON F.ID = U.IDFILIAL\n"
+                + "WHERE F.ID = ?\n"
+                + "AND {fn TIMESTAMPDIFF(SQL_TSI_DAY, DATAVENDA, CURRENT_DATE)} <= 30\n"
+                + "ORDER BY V.DATAVENDA";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, idFilial);
+            ResultSet result = statement.executeQuery();
+            Relatorio r;
+            while (result.next()) {
+                r = new Relatorio(
+                        result.getString("Filial"),
+                        result.getDate("DataVenda"),
+                        result.getString("Vendedor"),
+                        result.getDouble("Valor"));
                 vendasFilialMensal.add(r);
             }
         } finally {
@@ -166,12 +248,14 @@ public class RelatorioDao {
     public ArrayList<Relatorio> listarFilialSemestral(int idFilial) throws SQLException {
         ArrayList<Relatorio> vendasFilialSemestral = new ArrayList<>();
 
-        String query = "SELECT F.NOME, V.DATAVENDA, U.NOME, V.VALOR FROM LOJA.VENDA as V\n"
+        String query = "SELECT F.NOME as Filial, V.DATAVENDA as DataVenda, U.NOME as Vendedor, V.VALOR as Valor FROM LOJA.VENDA as V\n"
                 + "INNER JOIN LOJA.USUARIO as U\n"
                 + "ON U.ID = V.IDUSUARIO\n"
                 + "INNER JOIN LOJA.FILIAL as F\n"
                 + "ON F.ID = U.IDFILIAL\n"
-                + "WHERE F.ID = ?";
+                + "WHERE F.ID = ?\n"
+                + "AND {fn TIMESTAMPDIFF(SQL_TSI_DAY, DATAVENDA, CURRENT_DATE)} <= 182\n"
+                + "ORDER BY V.DATAVENDA";
         PreparedStatement statement = null;
 
         try {
@@ -182,10 +266,10 @@ public class RelatorioDao {
             Relatorio r;
             while (result.next()) {
                 r = new Relatorio(
-                        result.getString("NOME"),
-                        result.getDate("DATAVENDA"),
-                        result.getString("NOME"),
-                        result.getDouble("VALOR"));
+                        result.getString("Filial"),
+                        result.getDate("DataVenda"),
+                        result.getString("Vendedor"),
+                        result.getDouble("Valor"));
                 vendasFilialSemestral.add(r);
             }
         } finally {
@@ -203,12 +287,14 @@ public class RelatorioDao {
     public ArrayList<Relatorio> listarFilialAnual(int idFilial) throws SQLException {
         ArrayList<Relatorio> vendasFilialAnual = new ArrayList<>();
 
-        String query = "SELECT F.NOME, V.DATAVENDA, U.NOME, V.VALOR FROM LOJA.VENDA as V\n"
+        String query = "SELECT F.NOME as Filial, V.DATAVENDA as DataVenda, U.NOME as Vendedor, V.VALOR as Valor FROM LOJA.VENDA as V\n"
                 + "INNER JOIN LOJA.USUARIO as U\n"
                 + "ON U.ID = V.IDUSUARIO\n"
                 + "INNER JOIN LOJA.FILIAL as F\n"
                 + "ON F.ID = U.IDFILIAL\n"
-                + "WHERE F.ID = ?";
+                + "WHERE F.ID = ?\n"
+                + "AND {fn TIMESTAMPDIFF(SQL_TSI_DAY, DATAVENDA, CURRENT_DATE)} <= 365\n"
+                + "ORDER BY V.DATAVENDA";
         PreparedStatement statement = null;
 
         try {
@@ -219,10 +305,10 @@ public class RelatorioDao {
             Relatorio r;
             while (result.next()) {
                 r = new Relatorio(
-                        result.getString("NOME"),
-                        result.getDate("DATAVENDA"),
-                        result.getString("NOME"),
-                        result.getDouble("VALOR"));
+                        result.getString("Filial"),
+                        result.getDate("DataVenda"),
+                        result.getString("Vendedor"),
+                        result.getDouble("Valor"));
                 vendasFilialAnual.add(r);
             }
         } finally {

@@ -12,7 +12,7 @@
             <h2>Relatórios por Filial</h2>        
             <form method="POST" action="rel-vendas-geral">
             <c:choose>
-                <c:when test="${filialAtiva != 1}">
+                <c:when test="${filialAtiva.id != 1}">
                     <select name="filial" disabled>
                         <option value="${filialAtiva.id}" selected="selected" >${filialAtiva.nome}</option>  
                     </select>
@@ -20,24 +20,24 @@
                 <c:otherwise>
                     <select name="filial">
                         <option value=""></option>
-                        <option value="todas">Todas as Filiais</option>
+                        <option value="0">Todas as Filiais</option>
                         <c:forEach items="${listaFiliais}" var="f">
                             <option value="${f.id}">${f.nome}</option>
                         </c:forEach>
                     </select>
                 </c:otherwise>
             </c:choose>
-            <label>Período</label>
-            <select name="periodo">
-                <option value=""></option>
+                <label>Período</label>
+                <select name="periodo">
+                    <option value=""></option>
                 <c:forEach items="${periodo}" var="p">
-                    <option value="${periodo}">${periodo}</option>
+                    <option value="${p}">${p}</option>
                 </c:forEach>
             </select>
             <button type="submit">Gerar</button>
         </form>
         <h2>Relatório de Vendas</h2>
-        <p>Período: <c:out value="${periodo}"></c:out></p>
+        <p>Período: <c:out value="${periodoSelecionado}"></c:out></p>
         <p>Filial: <c:out value="${nomeFilial}"></c:out></p>
             <!--        <p>Total de Vendas no período: </p>-->
             <table class="table table-hover">
@@ -60,6 +60,5 @@
                 </c:forEach>
             </tbody>
         </table>
-        <button>Voltar</button>
     </body>
 </html>
