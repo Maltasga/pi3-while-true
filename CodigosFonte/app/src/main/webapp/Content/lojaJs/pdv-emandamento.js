@@ -66,10 +66,12 @@ window.addEventListener("load", function () {
         var novoOption = null;
         ddlTamanho.appendChild(document.createElement("option"));
         for (var j = 0; j < produto.estoque.length; j++) {
-            novoOption = document.createElement("option");
-            novoOption.value = produto.estoque[j].tamanho;
-            novoOption.textContent = produto.estoque[j].tamanho;
-            ddlTamanho.appendChild(novoOption);
+            if (produto.estoque[j].quantidade > 0) {
+                novoOption = document.createElement("option");
+                novoOption.value = produto.estoque[j].tamanho;
+                novoOption.textContent = produto.estoque[j].tamanho;
+                ddlTamanho.appendChild(novoOption);
+            }
         }
     }
 
@@ -162,8 +164,8 @@ window.addEventListener("load", function () {
                     var ddlTamanho = document.querySelector("#ddlTamanho");
                     var tamanho = ddlTamanho.options[ddlTamanho.selectedIndex].value;
                     var quantidade = parseInt(document.querySelector("#txtQtde").value);
-                    
-                    if(!tamanho){
+
+                    if (!tamanho) {
                         mostrarAlerta("Tamanho não informado");
                         return;
                     }
