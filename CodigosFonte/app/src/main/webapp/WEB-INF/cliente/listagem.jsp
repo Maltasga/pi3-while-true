@@ -21,7 +21,11 @@
                         Clientes cadastrados
                     </h2>
                 </div>
-
+                <div class="form-group-sm form-inline">
+                    <label>Filtrar por</label>
+                    <input id="txtNomeFiltro" class="form-control" type="text" placeholder="Nome" />
+                    <input id="btnFiltrar" type="button" class="btn btn-default" value="Filtrar" />
+                </div>
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -59,8 +63,8 @@
             </div>
         </div>  
         <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
-        <!--        <script src="Content/lojaJs/listagem-usuario.js" type="text/javascript"></script>-->
-         <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
+            <!--        <script src="Content/lojaJs/listagem-usuario.js" type="text/javascript"></script>-->
+        <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
         <script src="Content/lojaJs/listagem-cliente.js" type="text/javascript"></script>
     </body>
 </html>

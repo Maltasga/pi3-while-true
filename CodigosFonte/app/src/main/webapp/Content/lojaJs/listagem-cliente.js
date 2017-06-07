@@ -34,6 +34,24 @@ window.addEventListener("load", function () {
             }
         });
     }
+    
+    function filtrarPorNome() {
+        var filtro = document.querySelector("#txtNomeFiltro").value;
+        var linhas = document.querySelectorAll("tbody>tr");
+        for (var i = 0; i < linhas.length; i++) {
+            if (!filtro) {
+                linhas[i].classList.remove("hide");
+            } else {
+                var nome = linhas[i].querySelector("td:first-of-type").textContent;
+                if (!nome.toLowerCase().includes(filtro.toLowerCase())) {
+                    linhas[i].classList.add("hide");
+                } else {
+                    linhas[i].classList.remove("hide");
+                }
+            }
+        }
+    }
 
+    document.querySelector("#btnFiltrar").addEventListener("click", filtrarPorNome);
 
 });

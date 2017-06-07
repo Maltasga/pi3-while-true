@@ -15,6 +15,11 @@
                         Filiais Cadastradas
                     </h2>
                 </div>
+                <div class="form-group-sm form-inline">
+                    <label>Filtrar por</label>
+                    <input id="txtNomeFiltro" class="form-control" type="text" placeholder="Razão Social" />
+                    <input id="btnFiltrar" type="button" class="btn btn-default" value="Filtrar" />
+                </div>
                 <table class="table table-hover">
                     <thead>
                         <tr>

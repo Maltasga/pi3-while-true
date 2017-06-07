@@ -39,6 +39,8 @@
                             <td><c:out value="${p.cor}"></c:out></td>
                             <td><c:out value="${p.valorVenda}"></c:out></td>
                                 <td>
+                                    <span class="btn-estoque glyphicon glyphicon-list-alt" data-id="<c:out value="${p.id}"></c:out>" title="estoque"></span>
+                                    &nbsp;
                                     <span class="btn-editar glyphicon glyphicon-pencil" data-id="<c:out value="${p.id}"></c:out>" title="editar"></span>
                                     &nbsp;
                                     <span class="btn-excluir glyphicon glyphicon-remove" data-id="<c:out value="${p.id}"></c:out>" title="excluir"></span>
