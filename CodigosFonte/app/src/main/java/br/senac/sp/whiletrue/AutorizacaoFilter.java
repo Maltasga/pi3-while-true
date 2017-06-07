@@ -27,7 +27,7 @@ import javax.servlet.http.HttpSession;
             "/editar-cliente", "/editar-filial", "/editar-usuario", "/editar-colecao", "/editar-produto",
             "/excluircliente", "/excluirfilial", "/excluirusuario", "/excluircolecao", "/excluirproduto",
             "/finalizar-venda", "/home", "/clientes", "/filiais", "/usuarios", "/venda", "/colecoes", "/produtos",
-            "/rel-vendas-geral"})
+            "/rel-vendas-geral", "/estoque"})
 public class AutorizacaoFilter implements Filter {
 
     @Override
@@ -228,6 +228,13 @@ public class AutorizacaoFilter implements Filter {
                 return true;
             }
             return false;
+        }
+        
+        if (pagina.contains("estoque")){
+                if(idPerfil == 300) {
+                return true;
+                }
+                return false;
         }
 
         return false;
