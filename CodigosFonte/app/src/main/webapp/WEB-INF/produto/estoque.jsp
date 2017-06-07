@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,12 +17,12 @@
                 <div class="form-dados">
                     <div class="form-flex">
                         <div  class="form-group form-codigo">
-                            <label>Cód.Produto</label>
-                            <input type="text" required name="codigo" required class="form-control">
+                            <p><label>Cód.Produto: </label> <c:out value="${p.codigo}"></c:out></div>
+<!--                            <input type="text" required name="codigo" required class="form-control">-->
                         </div>
                         <div class="form-group form-produto">
-                            <label>Nome do Produto</label>
-                            <input pattern="[a-zA-Z]+" type="text" required name="produto" class="form-control" placeholder="Insira o nome do Produto aqui" >
+                            <p><label>Nome do Produto: </label> <c:out value="${p.nome}"></c:out></p>
+                            <!--<input pattern="[a-zA-Z]+" type="text" required name="produto" class="form-control" placeholder="Insira o nome do Produto aqui" >-->
                         </div>
                     </div>
                     <div class="form-flex">

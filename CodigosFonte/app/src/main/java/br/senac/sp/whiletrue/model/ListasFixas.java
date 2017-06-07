@@ -121,4 +121,16 @@ public abstract class ListasFixas {
         
         return periodoRelatorio;
     }
+    
+    public static ArrayList<String> getTamanhos(){
+        ArrayList<String> tamanhos = new ArrayList<>();
+        tamanhos.add("PP");
+        tamanhos.add("P");
+        tamanhos.add("M");
+        tamanhos.add("G");
+        tamanhos.add("GG");
+        
+        return tamanhos;
+        
+    }
 }
