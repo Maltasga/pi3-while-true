@@ -2,6 +2,7 @@ body{
     background-image: url("../img/fundo(2).jpg") ;
     background-repeat: no-repeat;
     background-position: top;
+    background-color: #f1eee7;
 }
 .form-cadastro{
     width: 870px;
@@ -82,6 +83,8 @@ body{
 .btns{
     height: 30px;
     align-self: center;
+    margin-top: 26px;
+    padding-bottom: 25px;
 }
 /*Tamanho de campos*/
 

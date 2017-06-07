@@ -41,16 +41,13 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <button type="submit" class="btns">Gerar</button>
+                    <button type="submit" class="btns btn btn-info">Gerar</button>
                 </div>
             </form>
-            <!--            <h2>Relatório de Vendas</h2>-->
-            <div class="form-group">
-                <p>Período: <c:out value="${periodoSelecionado}"></c:out></p>
-                <p>Filial: <c:out value="${nomeFilial}"></c:out></p>
+            <div class="form-group ">
+                <p><label>Período:</label> <c:out value="${periodoSelecionado}"></c:out></p>
+                <p><label>Filial:</label> <c:out value="${nomeFilial}"></c:out></p>
                 </div>
-
-                <!--        <p>Total de Vendas no período: </p>-->
                 <table class="table table-hover">
                     <thead>
                         <tr>
