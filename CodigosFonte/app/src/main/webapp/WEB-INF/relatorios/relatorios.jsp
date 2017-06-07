@@ -23,7 +23,6 @@
                             </c:when>
                             <c:otherwise>
                                 <select name="filial" class="form-control">
-                                    <option value=""></option>
                                     <option value="0">Todas as Filiais</option>
                                     <c:forEach items="${listaFiliais}" var="f">
                                         <option value="${f.id}">${f.nome}</option>
@@ -35,7 +34,6 @@
                     <div class="form-group">
                         <label>Período</label>
                         <select name="periodo" class="form-control">
-                            <option value=""></option>
                             <c:forEach items="${periodo}" var="p">
                                 <option value="${p}">${p}</option>
                             </c:forEach>
