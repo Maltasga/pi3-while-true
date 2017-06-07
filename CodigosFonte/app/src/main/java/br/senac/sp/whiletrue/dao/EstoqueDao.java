@@ -46,6 +46,32 @@ public class EstoqueDao {
         }
     }
 
+    public void atualizar(Estoque e, int quantidade) throws SQLException {
+        String query = "UPDATE Estoque SET Quantidade = (Quantidade + ?)\n"
+                + "WHERE IdProduto = ?\n"
+                + "AND IdFilial = ?\n"
+                + "AND Tamanho = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, quantidade);
+            statement.setInt(2, e.getId());
+            statement.setInt(3, e.getIdFilial());
+            statement.setString(4, e.getTamanho());
+            statement.execute();
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null && !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+    }
+
     public void atualizar(Estoque e) throws SQLException {
         String query = "UPDATE Estoque SET Quantidade = ? "
                 + "WHERE IdProduto = ?"
@@ -150,4 +176,5 @@ public class EstoqueDao {
         }
         return lista;
     }
+
 }

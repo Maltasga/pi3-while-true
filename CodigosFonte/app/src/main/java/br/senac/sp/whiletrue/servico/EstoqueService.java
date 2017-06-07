@@ -32,6 +32,27 @@ public class EstoqueService {
         return estoque;
     }
 
+    public void inserir(Estoque e) {
+        try {
+            ArrayList<Estoque> lista = dao.listarPorProduto(e.getIdProduto(), e.getIdFilial());
+            if (lista.size() == 0) {
+                dao.inserir(e);
+            } else {
+                Estoque est = buscar(e);
+                if (est != null) {
+                    int quant = e.getQuantidade() + est.getQuantidade();
+                    e.setQuantidade(quant);
+                    dao.atualizar(e);
+                } else {
+                    dao.inserir(e);
+                }
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public ArrayList<Estoque> listarPorFilial(int idFilial) {
         try {
             ArrayList<Estoque> listaRetorno = new ArrayList<>();
@@ -83,5 +104,14 @@ public class EstoqueService {
         }
         return qtde;
     }
-    
+
+    public Estoque buscar(Estoque e) throws SQLException {
+        ArrayList<Estoque> estoque = listarPorProduto(e.getIdProduto(), e.getIdFilial());
+        for (Estoque estoque1 : estoque) {
+            if (estoque1.getTamanho().equals(e.getTamanho())) {
+                return estoque1;
+            }
+        }
+        return null;
+    }
 }

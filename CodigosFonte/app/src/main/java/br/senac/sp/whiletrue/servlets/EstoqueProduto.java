@@ -5,6 +5,7 @@
  */
 package br.senac.sp.whiletrue.servlets;
 
+import br.senac.sp.whiletrue.model.Estoque;
 import br.senac.sp.whiletrue.model.Filial;
 import br.senac.sp.whiletrue.model.ListasFixas;
 import br.senac.sp.whiletrue.model.Produto;
@@ -35,22 +36,55 @@ public class EstoqueProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int id = Integer.getInteger(request.getParameter("q"));
-        
+        int id = Integer.parseInt(request.getParameter("q"));
+
         serviceProduto = new ProdutoService();
         serviceFilial = new FilialService();
-        
+
         Produto p = serviceProduto.get(id);
         ArrayList<Filial> filiais = serviceFilial.listar();
         ArrayList<String> tamanhos = ListasFixas.getTamanhos();
-        
+
         request.setAttribute("id", id);
-        request.setAttribute("listaFiliais", filiais);
+        request.setAttribute("listaFilial", filiais);
+        request.setAttribute("produto", p);
+        request.setAttribute("tamanhos", tamanhos);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/produto/estoque.jsp");
+        dispatcher.forward(request, response);
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        service = new EstoqueService();
+        int id = Integer.parseInt(request.getParameter("id"));
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        String tamanho = request.getParameter("tamanho");
+        int idFilial = Integer.parseInt(request.getParameter("filial"));
+        
+        Estoque e = new Estoque(0, id, idFilial, tamanho, quantidade);
+        
+        service.inserir(e);
+        
+       // int id = Integer.parseInt(request.getParameter("id"));
+        
+        serviceProduto = new ProdutoService();
+        serviceFilial = new FilialService();
+
+        Produto p = serviceProduto.get(id);
+        ArrayList<Filial> filiais = serviceFilial.listar();
+        ArrayList<String> tamanhos = ListasFixas.getTamanhos();
+
+        request.setAttribute("id", id);
+        request.setAttribute("listaFilial", filiais);
+        request.setAttribute("filialEstoque", idFilial);
         request.setAttribute("produto", p);
         request.setAttribute("tamanhos", tamanhos);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/produto/estoque.jsp");
-            dispatcher.forward(request, response);
+                dispatcher.forward(request, response);
 
     }
 
