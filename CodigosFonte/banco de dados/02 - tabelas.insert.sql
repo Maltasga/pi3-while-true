@@ -52,3 +52,7 @@ INSERT INTO LOJA.MENUPERFIL VALUES (7000, 500);
 INSERT INTO USUARIO (IdPerfil, IdFilial, Nome, Email, Login, Senha, Ativo, DataCadastro) VALUES (500, 1, 'master', 'master@master.com', 'master', '$2a$10$bGjTYTfQNfybErNO8YpCPOsXqgVmx9mbxj1TyL04xcs9ytMwIvwr6', true, '2017-06-04');
 
 
+INSERT INTO CLIENTE (Nome, Cpf, Sexo, DataNascimento, Ativo, DataCadastro) VALUES ('Gabriela Leandro', '33350066828','Feminino','1994-02-18', true, '2017-06-06');
+INSERT INTO CLIENTE (Nome, Cpf, Sexo, DataNascimento, Ativo, DataCadastro) VALUES ('Gabriel Malta', '35104624838','Masculino','1987-11-04', true, '2017-05-07');
+INSERT INTO CLIENTE (Nome, Cpf, Sexo, DataNascimento, Ativo, DataCadastro) VALUES ('Karolina Kallajian', '41590156463','Feminino','1989-10-26', true, '2016-06-06');
+INSERT INTO CLIENTE (Nome, Cpf, Sexo, DataNascimento, Ativo, DataCadastro) VALUES ('Ana Paula', '22663228427','Feminino','1984-03-23', true, '2017-06-06');
