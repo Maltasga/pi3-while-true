@@ -9,11 +9,7 @@
     </head>
     <body>
         <div class="container-login">
-            <c:if test="${msgFalhaLogin != null}">
-                <div class="alert alert-danger">
-                    <c:out value="${msgFalhaLogin}"></c:out>
-                    </div>
-            </c:if>
+
             <div class="text-center">
                 <label>Autentique-se</label>
             </div>
@@ -30,6 +26,11 @@
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
             </form>
+            <c:if test="${msgFalhaLogin != null}">
+                <div class="alert alert-danger msgFalha">
+                    <c:out value="${msgFalhaLogin}"></c:out>
+                    </div>
+            </c:if>
         </div>
     </body>
 </html>

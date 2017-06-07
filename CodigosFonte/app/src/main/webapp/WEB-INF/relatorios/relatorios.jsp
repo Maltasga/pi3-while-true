@@ -41,18 +41,17 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <button type="submit" class="btns">Gerar</button>
+                    <button type="submit" class="btns btn btn-info">Gerar</button>
                 </div>
             </form>
-            <!--            <h2>Relatório de Vendas</h2>-->
-            <div class="form-group">
-                <p>Período: <c:out value="${periodoSelecionado}"></c:out></p>
-                <p>Filial: <c:out value="${nomeFilial}"></c:out></p>
+            <div class="form-group ">
+                <p><label>Período:</label> <c:out value="${periodoSelecionado}"></c:out></p>
+                <p><label>Filial:</label> <c:out value="${nomeFilial}"></c:out></p>
                 </div>
 
             <fmt:setLocale value="pt_BR" />
-            <p>Total de Vendas no período: <fmt:formatNumber value="${totalVendas}" type="currency"></fmt:formatNumber></p>
-                <div style="height: 300px; overflow: scroll; border-top: 1px dotted black;">
+            <p>Total de Vendas no período: <label><fmt:formatNumber value="${totalVendas}" type="currency"></fmt:formatNumber></label></p>
+                <div style="height: 200px; overflow: scroll; border-top: 1px dotted black;">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -60,7 +59,6 @@
                                 <th>Data da venda</th>
                                 <th>Vendedor</th>
                                 <th>Valor total</th>
-                            </tr>
                         </thead>
                         <tbody>
                         <c:forEach items="${listaVendas}" var="v">
