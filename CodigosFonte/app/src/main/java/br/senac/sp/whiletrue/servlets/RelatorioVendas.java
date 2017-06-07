@@ -7,14 +7,12 @@ package br.senac.sp.whiletrue.servlets;
 
 import br.senac.sp.whiletrue.model.Filial;
 import br.senac.sp.whiletrue.model.ListasFixas;
+import br.senac.sp.whiletrue.model.Relatorio;
 import br.senac.sp.whiletrue.model.Usuario;
 import br.senac.sp.whiletrue.servico.FilialService;
 import br.senac.sp.whiletrue.servico.RelatorioService;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -75,6 +73,11 @@ public class RelatorioVendas extends HttpServlet {
         request.setAttribute("filialAtiva", filialAtiva);
         request.setAttribute("listaFiliais", filialService.listar());
         request.setAttribute("listaVendas", vendas);
+        double totalVendas = 0;
+        for (Relatorio rel : vendas) {
+            totalVendas += rel.getValorTotal();
+        }
+        request.setAttribute("totalVendas", totalVendas);
         request.setAttribute("periodoSelecionado", paramPeriodo);
         if (paramFilial != 0) {
             request.setAttribute("nomeFilial", filialService.get(paramFilial).getNome());

@@ -50,27 +50,33 @@
                 <p>Filial: <c:out value="${nomeFilial}"></c:out></p>
                 </div>
 
-                <!--        <p>Total de Vendas no período: </p>-->
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Filial</th>
-                            <th>Data da venda</th>
-                            <th>Vendedor</th>
-                            <th>Valor total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${listaVendas}" var="v">
-                        <tr>
-                            <td><c:out value="${v.nome}"></c:out></td>
-                            <td><fmt:formatDate value="${v.dataVenda}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
-                            <td><c:out value="${v.vendedor}"></c:out></td>
-                            <td><c:out value="${v.valorTotal}"></c:out></td>
+            <fmt:setLocale value="pt_BR" />
+            <p>Total de Vendas no período: <fmt:formatNumber value="${totalVendas}" type="currency"></fmt:formatNumber></p>
+                <div style="height: 300px; overflow: scroll; border-top: 1px dotted black;">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Filial</th>
+                                <th>Data da venda</th>
+                                <th>Vendedor</th>
+                                <th>Valor total</th>
                             </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                        <c:forEach items="${listaVendas}" var="v">
+                            <tr>
+                                <td><c:out value="${v.nome}"></c:out></td>
+                                <td><fmt:formatDate value="${v.dataVenda}" pattern="dd/MM/yyyy"></fmt:formatDate></td>
+                                <td><c:out value="${v.vendedor}"></c:out></td>
+                                    <td>
+                                    <fmt:setLocale value="pt_BR" />
+                                    <fmt:formatNumber value="${v.valorTotal}" type="currency"></fmt:formatNumber>
+                                    </td>
+                                </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>
