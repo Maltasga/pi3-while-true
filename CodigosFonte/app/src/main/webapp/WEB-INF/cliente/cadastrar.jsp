@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group form-complemento">
                             <label>Complemento</label>
-                            <input type="text" name="complemento" required class="form-control" value="${clientetoedit.endereco.complemento}" />
+                            <input type="text" name="complemento" class="form-control" value="${clientetoedit.endereco.complemento}" />
                         </div>
                     </div>
                     <div class="form-flex">

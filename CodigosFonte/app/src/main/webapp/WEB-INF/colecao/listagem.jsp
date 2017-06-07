@@ -15,7 +15,11 @@
                         Coleções cadastrados
                     </h2>
                 </div>
-
+                <div class="form-group-sm form-inline">
+                    <label>Filtrar por</label>
+                    <input id="txtNomeFiltro" class="form-control" type="text" placeholder="Nome da Coleção" />
+                    <input id="btnFiltrar" type="button" class="btn btn-default" value="Filtrar" />
+                </div> 
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -45,7 +49,7 @@
             </div>
         </div>  
         <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
-         <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
+        <jsp:include page="../../WEB-INF/partilals/scripts.jsp"></jsp:include>
         <script src="Content/lojaJs/listagem-colecao.js" type="text/javascript"></script>
     </body>
 </html>
