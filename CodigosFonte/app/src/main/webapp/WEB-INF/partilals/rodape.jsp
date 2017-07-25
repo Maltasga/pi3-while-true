@@ -1,1 +1,0 @@
- <p>&copy;KK Coolwear - 2017</p>
